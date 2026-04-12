@@ -3,14 +3,18 @@
 @theme {
   /* Colors Variables */
   --color-primary: #DE7235;
-  --color-primary-hover: #cf692f;
-  --color-secondary: #FF3366;
+  --color-secondary: #5B6B79;
   --color-main-white: #FFFFFF;
   --color-main-black: #000000;
   --color-secondary-black: #151515;
+  --color-font-body: #4D4D4D;
+  --color-labels: #808080;
+  --color-bg-tags: #F3F4F6;
+
+  --color-primary-hover: #cf692f;
   --color-secondary-black-hover: #000000;
 
-  --color-secondary-btn: #FAFAFA;
+  --color-secondary-btn: #FFFFFF;
   --color-secondary-btn-hover: #F5F5F5;
   
   /* Border Radius Variables */
@@ -120,4 +124,8 @@
 
 .section-container {
   @apply container mx-auto py-[100px] px-6;
+}
+
+body {
+  background-color: #000;
 }

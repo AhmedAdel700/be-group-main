@@ -6,6 +6,14 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import "@/styles/globals.css";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+import { IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
+
+const ibmPlexArabic = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Be Group",
@@ -27,7 +35,7 @@ export default async function Layout({
 
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      <body className={`antialiased`}>
+      <body className={`${locale === "ar" ? ibmPlexArabic.className : inter.className} antialiased`}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Header />
           {children}
