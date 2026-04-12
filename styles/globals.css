@@ -1,2 +1,123 @@
 @import "tailwindcss";
 
+@theme {
+  /* Colors Variables */
+  --color-primary: #DE7235;
+  --color-primary-hover: #cf692f;
+  --color-secondary: #FF3366;
+  --color-main-white: #FFFFFF;
+  --color-main-black: #000000;
+  --color-secondary-black: #151515;
+  --color-secondary-black-hover: #000000;
+
+  --color-secondary-btn: #FAFAFA;
+  --color-secondary-btn-hover: #F5F5F5;
+  
+  /* Border Radius Variables */
+  --radius-main-btn: 8px;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+:root {
+  /* Padding Variables (Browser native vars) */
+  --padding-main-btn: 16px 50px;
+  --padding-black-btn: 15px 40px;
+}
+
+@utility btn-main {
+  @apply relative min-w-[250px] h-[54px] flex items-center justify-center gap-[10px] p-(--padding-main-btn) font-bold text-lg overflow-hidden transition-colors duration-300 bg-primary rounded-main-btn text-main-white cursor-pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 100%
+    );
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+  }
+
+  &:hover::before {
+    left: 160%;
+  }
+
+  &:hover {
+    @apply bg-primary-hover;
+  }
+}
+
+@utility btn-secondary {
+  @apply relative min-w-[250px] h-[54px] flex items-center justify-center gap-[10px] p-(--padding-main-btn) font-bold text-lg overflow-hidden transition-colors duration-300 bg-secondary-btn rounded-main-btn text-primary cursor-pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(222, 114, 53, 0.15) 50%,
+      transparent 100%
+    );
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+  }
+
+  &:hover::before {
+    left: 160%;
+  }
+
+  &:hover {
+    @apply bg-secondary-btn-hover;
+  }
+}
+
+@utility btn-black {
+  @apply relative w-fit h-[50px] flex items-center justify-center gap-[10px] p-(--padding-black-btn) font-medium text-lg overflow-hidden transition-colors duration-300 bg-secondary-black rounded-main-btn text-main-white cursor-pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      transparent 100%
+    );
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+  }
+
+  &:hover::before {
+    left: 160%;
+  }
+
+  &:hover {
+    @apply bg-secondary-black-hover;
+  }
+}
+
+.section-container {
+  @apply container mx-auto py-[100px] px-6;
+}
