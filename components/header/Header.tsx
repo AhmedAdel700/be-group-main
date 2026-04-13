@@ -2,21 +2,26 @@
 
 import Image from "next/image";
 import { Link, usePathname } from "@/i18n/navigation";
-import { ChevronDown, MoveRight, MoveLeft, Menu, X } from "lucide-react";
-import { useLocale } from "next-intl";
+import { ChevronDown, Menu, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
   const pathname = usePathname();
-  const locale = useLocale();
+  const t = useTranslations("header");
   const [isOpen, setIsOpen] = useState(false);
   const [showMobileDropdown, setShowMobileDropdown] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    setIsOpen(false);
-    setShowMobileDropdown(false);
-  }, [pathname]);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -27,12 +32,12 @@ export default function Header() {
   }, [isOpen]);
 
   const navLinks = [
-    { name: "الرئيسية", href: "/" },
-    { name: "قطاعات نخدمها", href: "/sectors", dropdown: true },
-    { name: "تعرف علينا", href: "/about" },
-    { name: "أعمالنا", href: "/work" },
-    { name: "المدونة", href: "/blog" },
-    { name: "تواصل معنا", href: "/contact" },
+    { name: t("home"), href: "/" },
+    { name: t("sectors"), href: "/sectors", dropdown: true },
+    { name: t("about"), href: "/about" },
+    { name: t("work"), href: "/work" },
+    { name: t("blog"), href: "/blog" },
+    { name: t("contact"), href: "/contact" },
   ];
 
   const menuVariants: Variants = {
@@ -63,12 +68,14 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 z-50 w-full transition-all duration-300 bg-transparent py-6">
-      <div className="container mx-auto px-6 flex items-center justify-between relative z-50">
+    <header className={`fixed top-0 z-50 w-full transition-all duration-500 py-4 ${
+      isScrolled ? "bg-main-black/80 backdrop-blur-lg border-b border-white/5 py-3" : "bg-transparent py-6"
+    }`}>
+      <div className="container mx-auto px-4 sm:px-8 flex items-center justify-between relative z-50">
         
         <div className="flex items-center gap-12 lg:gap-22">
           <Link href="/" className="relative z-10 block shrink-0">
-            <div className="relative w-[124px] h-[52px]">
+            <div className="relative w-31 h-13">
               <Image 
                 src="/assets/logo.svg" 
                 alt="Logo" 
@@ -105,16 +112,16 @@ export default function Header() {
 
                     {link.dropdown && (
                       <div className="absolute top-full -left-6 pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                        <div className="bg-main-black/90 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl p-4 min-w-[220px]">
+                        <div className="bg-main-black/90 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl p-4 min-w-55">
                           <ul className="space-y-2">
                              <li>
-                               <Link href="/sectors/tech" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">قطاع التكنولوجيا</Link>
+                               <Link href="/sectors/tech" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("tech")}</Link>
                              </li>
                              <li>
-                               <Link href="/sectors/real-estate" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">قطاع العقارات</Link>
+                               <Link href="/sectors/real-estate" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("realEstate")}</Link>
                              </li>
                              <li>
-                               <Link href="/sectors/marketing" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">قطاع التسويق</Link>
+                               <Link href="/sectors/marketing" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("marketing")}</Link>
                              </li>
                           </ul>
                         </div>
@@ -127,15 +134,9 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* Desktop Contact CTA */}
+        {/* Desktop Language Switcher */}
         <div className="hidden lg:block shrink-0">
-          <Link
-            href="/contact"
-            className="text-primary font-bold text-base leading-[1.6] border-b border-primary border-solid flex items-center gap-[10px] py-[5px] px-[10px] group transition-all duration-300 hover:gap-3"
-          >
-            تواصل معنا
-            {locale === "ar" ? <MoveLeft size={24} className="transition-transform duration-300" /> : <MoveRight size={24} className="transition-transform duration-300" />}
-          </Link>
+          <LanguageSwitcher />
         </div>
 
         {/* Mobile Burger Button */}
@@ -157,7 +158,7 @@ export default function Header() {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="fixed inset-0 z-40 bg-main-black/95 backdrop-blur-xl pt-32 px-6 flex flex-col items-center overflow-y-auto"
+            className="fixed inset-0 z-40 bg-main-black/95 backdrop-blur-xl pt-32 px-4 sm:px-8 flex flex-col items-center overflow-y-auto"
           >
             <nav className="w-full max-w-sm text-center">
               <ul className="space-y-6">
@@ -190,9 +191,9 @@ export default function Header() {
                               exit={{ height: 0, opacity: 0 }}
                               className="mt-4 space-y-4 overflow-hidden"
                             >
-                              <li><Link onClick={() => setIsOpen(false)} href="/sectors/tech" className="text-xl text-main-white hover:text-primary transition-colors">قطاع التكنولوجيا</Link></li>
-                              <li><Link onClick={() => setIsOpen(false)} href="/sectors/real-estate" className="text-xl text-main-white hover:text-primary transition-colors">قطاع العقارات</Link></li>
-                              <li><Link onClick={() => setIsOpen(false)} href="/sectors/marketing" className="text-xl text-main-white hover:text-primary transition-colors">قطاع التسويق</Link></li>
+                              <li><Link onClick={() => setIsOpen(false)} href="/sectors/tech" className="text-xl text-main-white hover:text-primary transition-colors">{t("tech")}</Link></li>
+                              <li><Link onClick={() => setIsOpen(false)} href="/sectors/real-estate" className="text-xl text-main-white hover:text-primary transition-colors">{t("realEstate")}</Link></li>
+                              <li><Link onClick={() => setIsOpen(false)} href="/sectors/marketing" className="text-xl text-main-white hover:text-primary transition-colors">{t("marketing")}</Link></li>
                             </motion.ul>
                           )}
                         </AnimatePresence>
@@ -217,14 +218,7 @@ export default function Header() {
                 variants={itemVariants}
                 className="mt-12 flex justify-center"
               >
-                <Link
-                  onClick={() => setIsOpen(false)}
-                  href="/contact"
-                  className="text-primary font-bold text-xl leading-[1.6] border-b-2 border-primary border-solid flex items-center gap-3 py-2 px-4 transition-all duration-300"
-                >
-                  تواصل معنا
-                  {locale === "ar" ? <MoveLeft size={28} /> : <MoveRight size={28} />}
-                </Link>
+                <LanguageSwitcher />
               </motion.div>
             </nav>
           </motion.div>

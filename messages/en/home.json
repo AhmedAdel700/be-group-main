@@ -1,3 +1,8 @@
 {
-    "Test": "Test"
+    "hero": {
+        "title": "Creating a Digital Future Beyond Ambition",
+        "subtitle": "We are your strategic partner in digital transformation, providing integrated solutions that combine creativity and technology to achieve your goals.",
+        "cta": "Start Your Project",
+        "secondaryCta": "Our Services"
+    }
 }

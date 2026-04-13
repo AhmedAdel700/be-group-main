@@ -5,7 +5,7 @@
   --color-primary: #DE7235;
   --color-secondary: #5B6B79;
   --color-main-white: #FFFFFF;
-  --color-main-black: #000000;
+  --color-main-black: #1A1A1A;
   --color-secondary-black: #151515;
   --color-font-body: #4D4D4D;
   --color-labels: #808080;
@@ -16,7 +16,7 @@
 
   --color-secondary-btn: #FFFFFF;
   --color-secondary-btn-hover: #F5F5F5;
-  
+
   /* Border Radius Variables */
   --radius-main-btn: 8px;
 }
@@ -45,12 +45,10 @@
     left: -100%;
     width: 60%;
     height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.35) 50%,
-      transparent 100%
-    );
+    background: linear-gradient(120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.35) 50%,
+        transparent 100%);
     transform: skewX(-20deg);
     transition: left 0.5s ease;
   }
@@ -74,12 +72,10 @@
     left: -100%;
     width: 60%;
     height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent 0%,
-      rgba(222, 114, 53, 0.15) 50%,
-      transparent 100%
-    );
+    background: linear-gradient(120deg,
+        transparent 0%,
+        rgba(222, 114, 53, 0.15) 50%,
+        transparent 100%);
     transform: skewX(-20deg);
     transition: left 0.5s ease;
   }
@@ -103,12 +99,10 @@
     left: -100%;
     width: 60%;
     height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.2) 50%,
-      transparent 100%
-    );
+    background: linear-gradient(120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%);
     transform: skewX(-20deg);
     transition: left 0.5s ease;
   }
@@ -126,6 +120,26 @@
   @apply container mx-auto py-[100px] px-6;
 }
 
-body {
-  background-color: #000;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent;
 }
