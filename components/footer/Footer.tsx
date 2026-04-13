@@ -189,7 +189,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-[#2d2d2d]">
-        <div className="max-w-[1200px] mx-auto px-8 py-[18px] flex flex-wrap justify-between items-center gap-2.5">
+        <div className="max-w-300 mx-auto px-8 py-4.5 flex flex-wrap justify-between items-center gap-2.5">
           <span className="text-[12.5px] text-[#808080]">
             © 2026 بي جروب. جميع الحقوق محفوظة
           </span>
