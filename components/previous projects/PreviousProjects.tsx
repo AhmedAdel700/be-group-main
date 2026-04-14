@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -296,12 +296,20 @@ export default function PreviousProjects() {
           Touch / drag is built-in; buttons navigate via swiperRef.
          ══════════════════════════════════════════════════════════════════════ */}
       <div className="hidden md:block">
-        <Swiper
-          key={`desktop-${activeCategory}`}
-          modules={[A11y]}
-          slidesPerView={1}
-          spaceBetween={0}
-          grabCursor={true}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`desktop-${activeCategory}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="w-full"
+          >
+            <Swiper
+              modules={[A11y]}
+              slidesPerView={1}
+              spaceBetween={0}
+              grabCursor={true}
           loop={true}
           a11y={{ enabled: true }}
           onSwiper={(swiper) => {
@@ -448,7 +456,9 @@ export default function PreviousProjects() {
               </div>
             </SwiperSlide>
           ))}
-        </Swiper>
+            </Swiper>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* ══════════════════════════════════════════════════════════════════════
@@ -456,13 +466,20 @@ export default function PreviousProjects() {
           Touch / drag built-in; buttons navigate via mobileSwiperRef.
          ══════════════════════════════════════════════════════════════════════ */}
       <div className="md:hidden overflow-hidden">
-        <Swiper
-          key={`mobile-${activeCategory}`}
-          modules={[A11y]}
-          spaceBetween={16}
-          slidesPerView={1.15}
-          centeredSlides={true}
-          grabCursor={true}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`mobile-${activeCategory}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            <Swiper
+              modules={[A11y]}
+              spaceBetween={16}
+              slidesPerView={1.15}
+              centeredSlides={true}
+              grabCursor={true}
           loop={true}
           a11y={{ enabled: true }}
           onSwiper={(swiper) => {
@@ -497,7 +514,7 @@ export default function PreviousProjects() {
                     <Link
                       href={"/"}
                       target="_blank"
-                      className="w-12.5 h-12.5 bg-primary rounded-full flex items-center justify-center shrink-0 shadow-lg"
+                      className="w-12.5 h-12.5 bg-primary rounded-full flex items-center justify-center shrink-0"
                     >
                       <Image
                         src={arrowupIcon}
@@ -512,7 +529,9 @@ export default function PreviousProjects() {
               </div>
             </SwiperSlide>
           ))}
-        </Swiper>
+            </Swiper>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
