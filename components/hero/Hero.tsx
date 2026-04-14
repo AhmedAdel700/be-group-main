@@ -16,7 +16,7 @@ export default function Hero() {
     locale === "ar" ? <MoveLeft size={24} /> : <MoveRight size={24} />;
 
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-10 xl:pb-0 overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-12 lg:pt-24 pb-10 xl:pb-0 overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
           src={heroImage}
@@ -171,8 +171,8 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute -bottom-24 -right-24 w-64 h-64 sm:w-96 sm:h-96 xl:w-125 xl:h-125 bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/4 -left-24 w-48 h-48 sm:w-64 sm:h-64 xl:w-75 xl:h-75 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+      {/* <div className="absolute -bottom-24 -right-24 w-64 h-64 sm:w-96 sm:h-96 xl:w-125 xl:h-125 bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 -left-24 w-48 h-48 sm:w-64 sm:h-64 xl:w-75 xl:h-75 bg-primary/10 rounded-full blur-[100px] pointer-events-none" /> */}
     </section>
   );
 }

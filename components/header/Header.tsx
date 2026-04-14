@@ -68,86 +68,90 @@ export default function Header() {
   };
 
   return (
-    <header className={`fixed top-0 z-50 w-full transition-all duration-500 py-4 ${
-      isScrolled ? "bg-main-black/80 backdrop-blur-lg border-b border-white/5 py-3" : "bg-transparent py-6"
-    }`}>
-      <div className="container mx-auto px-4 sm:px-8 flex items-center justify-between relative z-50">
-        
-        <div className="flex items-center gap-12 lg:gap-22">
-          <Link href="/" className="relative z-10 block shrink-0">
-            <div className="relative w-31 h-13">
-              <Image 
-                src="/assets/logo.svg" 
-                alt="Logo" 
-                fill 
-                className="object-contain object-right"
-                priority
-              />
-            </div>
-          </Link>
+    <header className="fixed top-0 z-50 w-full">
+      {/* Header Bar */}
+      <div className={`relative z-[70] transition-all duration-500 ${
+        (isScrolled || isOpen) ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4" : "bg-transparent py-6"
+      }`}>
+        <div className="container mx-auto px-4 sm:px-8 flex items-center justify-between relative">
+          
+          <div className="flex items-center gap-12 lg:gap-22">
+            <Link href="/" className="relative z-10 block shrink-0" onClick={() => setIsOpen(false)}>
+              <div className="relative w-31 h-13">
+                <Image 
+                  src="/assets/logo.svg" 
+                  alt="Logo" 
+                  fill 
+                  className="object-contain object-right"
+                  priority
+                />
+              </div>
+            </Link>
 
 
-          <nav className="hidden lg:block">
-            <ul className="flex items-center gap-8">
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href;
-                return (
-                  <li key={link.href} className="group relative">
-                    <Link
-                      href={link.href}
-                      className={`text-base leading-[1.6] transition-all duration-300 flex items-center gap-1.5 
-                        ${isActive 
-                          ? 'text-primary font-bold' 
-                          : 'text-main-white font-medium hover:text-primary'}
-                      `}
-                    >
-                      {link.name}
+            <nav className="hidden lg:block">
+              <ul className="flex items-center gap-8">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <li key={link.href} className="group relative">
+                      <Link
+                        href={link.href}
+                        className={`text-base leading-[1.6] transition-all duration-300 flex items-center gap-1.5 
+                          ${isActive 
+                            ? 'text-primary font-bold' 
+                            : 'text-main-white font-medium hover:text-primary'}
+                        `}
+                      >
+                        {link.name}
+                        {link.dropdown && (
+                          <ChevronDown 
+                            size={18} 
+                            className="transition-transform duration-300 group-hover:rotate-180" 
+                          />
+                        )}
+                      </Link>
+
                       {link.dropdown && (
-                        <ChevronDown 
-                          size={18} 
-                          className="transition-transform duration-300 group-hover:rotate-180" 
-                        />
-                      )}
-                    </Link>
-
-                    {link.dropdown && (
-                      <div className="absolute top-full -left-6 pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                        <div className="bg-main-black/90 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl p-4 min-w-55">
-                          <ul className="space-y-2">
-                             <li>
-                               <Link href="/sectors/tech" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("tech")}</Link>
-                             </li>
-                             <li>
-                               <Link href="/sectors/real-estate" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("realEstate")}</Link>
-                             </li>
-                             <li>
-                               <Link href="/sectors/marketing" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("marketing")}</Link>
-                             </li>
-                          </ul>
+                        <div className="absolute top-full -left-6 pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                          <div className="bg-main-black/90 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl p-4 min-w-55">
+                            <ul className="space-y-2">
+                               <li>
+                                 <Link href="/sectors/tech" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("tech")}</Link>
+                               </li>
+                               <li>
+                                 <Link href="/sectors/real-estate" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("realEstate")}</Link>
+                               </li>
+                               <li>
+                                 <Link href="/sectors/marketing" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("marketing")}</Link>
+                               </li>
+                            </ul>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Desktop Language Switcher */}
+            <div className="hidden lg:block shrink-0">
+              <LanguageSwitcher />
+            </div>
+
+            {/* Mobile Burger Button */}
+            <button 
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden relative z-[80] p-2 text-white hover:text-primary transition-all duration-300 focus:outline-none"
+              aria-label="Toggle Menu"
+            >
+              {isOpen ? <X size={32} /> : <Menu size={32} />}
+            </button>
+          </div>
         </div>
-
-        {/* Desktop Language Switcher */}
-        <div className="hidden lg:block shrink-0">
-          <LanguageSwitcher />
-        </div>
-
-        {/* Mobile Burger Button */}
-        <button 
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden relative z-50 p-2 text-main-white hover:text-primary transition-colors focus:outline-none"
-          aria-label="Toggle Menu"
-        >
-          {isOpen ? <X size={32} /> : <Menu size={32} />}
-        </button>
-
       </div>
 
       {/* Mobile Menu Overlay */}

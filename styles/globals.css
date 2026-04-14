@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "swiper/css";
 
 @theme {
   /* Colors Variables */
@@ -10,6 +11,7 @@
   --color-font-body: #4D4D4D;
   --color-labels: #808080;
   --color-bg-tags: #F3F4F6;
+  --color-bg-filter: #F7F7F7;
 
   --color-primary-hover: #cf692f;
   --color-secondary-black-hover: #000000;
@@ -116,8 +118,62 @@
   }
 }
 
+@utility btn-nav-prev {
+  @apply relative w-12.5 h-12.5 flex items-center justify-center bg-secondary-black rounded-lg text-main-white transition-all duration-300 cursor-pointer overflow-hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+  }
+
+  &:hover::before {
+    left: 160%;
+  }
+
+  &:hover {
+    @apply bg-secondary-black-hover;
+  }
+}
+
+@utility btn-nav-next {
+  @apply relative w-12.5 h-12.5 flex items-center justify-center bg-main-white border border-black/10 rounded-lg text-main-black transition-all duration-300 cursor-pointer overflow-hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(120deg,
+        transparent 0%,
+        rgba(222, 114, 53, 0.1) 50%,
+        transparent 100%);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+  }
+
+  &:hover::before {
+    left: 160%;
+  }
+
+  &:hover {
+    @apply bg-secondary-btn-hover border-black/20;
+  }
+}
+
 .section-container {
-  @apply container mx-auto py-[100px] px-6;
+  @apply container mx-auto py-12.5 lg:py-25 px-4 sm:px-6 xl:px-12;
 }
 
 /* Custom Scrollbar */
@@ -142,4 +198,12 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--color-primary) transparent;
+}
+
+@utility no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
