@@ -16,7 +16,7 @@ export default function Hero() {
     locale === "ar" ? <MoveLeft size={24} /> : <MoveRight size={24} />;
 
   return (
-    <section className="relative min-h-screen flex items-center pt-12 lg:pt-24 pb-10 xl:pb-0 overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-12 lg:pt-24 pb-10 overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
           src={heroImage}

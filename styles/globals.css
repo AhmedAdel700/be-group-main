@@ -212,3 +212,32 @@
 .partners-swiper .swiper-wrapper {
   transition-timing-function: linear !important;
 }
+
+/* Reviews Swiper Pagination */
+.reviews-swiper {
+  padding-bottom: 60px !important;
+}
+
+.reviews-swiper .swiper-pagination {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  bottom: 0 !important;
+}
+
+.reviews-swiper .swiper-pagination-bullet {
+  background-color: var(--color-font-body, #4D4D4D) !important;
+  opacity: 0.5; /* Default opacity for inactive */
+  width: 8px !important;
+  height: 8px !important;
+  margin: 0 !important;
+  transition: all 0.3s ease;
+}
+
+.reviews-swiper .swiper-pagination-bullet-active {
+  background-color: var(--color-primary) !important;
+  opacity: 1 !important;
+  width: 16px !important;
+  height: 16px !important;
+}
