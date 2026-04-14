@@ -22,20 +22,60 @@ const LinkedInIcon = () => (
 );
 
 export default function Footer() {
-
   const socialMediaLinks = [
     { href: "https://twitter.com/bgroup_sa", icon: <TwitterIcon />, label: "Twitter" },
     { href: "https://www.facebook.com/bgroup.sa", icon: <FacebookIcon />, label: "Facebook" },
     { href: "https://www.linkedin.com/company/bgroup-sa/", icon: <LinkedInIcon />, label: "LinkedIn" },
   ];
 
+  const quickLinks = [
+    { name: "من نحن", href: "#" },
+    { name: "قطاعاتنا", href: "#" },
+    { name: "المشاريع", href: "#" },
+    { name: "الوظائف", href: "#" },
+    { name: "المدونة", href: "#" },
+  ];
+
+  const sectors = [
+    { name: "التدريب", href: "#" },
+    { name: "المقاولات", href: "#" },
+    { name: "الفعاليات", href: "#" },
+    { name: "الاستشارات الإدارية", href: "#" },
+    { name: "الحلول الرقمية", href: "#" },
+  ];
+
+  const contactInfo = [
+    { 
+      icon: <MapPin size={20} />, 
+      text: "الرياض - شارع وادي هجر – حي الملقا - 13524", 
+      dir: "rtl",
+      href: "https://www.google.com/maps/search/?api=1&query=الرياض+-+شارع+وادي+هجر+–+حي+الملقا+-+13524"
+    },
+    { 
+      icon: <Phone size={20} className="scale-x-[-1]" />, 
+      text: "+966 920022079", 
+      dir: "ltr",
+      href: "tel:+966920022079"
+    },
+    { 
+      icon: <Mail size={20} />,
+      text: "info@bgroup.sa", 
+      dir: "ltr",
+      href: "mailto:info@bgroup.sa"
+    },
+  ];
+
+  const bottomLinks = [
+    { name: "سياسة الخصوصية", href: "#" },
+    { name: "الشروط والأحكام", href: "#" },
+  ];
 
   return (
-    <footer className="bg-main-black text-main-white px-4 sm:px-8 xl:px-20 pt-20 flex flex-col gap-14">
+    <footer className="bg-main-black text-main-white px-6 sm:px-8 xl:px-20 pt-10 lg:pt-20 flex flex-col gap-14">
       {/* Footer Wrapper */}
-      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:gap-20">
+      <div className="container mx-auto flex flex-col sm:flex-row flex-wrap lg:flex-nowrap justify-between gap-10">
         {/* Brand Column */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 w-full lg:w-[26%]">
           <Image src={logo} alt="Brand Logo" width={124} height={52} />
           <p className="text-base leading-6.5 font-normal text-main-white">
             مجموعة سعودية متكاملة تقدم حلولاً احترافية في 5 قطاعات حيوية تخدم
@@ -55,149 +95,85 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Quick Links */}
-        <div>
-          <h3 className="text-[17px] font-bold text-white mb-5 pb-2.5 border-b-2 border-[#333]">
-            روابط سريعة
-          </h3>
-          <ul className="flex flex-col gap-3 list-none p-0 m-0">
-            <li>
-              <a
-                href="#"
-                className="text-[#b0b0b0] no-underline text-sm transition-colors hover:text-[#e8a03c]"
-              >
-                من نحن
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="text-[#b0b0b0] no-underline text-sm transition-colors hover:text-[#e8a03c]"
-              >
-                قطاعاتنا
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="text-[#b0b0b0] no-underline text-sm transition-colors hover:text-[#e8a03c]"
-              >
-                المشاريع
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="text-[#b0b0b0] no-underline text-sm transition-colors hover:text-[#e8a03c]"
-              >
-                الوظائف
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="text-[#b0b0b0] no-underline text-sm transition-colors hover:text-[#e8a03c]"
-              >
-                المدونة
-              </a>
-            </li>
-          </ul>
-        </div>
+        {/* Group Quick Links and Sectors for mobile row */}
+        <div className="flex flex-row gap-12 justify-between lg:contents">
+          {/* Quick Links */}
+          <div className="flex flex-col gap-6 ">
+            <h3 className="text-xl font-bold text-main-white">روابط سريعة</h3>
+            <ul className="flex flex-col gap-3 list-none">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-main-white text-base leading-6 transition-colors hover:text-primary font-normal"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Sectors */}
-        <div>
-          <h3 className="text-[17px] font-bold text-white mb-5 pb-2.5 border-b-2 border-[#333]">
-            القطاعات
-          </h3>
-          <ul className="flex flex-col gap-3 list-none p-0 m-0">
-            <li>
-              <a
-                href="#"
-                className="text-[#b0b0b0] no-underline text-sm transition-colors hover:text-[#e8a03c]"
-              >
-                التدريب
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="text-[#b0b0b0] no-underline text-sm transition-colors hover:text-[#e8a03c]"
-              >
-                المقاولات
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="text-[#b0b0b0] no-underline text-sm transition-colors hover:text-[#e8a03c]"
-              >
-                الفعاليات
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="text-[#b0b0b0] no-underline text-sm transition-colors hover:text-[#e8a03c]"
-              >
-                الاستشارات الإدارية
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="text-[#b0b0b0] no-underline text-sm transition-colors hover:text-[#e8a03c]"
-              >
-                الحلول الرقمية
-              </a>
-            </li>
-          </ul>
+          {/* Sectors */}
+          <div className="flex flex-col gap-6">
+            <h3 className="text-xl font-bold text-main-white">القطاعات</h3>
+            <ul className="flex flex-col gap-3 list-none">
+              {sectors.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-main-white text-base leading-6 transition-colors hover:text-primary font-normal"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Contact */}
-        <div>
-          <h3 className="text-[17px] font-bold text-[#e8a03c] mb-5 pb-2.5 border-b-2 border-[#333]">
-            أتصل بنا
-          </h3>
-          <div className="flex items-start gap-2.5 mb-4 text-[#b0b0b0] text-[13.5px] leading-[1.7]">
-            <span className="text-[#e8a03c] shrink-0 mt-0.5">
-              <MapPin size={18} />
-            </span>
-            <span>الرياض - شارع وادي هجر – حي الملقا - 13524</span>
-          </div>
-          <div className="flex items-start gap-2.5 mb-4 text-[#b0b0b0] text-[13.5px] leading-[1.7]">
-            <span className="text-[#e8a03c] shrink-0 mt-0.5">
-              <Phone size={18} />
-            </span>
-            <span dir="ltr">+966 920022079</span>
-          </div>
-          <div className="flex items-start gap-2.5 mb-4 text-[#b0b0b0] text-[13.5px] leading-[1.7]">
-            <span className="text-[#e8a03c] shrink-0 mt-0.5">
-              <Mail size={18} />
-            </span>
-            <span dir="ltr">info@bgroup.sa</span>
+        <div className="flex flex-col gap-6 lg:w-[25%]">
+          <h3 className="text-xl font-bold text-primary">أتصل بنا</h3>
+          <div className="flex flex-col gap-6">
+            {contactInfo.map((info, idx) => (
+              <Link
+                key={idx}
+                href={info.href}
+                target={info.href.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  info.href.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                className="flex items-start gap-2.5 text-main-white text-base leading-6 font-normal transition-colors hover:text-primary"
+              >
+                <span className="text-primary shrink-0 mt-0.5">
+                  {info.icon}
+                </span>
+                <span dir={info.dir}>{info.text}</span>
+              </Link>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-[#2d2d2d]">
-        <div className="max-w-300 mx-auto px-8 py-4.5 flex flex-wrap justify-between items-center gap-2.5">
-          <span className="text-[12.5px] text-[#808080]">
+      <div className="border-t border-[#1E2939] sm:h-17.5 flex w-full py-6 sm:py-2">
+        <div className="w-full container mx-auto flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-4 sm:gap-2.5 text-center sm:text-start">
+          <span className="text-sm text-[#99A1AF] font-normal leading-5">
             © 2026 بي جروب. جميع الحقوق محفوظة
           </span>
-          <div className="flex gap-5">
-            <a
-              href="#"
-              className="text-[12.5px] text-[#808080] no-underline transition-colors hover:text-[#e8a03c]"
-            >
-              سياسة الخصوصية
-            </a>
-            <a
-              href="#"
-              className="text-[12.5px] text-[#808080] no-underline transition-colors hover:text-[#e8a03c]"
-            >
-              الشروط والأحكام
-            </a>
+          <div className="flex justify-center gap-5 font-normal leading-5">
+            {bottomLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-sm text-[#99A1AF] transition-colors hover:text-primary"
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
