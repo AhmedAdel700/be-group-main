@@ -267,6 +267,7 @@ export default function PreviousProjects() {
           />
           {categories.map((cat, idx) => (
             <button
+              suppressHydrationWarning
               key={`${cat}-${idx}`}
               onClick={() => handleCategoryChange(cat)}
               className={cn(

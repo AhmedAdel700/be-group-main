@@ -71,7 +71,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-main-black text-main-white px-6 sm:px-8 xl:px-20 pt-10 lg:pt-20 flex flex-col gap-14">
+    <footer className="bg-main-black text-main-white px-6 sm:px-8 xl:px-20 pb-2 pt-10 lg:pt-20 flex flex-col gap-14">
       {/* Footer Wrapper */}
       <div className="container mx-auto flex flex-col sm:flex-row flex-wrap lg:flex-nowrap justify-between gap-10">
         {/* Brand Column */}
