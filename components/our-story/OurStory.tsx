@@ -1,6 +1,6 @@
 "use client";
 
-import { Award, BookOpenText } from "lucide-react";
+import { BookOpenText } from "lucide-react";
 
 export default function OurStory() {
   const cards = [
