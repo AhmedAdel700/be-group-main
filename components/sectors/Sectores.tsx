@@ -45,7 +45,7 @@ function SectorCard({ sector, index }: { sector: typeof sector1; index: number }
         <Image
           src={sector}
           alt={`Sector ${index + 1}`}
-          width={300}
+          width={2000}
           height={370}
           className="w-full h-full object-cover"
         />
