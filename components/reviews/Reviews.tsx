@@ -1,84 +1,100 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import userImage from "@/assets/reviewImage.svg";
+import { useLocale } from "next-intl";
 
-// Mock Data
 const REVIEWS = [
   {
     id: 1,
     date: "8 مارس 2025",
     name: "عنوان او اسم العميل",
     text: "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    image: userImage,
   },
   {
     id: 2,
     date: "8 مارس 2025",
     name: "عنوان او اسم العميل",
     text: "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة",
-    image: "https://randomuser.me/api/portraits/men/44.jpg",
+    image: userImage,
   },
   {
     id: 3,
     date: "8 مارس 2025",
     name: "عنوان او اسم العميل",
     text: "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة",
-    image: "https://randomuser.me/api/portraits/men/46.jpg",
+    image: userImage,
   },
   {
     id: 4,
     date: "8 مارس 2025",
     name: "عنوان او اسم العميل",
     text: "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة",
-    image: "https://randomuser.me/api/portraits/men/85.jpg",
+    image: userImage,
   },
   {
     id: 5,
     date: "8 مارس 2025",
     name: "عنوان او اسم العميل",
     text: "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة",
-    image: "https://randomuser.me/api/portraits/men/90.jpg",
+    image: userImage,
   },
 ];
 
 export default function Reviews() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
+  const locale = useLocale();
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden" dir="rtl">
-      <div className="container mx-auto px-4 max-w-[1400px]">
+    <section
+      className="bg-main-white relative overflow-hidden"
+      dir={locale === "ar" ? "rtl" : "ltr"}
+    >
+      <div className="py-12.5 lg:py-25 px-4 md:px-0">
         {/* Header and Navigation */}
-        <div className="flex flex-col md:flex-row items-center justify-between mb-12">
-          {/* Swiper Prev Button (Right Arrow in RTL) */}
-          <button 
-            className="hidden md:flex items-center justify-center swiper-btn-prev w-12 h-12 rounded-full text-[#4b5563] hover:text-black hover:bg-gray-100 transition-all cursor-pointer z-10"
+        <div className="flex flex-row items-center justify-around gap-2 mb-12 w-full xl:w-[65%] 2xl:w-[60%] mx-auto">
+          <button
+            className="flex items-center justify-center swiper-btn-prev w-10 h-10 md:w-12 md:h-12 rounded-full text-[#4b5563] hover:text-black hover:bg-gray-100 transition-all cursor-pointer z-10 shrink-0"
             aria-label="Previous Review"
           >
-            <ChevronRight size={32} strokeWidth={2.5} />
+            {locale === "ar" ? (
+              <ChevronRight
+                size={40}
+                strokeWidth={2.5}
+                className="text-[#525252] w-6 h-6 md:w-10 md:h-10"
+              />
+            ) : (
+              <ChevronLeft
+                size={40}
+                strokeWidth={2.5}
+                className="text-[#525252] w-6 h-6 md:w-10 md:h-10"
+              />
+            )}
           </button>
-          
-          <h2 className="text-2xl md:text-[32px] font-bold text-center text-gray-900 leading-tight">
+
+          <h2 className="text-base md:text-[32px] font-bold text-center text-main-black leading-[160%]">
             آراء وتجارب حقيقية تثبت أننا الاختيار الصحيح
           </h2>
-          
-          {/* Swiper Next Button (Left Arrow in RTL) */}
-          <button 
-            className="hidden md:flex items-center justify-center swiper-btn-next w-12 h-12 rounded-full text-[#4b5563] hover:text-black hover:bg-gray-100 transition-all cursor-pointer z-10"
+
+          <button
+            className="flex items-center justify-center swiper-btn-next w-10 h-10 md:w-12 md:h-12 rounded-full text-[#4b5563] hover:text-black hover:bg-gray-100 transition-all cursor-pointer z-10 shrink-0"
             aria-label="Next Review"
           >
-            <ChevronLeft size={32} strokeWidth={2.5} />
+            {locale === "ar" ? (
+              <ChevronLeft
+                size={40}
+                strokeWidth={2.5}
+                className="text-[#525252] w-6 h-6 md:w-10 md:h-10"
+              />
+            ) : (
+              <ChevronRight
+                size={40}
+                strokeWidth={2.5}
+                className="text-[#525252] w-6 h-6 md:w-10 md:h-10"
+              />
+            )}
           </button>
         </div>
 
@@ -95,10 +111,10 @@ export default function Reviews() {
               disableOnInteraction: false,
             }}
             navigation={{
-              nextEl: '.swiper-btn-next',
-              prevEl: '.swiper-btn-prev',
+              nextEl: ".swiper-btn-next",
+              prevEl: ".swiper-btn-prev",
             }}
-            pagination={{ 
+            pagination={{
               clickable: true,
             }}
             breakpoints={{
@@ -119,35 +135,36 @@ export default function Reviews() {
           >
             {REVIEWS.map((review) => (
               <SwiperSlide key={review.id} className="h-auto">
-                <div className="bg-[#fcfcfc] rounded-2xl p-6 md:p-8 h-full flex flex-col justify-start border border-gray-100 shadow-[0_0_10px_0_rgba(0,0,0,0.1)]">
-                  <div className="flex items-center gap-4 mb-6">
-                    <img
+                <div className="bg-bg-filter rounded-lg px-4 md:px-6 py-6 md:py-8 h-full xl:h-62.5 flex flex-col justify-start shadow-[0_0_10px_0_rgba(0,0,0,0.1)]">
+                  <div className="flex items-start gap-4 md:gap-6">
+                    <Image
                       src={review.image}
                       alt={review.name}
-                      className="w-14 h-14 rounded-full object-cover shrink-0"
+                      className="w-14 h-14 md:w-24 md:h-24 rounded-full object-cover shrink-0"
+                      width={96}
+                      height={96}
                     />
-                    <div className="flex flex-col">
-                      <p className="text-gray-500 mb-1 text-xs md:text-sm">{review.date}</p>
-                      <h3 className="text-base md:text-lg font-bold text-gray-900">{review.name}</h3>
+                    <div className="flex items-start gap-3 md:gap-6">
+                      <div className="flex flex-col">
+                        <p className="text-font-body leading-[160%] text-xs md:text-base font-medium mb-1 md:mb-3">
+                          {review.date}
+                        </p>
+                        <h3 className="text-font-body leading-[160%] text-sm md:text-lg font-bold mb-1 md:mb-2">
+                          {review.name}
+                        </h3>
+
+                        <p className="text-font-body leading-[160%] text-xs md:text-base font-medium">
+                          {review.text}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <p className="text-[#6c7b89] leading-[1.8] text-sm md:text-base font-medium">
-                    {review.text}
-                  </p>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
 
-          {/* Fallback Mobile Navigation (Optional, pagination usually sufficient) */}
-          <div className="flex justify-center items-center gap-6 mt-4 md:hidden">
-            <button className="swiper-btn-prev p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors">
-               <ChevronRight size={24} />
-            </button>
-            <button className="swiper-btn-next p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors">
-               <ChevronLeft size={24} />
-            </button>
-          </div>
+          {/* Fallback Mobile Navigation disabled */}
         </div>
       </div>
     </section>
