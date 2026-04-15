@@ -27,8 +27,8 @@ useEffect(() => {
 
   const navLinks = [
     { name: t("home"), href: "/" },
-    { name: t("sectors"), href: "/sectors", dropdown: true },
     { name: t("about"), href: "/about" },
+    { name: t("sectors"), href: "/sectors", dropdown: true },
     { name: t("work"), href: "/work" },
     { name: t("blog"), href: "/blog" },
     { name: t("contact"), href: "/contact" },
@@ -61,11 +61,19 @@ useEffect(() => {
     open: { opacity: 1, y: 0 },
   };
 
+  const isAboutPage = pathname === "/about";
+
   return (
     <header className="fixed top-0 z-50 w-full">
       {/* Header Bar */}
       <div className={`relative z-[70] transition-all duration-500 ${
-        (isScrolled || isOpen) ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4" : "bg-transparent py-6"
+        isOpen 
+          ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4"
+          : isAboutPage
+            ? (isScrolled ? "bg-[#FAFAFA] py-4 shadow-sm" : "bg-[#FAFAFA] py-6")
+            : isScrolled
+              ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4" 
+              : "bg-transparent py-6"
       }`}>
         <div className="container mx-auto px-4 sm:px-8 flex items-center justify-between relative">
           
@@ -94,7 +102,7 @@ useEffect(() => {
                         className={`text-base leading-[1.6] transition-all duration-300 flex items-center gap-1.5 
                           ${isActive 
                             ? 'text-primary font-bold' 
-                            : 'text-main-white font-medium hover:text-primary'}
+                            : (isAboutPage ? 'text-main-black font-medium hover:text-primary' : 'text-main-white font-medium hover:text-primary')}
                         `}
                       >
                         {link.name}
@@ -139,7 +147,7 @@ useEffect(() => {
             {/* Mobile Burger Button */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden relative z-[80] p-2 text-white hover:text-primary transition-all duration-300 focus:outline-none"
+              className={`lg:hidden relative z-[80] p-2 hover:text-primary transition-all duration-300 focus:outline-none ${!isOpen && isAboutPage ? "text-main-black" : "text-white"}`}
               aria-label="Toggle Menu"
             >
               {isOpen ? <X size={32} /> : <Menu size={32} />}

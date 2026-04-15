@@ -14,20 +14,32 @@ export default function LanguageSwitcher() {
     router.replace(pathname, { locale: nextLocale });
   };
 
+  const isAboutPage = pathname === "/about";
+
   return (
     <div
       onClick={toggleLanguage}
       dir="ltr"
-      className="relative flex items-center w-[140px] h-[44px] bg-white/5 backdrop-blur-md rounded-full border border-white/10 p-1 cursor-pointer transition-all duration-500 hover:border-primary/30 group select-none"
+      className={`relative flex items-center w-[140px] h-[44px] backdrop-blur-md rounded-full border p-1 cursor-pointer transition-all duration-500 hover:border-primary/30 group select-none ${
+        isAboutPage ? "bg-black/5 border-black/10" : "bg-white/5 border-white/10"
+      }`}
     >
       <div className="relative flex w-full h-full items-center z-10">
         <div className="flex-1 flex justify-center items-center">
-          <span className={`text-[13px] font-bold transition-colors duration-500 ${locale === "ar" ? "text-white" : "text-white/40 group-hover:text-white/60"}`}>
+          <span className={`text-[13px] font-bold transition-colors duration-500 ${
+            locale === "ar" 
+              ? "text-white" 
+              : (isAboutPage ? "text-black/40 group-hover:text-black/60" : "text-white/40 group-hover:text-white/60")
+          }`}>
             العربية
           </span>
         </div>
         <div className="flex-1 flex justify-center items-center">
-          <span className={`text-[13px] font-bold transition-colors duration-500 ${locale === "en" ? "text-white" : "text-white/40 group-hover:text-white/60"}`}>
+          <span className={`text-[13px] font-bold transition-colors duration-500 ${
+            locale === "en" 
+              ? "text-white" 
+              : (isAboutPage ? "text-black/40 group-hover:text-black/60" : "text-white/40 group-hover:text-white/60")
+          }`}>
             English
           </span>
         </div>
