@@ -70,7 +70,7 @@ export default function Stories() {
     <section className="bg-main-white" dir={locale === "ar" ? "rtl" : "ltr"}>
       <div className="container mx-auto px-4 sm:px-6 xl:px-12">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-2 lg:mb-8 px-4">
           {/* Titles */}
           <div className="w-full lg:max-w-120">
             <h4 className="text-primary text-lg font-bold leading-[160%] mb-3">
@@ -102,7 +102,7 @@ export default function Stories() {
         <div className="relative w-full">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={24}
+            spaceBetween={0}
             slidesPerView={1}
             loop={true}
             onSwiper={(swiper) => {
@@ -120,9 +120,9 @@ export default function Stories() {
             }}
           >
             {STORIES.map((story) => (
-              <SwiperSlide key={story.id} className="h-auto py-2">
+              <SwiperSlide key={story.id} className="h-auto py-6 px-2.5">
                 <div
-                  className="bg-main-white px-4 pt-4 pb-6 rounded-2xl border border-gray-100 border-t-4 h-130 flex flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1"
+                  className="bg-main-white px-4 pt-4 pb-6 rounded-2xl border border-gray-100 border-t-4 h-130 flex flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)]"
                   style={{ borderTopColor: story.borderColor }}
                 >
                   {/* Card inner content */}
