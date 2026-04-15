@@ -6,7 +6,7 @@ export default function AboutHero() {
   return (
     <div className="w-full overflow-hidden">
       {/* Top Section */}
-      <section className="bg-main-white pt-10 lg:pt-20 pb-40 lg:pb-64 relative">
+      <section className="bg-main-white pt-10 lg:pt-20 pb-40 mt-10 lg:pb-64 relative">
         <div className="container mx-auto px-4 sm:px-6 xl:px-12">
           {/* Breadcrumb */}
           <div className="flex justify-start text-base font-bold mb-10 text-gray-500 gap-2">
@@ -25,11 +25,11 @@ export default function AboutHero() {
             </div>
 
             {/* Badge (Left side in RTL) */}
-            <div className="flex-shrink-0 w-full lg:w-auto flex justify-start lg:justify-end order-1 lg:order-2">
+            <div className="shrink-0 w-full lg:w-auto flex justify-start lg:justify-end order-1 lg:order-2">
               <Image 
                 src={badge} 
                 alt="ISO 9001 Certified" 
-                className="w-[140px] md:w-[180px] lg:w-[220px] object-contain drop-shadow-xl" 
+                className="w-35 md:w-45 lg:w-55 object-contain drop-shadow-xl" 
               />
             </div>
           </div>
@@ -37,13 +37,13 @@ export default function AboutHero() {
       </section>
 
       {/* Bottom Sub-section (Overlap) */}
-      <section className="bg-[#151515] w-full relative">
+      <section className="bg-secondary-black w-full relative">
         <div className="container mx-auto px-4 sm:px-6 xl:px-12 relative z-20 -mt-32 lg:-mt-56 pb-16 lg:pb-24">
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch h-auto lg:h-[550px]">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch h-auto lg:h-137.5">
             
             {/* Image (Right side in RTL) */}
-            <div className="w-full lg:w-[65%] flex h-[350px] lg:h-full">
-              <div className="relative w-full h-full rounded-[24px] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.3)]">
+            <div className="w-full lg:w-[65%] flex h-87.5 lg:h-full">
+              <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.3)]">
                 <Image 
                   src={teamImg} 
                   priority 
