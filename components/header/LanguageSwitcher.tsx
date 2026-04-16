@@ -21,7 +21,7 @@ export default function LanguageSwitcher() {
       onClick={toggleLanguage}
       dir="ltr"
       className={`relative flex items-center w-[140px] h-[44px] backdrop-blur-md rounded-full border p-1 cursor-pointer transition-all duration-500 hover:border-primary/30 group select-none ${
-        isAboutPage ? "bg-black/5 border-black/10" : "bg-white/5 border-white/10"
+        isAboutPage ? "bg-black/60 border-white/10" : "bg-white/5 border-white/10"
       }`}
     >
       <div className="relative flex w-full h-full items-center z-10">
@@ -29,7 +29,7 @@ export default function LanguageSwitcher() {
           <span className={`text-[13px] font-bold transition-colors duration-500 ${
             locale === "ar" 
               ? "text-white" 
-              : (isAboutPage ? "text-black/40 group-hover:text-black/60" : "text-white/40 group-hover:text-white/60")
+              : "text-white/50 group-hover:text-white/80"
           }`}>
             العربية
           </span>
@@ -38,7 +38,7 @@ export default function LanguageSwitcher() {
           <span className={`text-[13px] font-bold transition-colors duration-500 ${
             locale === "en" 
               ? "text-white" 
-              : (isAboutPage ? "text-black/40 group-hover:text-black/60" : "text-white/40 group-hover:text-white/60")
+              : "text-white/50 group-hover:text-white/80"
           }`}>
             English
           </span>

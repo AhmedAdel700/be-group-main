@@ -40,7 +40,7 @@ function TeamCard({
   member: { name: string; role: string; image: StaticImageData | string };
 }) {
   return (
-    <div className="bg-main-white rounded-2xl border border-1.5 border-[#E5E5E5] px-4.5 py-4 flex flex-col gap-2.5 group">
+    <div className="bg-main-white rounded-2xl border border-1.5 border-[#E5E5E5] px-4.5 py-4 flex flex-col gap-2.5 group h-full">
       {/* Image */}
       <div className="relative w-full h-55 rounded-md overflow-hidden group-hover:scale-99 transition-transform">
         <Image
@@ -52,7 +52,7 @@ function TeamCard({
       </div>
 
       {/* Info */}
-      <div className="flex flex-col gap-1 px-1 text-start">
+      <div className="flex flex-col gap-1 px-1 text-start flex-1">
         <h3 className="text-xl font-bold text-main-black leading-[140%]">
           {member.name}
         </h3>
@@ -114,7 +114,7 @@ export default function Team() {
             }}
           >
             {TEAM.map((member, index) => (
-              <SwiperSlide key={index}>
+              <SwiperSlide key={index} className="!h-auto">
                 <TeamCard member={member} />
               </SwiperSlide>
             ))}

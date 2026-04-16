@@ -6,11 +6,17 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import "@/styles/globals.css";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
-import { Tajawal } from "next/font/google";
+import { Tajawal, Montserrat } from "next/font/google";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
   weight: ["200", "300", "400", "500", "700", "800", "900"],
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["900"],
+  variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
@@ -33,7 +39,7 @@ export default async function Layout({
 
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      <body className={`${tajawal.className} antialiased`}>
+      <body className={`${tajawal.className} ${montserrat.variable} antialiased`}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Header />
           {children}

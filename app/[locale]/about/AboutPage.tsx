@@ -1,4 +1,5 @@
 import AboutHero from "@/components/about-hero/AboutHero";
+import OurJourney from "@/components/our-journey/Journey";
 import OurStory from "@/components/our-story/OurStory";
 import Partners from "@/components/partners/Partners";
 import Sectores from "@/components/sectors/Sectores";
@@ -11,6 +12,7 @@ export default function AboutPage() {
       <AboutHero />
       <OurStory />
       <Sectores />
+      <OurJourney />
       <Partners />
       <Team />
       <Solutions />
