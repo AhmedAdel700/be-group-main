@@ -64,7 +64,6 @@ const LocationCard = ({ loc, locale }: { loc: any; locale: string }) => (
             </div>
         </div>
 
-        {/* Info Content */}
         <div className="flex-1 p-5 lg:py-10 lg:px-6 flex flex-col justify-between h-full">
             <div className="flex flex-col gap-4 lg:gap-5 w-full">
                 {/* Phone */}
