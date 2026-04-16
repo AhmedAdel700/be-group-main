@@ -24,6 +24,16 @@ const heroContent = {
   },
 };
 
+const breadcrumbs = {
+  sector: {
+    path1: "قطاعات نخدمها",
+    path2: "قطاع التدريب والتطوير",
+    href: "/sectors",
+  },
+  contact: "تواصل معنا",
+  work: "أعمالنا",
+};
+
 export default function PagesHero({ page = "sector" }: PagesHeroProps) {
   const content = heroContent[page] || heroContent.sector;
 
@@ -56,7 +66,26 @@ export default function PagesHero({ page = "sector" }: PagesHeroProps) {
             الرئيسية
           </Link>
           <span className="font-bold">/</span>
-          <span className="text-primary font-bold">تواصل معنا</span>
+          {typeof breadcrumbs[page] === "string" ? (
+            <>
+              <span className="text-primary font-bold">
+                {breadcrumbs[page]}
+              </span>
+            </>
+          ) : (
+            <>
+              <Link
+                href={breadcrumbs[page].href}
+                className="text-main-white font-normal hover:text-primary transition-colors cursor-pointer"
+              >
+                {breadcrumbs[page].path1}
+              </Link>
+              <span className="font-bold">/</span>
+              <span className="text-primary font-bold">
+                {breadcrumbs[page].path2}
+              </span>
+            </>
+          )}
         </div>
 
         {/* Dynamic Content */}

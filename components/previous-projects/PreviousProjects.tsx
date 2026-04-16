@@ -280,7 +280,7 @@ export default function PreviousProjects() {
               {activeCategory === cat && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute inset-0 bg-white rounded-3xl shadow-[0px_3px_1px_rgba(0,0,0,0.04),0px_3px_8px_rgba(0,0,0,0.12)] -z-10"
+                  className="absolute inset-0 bg-main-white rounded-3xl h-full leading-[100%] shadow-[0px_3px_1px_rgba(0,0,0,0.04),0px_3px_8px_rgba(0,0,0,0.12)] -z-10"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
