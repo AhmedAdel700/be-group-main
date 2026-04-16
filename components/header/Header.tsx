@@ -97,7 +97,8 @@ useEffect(() => {
                   const isActive = pathname === link.href;
                   return (
                     <li key={link.href} className="group relative">
-                      <Link
+                      <Link 
+                        prefetch
                         href={link.href}
                         className={`text-base leading-[1.6] transition-all duration-300 flex items-center gap-1.5 
                           ${isActive 
@@ -119,13 +120,13 @@ useEffect(() => {
                           <div className="bg-main-black/90 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl p-4 min-w-55">
                             <ul className="space-y-2">
                                <li>
-                                 <Link href="/sectors/tech" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("tech")}</Link>
+                                 <Link prefetch href="/sectors/tech" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("tech")}</Link>
                                </li>
                                <li>
-                                 <Link href="/sectors/real-estate" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("realEstate")}</Link>
+                                <Link prefetch href="/sectors/real-estate" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("realEstate")}</Link>
                                </li>
                                <li>
-                                 <Link href="/sectors/marketing" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("marketing")}</Link>
+                                <Link prefetch href="/sectors/marketing" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("marketing")}</Link>
                                </li>
                             </ul>
                           </div>
@@ -206,6 +207,7 @@ useEffect(() => {
                       </div>
                     ) : (
                       <Link
+                        prefetch
                         onClick={() => setIsOpen(false)}
                         href={link.href}
                         className={`text-2xl font-bold leading-relaxed block

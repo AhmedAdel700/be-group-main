@@ -14,11 +14,11 @@ export default function AboutHero() {
     <div className="w-full overflow-hidden">
       <section className="bg-main-white mt-18 lg:mt-10 mb-3 relative">
         <div className="section-container">
-          <div className="flex justify-start text-base font-bold mb-10 text-gray-500 gap-2">
+          <div className="flex justify-start text-base font-normal mb-10 text-[#999999] gap-2">
             <Link href="/" className="hover:text-primary transition-colors cursor-pointer">
               الرئيسية
             </Link>
-            <span className="font-medium">/</span>
+            <span className="font-bold">/</span>
             <span className="text-primary font-bold">من نحن</span>
           </div>
 
