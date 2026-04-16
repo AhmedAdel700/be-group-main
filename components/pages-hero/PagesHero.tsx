@@ -21,7 +21,7 @@ export default function PagesHero() {
               الرئيسية
             </Link>
             <span className="font-bold">/</span>
-            <span className="text-main-white font-normal">قطاعات نخدمها</span>
+            <Link href={'/sectors'} className="text-main-white font-normal">قطاعات نخدمها</Link>
             <span className="font-bold">/</span>
             <span className="text-primary font-bold">اسم القطاع</span>
           </div>
