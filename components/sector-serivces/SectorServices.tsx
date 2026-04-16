@@ -1,31 +1,30 @@
 'use client';
 
-import { useLocale } from "next-intl";
-import { BookOpen, Users, Check, CircleCheckBig } from "lucide-react";
+import { BookOpen, Users, CircleCheckBig } from "lucide-react";
 
 interface ServiceCardProps {
   title: string;
   description: string;
   traineesCount: string;
   items: string[];
-  index: number;
 }
 
-const ServiceCard = ({ title, description, traineesCount, items, index }: ServiceCardProps) => {
+const ServiceCard = ({ title, description, traineesCount, items }: ServiceCardProps) => {
   return (
     <div
-      className="bg-main-white border-[0.8px] border-[#F3F4F6] rounded-[25px] px-4 py-10 flex flex-col h-full transition-all duration-300 hover:border-primary/20"
+      className="bg-main-white border-[0.8px] border-bg-tags rounded-[25px] px-4 py-10 flex flex-col h-full transition-all duration-300 hover:border-primary/20"
       style={{
-        boxShadow: "0px 1px 2px -1px rgba(0, 0, 0, 0.1), 0px 1px 3px 0px rgba(0, 0, 0, 0.1)"
+        boxShadow:
+          "0px 1px 2px -1px rgba(0, 0, 0, 0.1), 0px 1px 3px 0px rgba(0, 0, 0, 0.1)",
       }}
     >
       {/* Top Row: Title, Description and Icon */}
       <div className="flex justify-start items-start mb-6 gap-4">
-        <div className="w-[64px] h-[64px] bg-[#F9D2BD] rounded-lg flex items-center justify-center shrink-0">
-          <BookOpen className="text-primary" size={28} strokeWidth={2.5}/>
+        <div className="w-16 h-16 bg-[#F9D2BD] rounded-lg flex items-center justify-center shrink-0">
+          <BookOpen className="text-primary" size={28} strokeWidth={2.5} />
         </div>
         <div className="flex flex-col gap-2">
-          <h3 className="text-[24px] font-bold text-main-black leading-[32px]">
+          <h3 className="text-[24px] font-bold text-main-black leading-8">
             {title}
           </h3>
           <p className="text-main-black text-sm leading-[22.75px] font-normal max-w-[90%]">
@@ -36,18 +35,24 @@ const ServiceCard = ({ title, description, traineesCount, items, index }: Servic
 
       {/* Trainees Count */}
       <div className="flex items-center gap-2 mb-6 text-primary ms-4">
-         <Users size={18} />
-         <span className="text-sm text-font-body font-medium">{traineesCount}</span>
+        <Users size={18} />
+        <span className="text-sm text-font-body font-medium">
+          {traineesCount}
+        </span>
       </div>
 
       {/* List Items */}
       <ul className="space-y-4 mt-auto">
         {items.map((item, idx) => (
           <li key={idx} className="flex items-start gap-3">
-            <CircleCheckBig className="text-primary" size={20} strokeWidth={2} />
-             <span className="text-font-body text-sm font-medium leading-[20px]">
-                {item}
-             </span>
+            <CircleCheckBig
+              className="text-primary"
+              size={20}
+              strokeWidth={2}
+            />
+            <span className="text-font-body text-sm font-medium leading-5">
+              {item}
+            </span>
           </li>
         ))}
       </ul>
@@ -56,8 +61,6 @@ const ServiceCard = ({ title, description, traineesCount, items, index }: Servic
 };
 
 export default function SectorServices() {
-  const locale = useLocale();
-
   const services = [
     {
       title: "البرامج التنفيذية",
@@ -147,7 +150,7 @@ export default function SectorServices() {
         <span className="text-primary font-bold text-lg block">
           خدماتنا التدريبية
         </span>
-        <h2 className="text-base md:text-xl font-bold text-font-body leading-[160%] max-w-[900px]">
+        <h2 className="text-base md:text-xl font-bold text-font-body leading-[160%] max-w-225">
           قدم برامج تدريبية متكاملة مصممة خصيصاً لسد الفجوات المهارية ورفع كفاءة الأداء في مختلف المستويات الإدارية والمهنية.
         </h2>
       </div>
@@ -155,7 +158,7 @@ export default function SectorServices() {
       {/* Grid Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6.5 xl:px-4">
         {services.map((service, index) => (
-          <ServiceCard key={index} {...service} index={index} />
+          <ServiceCard key={index} {...service} />
         ))}
       </div>
         </div>

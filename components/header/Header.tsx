@@ -31,7 +31,7 @@ useEffect(() => {
     { name: t("sectors"), href: "/sectors", dropdown: true },
     { name: t("work"), href: "/work" },
     { name: t("blog"), href: "/blog" },
-    { name: t("contact"), href: "/contact" },
+    { name: t("contact"), href: "/contact-us" },
   ];
 
   const menuVariants: Variants = {
@@ -66,7 +66,7 @@ useEffect(() => {
   return (
     <header className="fixed top-0 z-50 w-full">
       {/* Header Bar */}
-      <div className={`relative z-[70] transition-all duration-500 ${
+      <div className={`relative z-70 transition-all duration-500 ${
         isOpen 
           ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4"
           : isAboutPage
@@ -148,7 +148,7 @@ useEffect(() => {
             {/* Mobile Burger Button */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              className={`lg:hidden relative z-[80] p-2 hover:text-primary transition-all duration-300 focus:outline-none ${!isOpen && isAboutPage ? "text-main-black" : "text-white"}`}
+              className={`lg:hidden relative z-80 p-2 hover:text-primary transition-all duration-300 focus:outline-none ${!isOpen && isAboutPage ? "text-main-black" : "text-white"}`}
               aria-label="Toggle Menu"
             >
               {isOpen ? <X size={32} /> : <Menu size={32} />}

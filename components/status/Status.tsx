@@ -54,7 +54,7 @@ const Status = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                className="text-main-white leading-[125%] font-medium text-[60px] tabular-nums min-w-[120px] md:min-w-[160px] flex justify-center items-baseline"
+                className="text-main-white leading-[125%] font-medium text-[60px] tabular-nums min-w-30 md:min-w-40 flex justify-center items-baseline"
               >
                 <Counter value={stat.number} delay={0.6 + index * 0.1} />+
               </motion.h2>
