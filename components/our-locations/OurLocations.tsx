@@ -157,7 +157,7 @@ export default function OurLocations() {
                     <Swiper
                         modules={[Autoplay]}
                         spaceBetween={16}
-                        slidesPerView={1.2}
+                        slidesPerView={1}
                         centeredSlides={true}
                         loop={true}
                         autoplay={{ delay: 2000, disableOnInteraction: false }}
