@@ -44,6 +44,7 @@ export default function PagesHero({ page = "sector" }: PagesHeroProps) {
         src={heroImg}
         alt="Page Hero Background"
         fill
+        sizes="100vw"
         priority
         className="object-cover"
       />

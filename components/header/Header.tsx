@@ -84,6 +84,7 @@ useEffect(() => {
                   src="/assets/logo.svg" 
                   alt="Logo" 
                   fill 
+                  sizes="124px"
                   className="object-contain object-right"
                   priority
                 />

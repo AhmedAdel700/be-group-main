@@ -47,6 +47,7 @@ function TeamCard({
           src={member.image}
           alt={member.name}
           fill
+          sizes="(max-width: 480px) 75vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-cover"
         />
       </div>

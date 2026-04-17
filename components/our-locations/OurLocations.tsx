@@ -7,6 +7,7 @@ import { Phone, Mail, MapPin, SendHorizontal } from "lucide-react";
 import { useLocale } from "next-intl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import { Link } from "@/i18n/navigation";
 
 const LOCATIONS = [
     {
@@ -43,14 +44,16 @@ const LOCATIONS = [
     },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const LocationCard = ({ loc, locale }: { loc: any; locale: string }) => (
-    <div className="border-[#E5E5E5] border-[0.8px] rounded-[24px] lg:rounded-[40px] bg-main-white flex flex-col sm:flex-row overflow-hidden h-full min-h-auto lg:min-h-92.5">
+    <div className="border-[#E5E5E5] border-[0.8px] rounded-3xl lg:rounded-[40px] bg-main-white flex flex-col sm:flex-row overflow-hidden h-full min-h-auto lg:min-h-92.5">
         {/* Image Content */}
         <div className="w-full sm:w-[30%] relative h-48 sm:h-auto sm:min-h-full shrink-0">
             <Image
                 src={loc.image}
                 alt={loc.city}
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 30vw, 15vw"
                 className="object-cover"
             />
             {/* Overlay */}
@@ -75,12 +78,13 @@ const LocationCard = ({ loc, locale }: { loc: any; locale: string }) => (
                         <span className="text-main-black text-base lg:text-lg leading-[160%] font-medium">
                             رقم الهاتف
                         </span>
-                        <span
+                        <Link
+                            href={`tel:${loc.phone}`}
                             dir="ltr"
-                            className="text-labels text-sm lg:text-base leading-tight lg:leading-8.5 font-normal"
+                            className="text-labels text-sm lg:text-base leading-tight lg:leading-8.5 font-normal hover:text-primary transition-colors cursor-pointer"
                         >
                             {loc.phone}
-                        </span>
+                        </Link>
                     </div>
                 </div>
 
@@ -93,9 +97,12 @@ const LocationCard = ({ loc, locale }: { loc: any; locale: string }) => (
                         <span className="text-main-black text-base lg:text-lg leading-[160%] font-medium">
                             البريد الإلكتروني
                         </span>
-                        <span className="text-labels text-sm lg:text-base leading-tight lg:leading-8.5 font-normal">
+                        <Link
+                            href={`mailto:${loc.email}`}
+                            className="text-labels text-sm lg:text-base leading-tight lg:leading-8.5 font-normal hover:text-primary transition-colors cursor-pointer"
+                        >
                             {loc.email}
-                        </span>
+                        </Link>
                     </div>
                 </div>
 
@@ -117,10 +124,15 @@ const LocationCard = ({ loc, locale }: { loc: any; locale: string }) => (
 
             {/* View Map Link */}
             <div className="mt-6 lg:mt-auto flex justify-start ps-2">
-                <button className="flex items-center gap-2 lg:gap-3 text-primary font-bold text-base lg:text-lg hover:opacity-80 transition-opacity cursor-pointer group">
+                <Link
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${loc.address} ${loc.city}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 lg:gap-3 text-primary font-bold text-base lg:text-lg hover:opacity-80 transition-opacity cursor-pointer group"
+                >
                     <span>عرض الموقع الجغرافي</span>
                     <SendHorizontal className={`size-4 lg:size-5 text-primary ${locale === "en" ? "rotate-180" : ""}`} />
-                </button>
+                </Link>
             </div>
         </div>
     </div>
@@ -145,7 +157,7 @@ export default function OurLocations() {
                     <Swiper
                         modules={[Autoplay]}
                         spaceBetween={16}
-                        slidesPerView={1}
+                        slidesPerView={1.2}
                         centeredSlides={true}
                         loop={true}
                         autoplay={{ delay: 2000, disableOnInteraction: false }}
