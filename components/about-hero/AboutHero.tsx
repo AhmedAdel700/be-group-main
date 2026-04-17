@@ -22,16 +22,27 @@ export default function AboutHero() {
             <span className="text-primary font-bold">من نحن</span>
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:items-start gap-10 lg:gap-20 h-auto lg:h-125">
+          <div className="flex flex-col lg:flex-row lg:items-start gap-10 lg:gap-20 h-auto lg:h-85 xl:h-125">
             <div className="w-full flex-1 order-1 lg:order-1 lg:pt-4">
-              <h2 className="text-primary font-semibold text-[40px] mb-4">Be GROUP</h2>
-              <h1 className="text-3xl md:text-4xl lg:text-[24px] xl:text-[32px] 2xl:text-[40px] font-bold text-main-black leading-[1.6]">
+              <div className="flex items-center gap-6 lg:gap-0 lg:justify-between lg:block mb-4">
+                <h2 className="text-primary font-semibold text-[40px] lg:mb-4">Be GROUP</h2>
+                <div className="lg:hidden shrink-0">
+                  <Image
+                    src={badge}
+                    width={1000}
+                    height={1000}
+                    alt="ISO 9001 Certified"
+                    className="w-20 h-20 object-contain"
+                  />
+                </div>
+              </div>
+              <h1 className="text-2xl md:text-4xl lg:text-[24px] xl:text-[32px] 2xl:text-[40px] font-bold text-main-black leading-[1.6]">
                 مجموعة متكاملة تقدّم <span className="text-primary">حلولاً متكاملة</span> لدعم نمو الشركات
                 <br className="hidden lg:block" /> والأفراد عبر قطاعات متعددة وخدمات مترابطة
               </h1>
             </div>
 
-            <div className="shrink-0 w-full lg:w-auto flex justify-center lg:justify-end order-2 relative me-16 2xl:me-0">
+            <div className="hidden lg:flex shrink-0 w-full lg:w-auto justify-center lg:justify-end order-2 relative me-16 2xl:me-0">
               <Image
                 src={badge}
                 width={2000}
@@ -48,7 +59,7 @@ export default function AboutHero() {
       <section className="bg-secondary-black w-full relative">
         <div className="container mx-auto px-4 sm:px-6 xl:px-12 relative z-20 mt-10 lg:-mt-32 xl:-mt-56">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch h-auto relative -top-16 lg:-top-20">
-            
+
             <div className="w-full lg:w-[65%] flex">
               <div className="relative w-full rounded-[16px] overflow-hidden h-64 md:h-80 lg:h-90">
                 <Image
