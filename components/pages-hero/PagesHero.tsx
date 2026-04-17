@@ -54,6 +54,7 @@ export default function PagesHero({ page = "sector" }: PagesHeroProps) {
       <Image
         src={beBG}
         alt="Background Pattern"
+        priority
         className="pointer-events-none absolute mt-8 lg:mt-0 inset-0 w-full h-full object-contain md:inset-[unset] md:left-0 md:-bottom-6 md:w-100 md:h-100 lg:bottom-0 xl:w-150 xl:h-150 xl:bottom-0 2xl:bottom-10 xl:left-0"
       />
 
