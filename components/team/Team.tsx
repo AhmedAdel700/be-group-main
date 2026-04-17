@@ -77,7 +77,7 @@ export default function Team() {
       <div className="section-container flex flex-col gap-6">
         {/* Header */}
         <div
-          className="flex flex-col gap-2 w-full items-end text-end lg:items-start lg:text-start"
+          className="flex flex-col gap-2 w-full items-start text-start"
           dir={locale === "ar" ? "rtl" : "ltr"}
         >
           <h2 className="text-primary font-bold text-lg md:text-xl leading-[160%]">

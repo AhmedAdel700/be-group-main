@@ -21,7 +21,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "Be Group",
-  description:"Be Group is a leading provider of innovative solutions in the MENA region"
+  description: "Be Group is a leading provider of innovative solutions in the MENA region"
 };
 
 export default async function Layout({

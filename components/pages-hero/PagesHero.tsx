@@ -4,7 +4,7 @@ import { Link } from "@/i18n/navigation";
 import beBG from "@/assets/beBG.svg";
 
 interface PagesHeroProps {
-  page?: "sector" | "contact" | "work";
+  page?: "sector" | "contact" | "work" | "blogs";
 }
 
 const heroContent = {
@@ -22,6 +22,10 @@ const heroContent = {
     title: "أعمالنا",
     description: "استكشف مشاريعنا وإنجازاتنا في مختلف القطاعات.",
   },
+  blogs: {
+    title: "مدونة",
+    description: "اكتشف أحدث المقالات والرؤى من Be Group.",
+  },
 };
 
 const breadcrumbs = {
@@ -32,6 +36,7 @@ const breadcrumbs = {
   },
   contact: "تواصل معنا",
   work: "أعمالنا",
+  blogs: "مدونة",
 };
 
 export default function PagesHero({ page = "sector" }: PagesHeroProps) {
@@ -60,7 +65,7 @@ export default function PagesHero({ page = "sector" }: PagesHeroProps) {
 
       <div className="section-container xl:px-8! mt-12 relative z-10 h-full flex flex-col items-start justify-start">
         {/* Breadcrumb */}
-        <div className="flex justify-start text-base font-normal mb-10 text-main-white gap-2">
+        <div className="flex justify-start text-sm lg:text-base font-normal mb-10 text-main-white gap-1.5 sm:gap-2">
           <Link
             href="/"
             className="hover:text-primary transition-colors cursor-pointer"

@@ -29,8 +29,8 @@ useEffect(() => {
     { name: t("home"), href: "/" },
     { name: t("about"), href: "/about" },
     { name: t("sectors"), href: "/sectors", dropdown: true },
-    { name: t("work"), href: "/work" },
-    { name: t("blog"), href: "/blog" },
+    { name: t("work"), href: "/our-work" },
+    { name: t("blog"), href: "/blogs" },
     { name: t("contact"), href: "/contact-us" },
   ];
 
