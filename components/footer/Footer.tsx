@@ -75,9 +75,9 @@ export default function Footer() {
       {/* Footer Wrapper */}
       <div className="container mx-auto flex flex-col sm:flex-row flex-wrap lg:flex-nowrap justify-between gap-10">
         {/* Brand Column */}
-        <div className="flex flex-col gap-8 w-full lg:w-[26%]">
+        <div className="flex flex-col gap-9 w-full lg:w-[26%]">
           <Image src={logo} alt="Brand Logo" width={124} height={52} />
-          <p className="text-base leading-6.5 font-normal text-main-white">
+          <p className="text-base leading-6.5 font-normal text-main-white -mt-3">
             مجموعة سعودية متكاملة تقدم حلولاً احترافية في 5 قطاعات حيوية تخدم
             رؤية 2030
           </p>
