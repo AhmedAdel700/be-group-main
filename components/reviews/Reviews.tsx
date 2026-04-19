@@ -99,7 +99,7 @@ export default function Reviews() {
         </div>
 
         {/* Swiper Carousel */}
-        <div className="relative w-full min-h-[350px]">
+        <div className="relative w-full min-h-87.5">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={50}
@@ -140,8 +140,8 @@ export default function Reviews() {
                   <div
                     className={`rounded-lg px-8 transition-all duration-500 w-full flex flex-col justify-center
                       ${isActive 
-                        ? "bg-main-white h-[230px] scale-105 z-10 border border-black/5" 
-                        : "bg-bg-filter h-[210px] scale-100 opacity-50 border border-black/5"
+                        ? "bg-main-white h-57.5 scale-105 z-10 border border-black/5" 
+                        : "bg-bg-filter h-52.5 scale-100 opacity-50 border border-black/5"
                       }`}
                   >
                     <div className="flex items-start gap-4">

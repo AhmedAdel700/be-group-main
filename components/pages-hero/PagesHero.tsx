@@ -19,8 +19,8 @@ const heroContent = {
       'يسعدنا تواصلك معنا ، فريقنا متواجد عبر <span class="highlight">مواقعنا المختلفة</span> للإجابة عن استفساراتك ودعم أعمالك.',
   },
   work: {
-    title: "أعمالنا",
-    description: "استكشف مشاريعنا وإنجازاتنا في مختلف القطاعات.",
+    title: "أحدث الاعمال",
+    description: "مشاريع حقيقية نفذناها في مجالات متعددة ، من التخطيط وحتى التنفيذ باحترافية عالية.",
   },
   blogs: {
     title: "مدونة",
@@ -60,7 +60,7 @@ export default function PagesHero({ page = "sector" }: PagesHeroProps) {
         src={beBG}
         alt="Background Pattern"
         priority
-        className="pointer-events-none absolute mt-8 lg:mt-0 inset-0 w-full h-full object-contain md:inset-[unset] md:left-0 md:-bottom-6 md:w-100 md:h-100 lg:bottom-0 xl:w-150 xl:h-150 xl:bottom-0 2xl:bottom-10 xl:left-0"
+        className="pointer-events-none absolute mt-8 lg:mt-0 inset-0 w-full h-full object-contain md:inset-[unset] md:left-0 md:-bottom-6 md:w-100 md:h-100 lg:bottom-0 xl:w-150 xl:h-150 xl:left-0"
       />
 
       <div className="section-container xl:px-8! mt-12 relative z-10 h-full flex flex-col items-start justify-start">
@@ -98,13 +98,13 @@ export default function PagesHero({ page = "sector" }: PagesHeroProps) {
         {/* Dynamic Content */}
         <div className="flex flex-col gap-2 text-start">
           <h3
-            className={`text-[24px] leading-[160%] font-semibold text-primary`}
+            className={`text-[24px] leading-[160%] font-semibold text-primary `}
           >
             {content.title}
           </h3>
 
           <h1
-            className={`text-base md:text-[24px] xl:text-[40px] leading-[160%] font-bold text-main-white ${page === "contact" ? "max-w-5xl" : "w-full"}`}
+            className={`text-base md:text-[24px] xl:text-[40px] leading-[160%] font-bold text-main-white ${page === "contact" || page === "work" ? "max-w-5xl" : "w-full"}`}
             dangerouslySetInnerHTML={{ __html: content.description }}
           />
         </div>
