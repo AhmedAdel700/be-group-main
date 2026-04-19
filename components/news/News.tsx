@@ -42,6 +42,40 @@ const TRAINING_DATA = [
       en: "This course focuses on enhancing the efficiency of work teams through developing skills in cooperation, communication, problem solving, and conflict management. The course aims to build cohesive and effective work teams that can achieve the organization's goals more efficiently."
     },
   },
+  {
+    id: 3,
+    image: image2,
+    category: { ar: "برنامج تدريبي", en: "Training Program" },
+    tags: [
+      { ar: "حضوري", en: "On-site" },
+      { ar: "عن بعد", en: "Remote" },
+    ],
+    title: { 
+      ar: "تنمية مهارات فريق العمل (TVTC)", 
+      en: "Team Skills Development (TVTC)" 
+    },
+    description: { 
+      ar: "تركز هذه الدورة على تعزيز كفاءة فرق العمل من خلال تطوير مهارات التعاون، التواصل، حل المشكلات، وإدارة النزاعات. تهدف الدورة إلى بناء فرق عمل متماسكة وفعالة تستطيع تحقيق أهداف المؤسسة بكفاءة أعلى.",
+      en: "This course focuses on enhancing the efficiency of work teams through developing skills in cooperation, communication, problem solving, and conflict management. The course aims to build cohesive and effective work teams that can achieve the organization's goals more efficiently."
+    },
+  },
+  {
+    id: 4,
+    image: image1,
+    category: { ar: "برنامج تدريبي", en: "Training Program" },
+    tags: [
+      { ar: "حضوري", en: "On-site" },
+      { ar: "عن بعد", en: "Remote" },
+    ],
+    title: { 
+      ar: "تنمية مهارات فريق العمل (TVTC)", 
+      en: "Team Skills Development (TVTC)" 
+    },
+    description: { 
+      ar: "تركز هذه الدورة على تعزيز كفاءة فرق العمل من خلال تطوير مهارات التعاون، التواصل، حل المشكلات، وإدارة النزاعات. تهدف الدورة إلى بناء فرق عمل متماسكة وفعالة تستطيع تحقيق أهداف المؤسسة بكفاءة أعلى.",
+      en: "This course focuses on enhancing the efficiency of work teams through developing skills in cooperation, communication, problem solving, and conflict management. The course aims to build cohesive and effective work teams that can achieve the organization's goals more efficiently."
+    },
+  },
 ];
 
 type TrainingItem = (typeof TRAINING_DATA)[0];
@@ -149,6 +183,12 @@ export default function News() {
 
           {/* Item 2 Content (Right Side) */}
           <ItemContent item={TRAINING_DATA[1]} locale={locale} />
+
+          {/* Item 3 Image */}
+          <ItemImage item={TRAINING_DATA[2]} locale={locale} />
+
+          {/* Item 4 Content */}
+          <ItemContent item={TRAINING_DATA[3]} locale={locale} />
         </div>
 
         {/* Left Column (End Column in RTL) */}
@@ -158,6 +198,12 @@ export default function News() {
 
           {/* Item 2 Image (Left Side) */}
           <ItemImage item={TRAINING_DATA[1]} locale={locale} />
+
+          {/* Item 3 Content */}
+          <ItemContent item={TRAINING_DATA[2]} locale={locale} />
+
+          {/* Item 4 Image */}
+          <ItemImage item={TRAINING_DATA[3]} locale={locale} />
         </div>
       </div>
 
