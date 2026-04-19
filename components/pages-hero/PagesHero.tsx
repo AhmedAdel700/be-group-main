@@ -43,7 +43,7 @@ export default function PagesHero({ page = "sector" }: PagesHeroProps) {
   const content = heroContent[page] || heroContent.sector;
 
   return (
-    <section className="relative w-full md:min-h-100 xl:h-[75vh] overflow-hidden">
+    <section className="relative w-full md:min-h-100 xl:h-[65vh] overflow-hidden">
       {/* Background Image */}
       <Image
         src={heroImg}

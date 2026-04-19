@@ -99,10 +99,10 @@ export default function Reviews() {
         </div>
 
         {/* Swiper Carousel */}
-        <div className="relative w-full">
+        <div className="relative w-full min-h-[350px]">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={24}
+            spaceBetween={50}
             slidesPerView={1}
             centeredSlides={true}
             loop={true}
@@ -116,56 +116,63 @@ export default function Reviews() {
             }}
             pagination={{
               clickable: true,
+              el: ".reviews-pagination",
             }}
             breakpoints={{
               640: {
                 slidesPerView: 1.2,
-                spaceBetween: 16,
+                spaceBetween: 32,
               },
               768: {
                 slidesPerView: 1.5,
-                spaceBetween: 20,
+                spaceBetween: 40,
               },
               1024: {
                 slidesPerView: 2,
-                spaceBetween: 24,
+                spaceBetween: 48,
               },
             }}
             className="reviews-swiper"
           >
             {REVIEWS.map((review) => (
               <SwiperSlide key={review.id} className="h-auto">
-                <div className="bg-bg-filter rounded-lg px-4 md:px-6 py-6 md:py-8 h-full xl:h-62.5 flex flex-col justify-start shadow-[0_0_10px_0_rgba(0,0,0,0.1)]">
-                  <div className="flex items-start gap-4 md:gap-6">
-                    <Image
-                      src={review.image}
-                      alt={review.name}
-                      className="w-14 h-14 md:w-24 md:h-24 rounded-full object-cover shrink-0"
-                      width={96}
-                      height={96}
-                    />
-                    <div className="flex items-start gap-3 md:gap-6">
+                {({ isActive }) => (
+                  <div
+                    className={`rounded-lg px-8 transition-all duration-500 w-full flex flex-col justify-center
+                      ${isActive 
+                        ? "bg-main-white h-[230px] scale-105 z-10 border border-black/5" 
+                        : "bg-bg-filter h-[210px] scale-100 opacity-50 border border-black/5"
+                      }`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <Image
+                        src={review.image}
+                        alt={review.name}
+                        className="w-14 h-14 md:w-16 md:h-16 rounded-full object-cover shrink-0"
+                        width={64}
+                        height={64}
+                      />
                       <div className="flex flex-col">
-                        <p className="text-font-body leading-[160%] text-xs md:text-base font-medium mb-1 md:mb-3">
+                        <p className="text-labels text-xs font-medium mb-1">
                           {review.date}
                         </p>
-                        <h3 className="text-font-body leading-[160%] text-sm md:text-lg font-bold mb-1 md:mb-2">
+                        <h3 className="text-main-black text-sm md:text-base font-bold mb-2">
                           {review.name}
                         </h3>
-
-                        <p className="text-font-body leading-[160%] text-xs md:text-base font-medium">
+                        <p className="text-font-body text-xs md:text-sm leading-relaxed line-clamp-4">
                           {review.text}
                         </p>
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
               </SwiperSlide>
             ))}
           </Swiper>
-
-          {/* Fallback Mobile Navigation disabled */}
         </div>
+
+        {/* External Pagination */}
+        <div className="reviews-pagination flex justify-center -my-2" />
       </div>
     </section>
   );

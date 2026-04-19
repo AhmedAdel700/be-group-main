@@ -46,7 +46,7 @@ const LOCATIONS = [
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const LocationCard = ({ loc, locale }: { loc: any; locale: string }) => (
-    <div className="border-[#E5E5E5] border-[0.8px] rounded-3xl lg:rounded-[40px] bg-main-white flex flex-col sm:flex-row overflow-hidden h-full min-h-auto lg:min-h-92.5">
+    <div className="border-[#e5e5e586] border-[0.8px] rounded-3xl lg:rounded-[40px] bg-main-white flex flex-col sm:flex-row overflow-hidden h-full min-h-auto lg:min-h-92.5">
         {/* Image Content */}
         <div className="w-full sm:w-[30%] relative h-48 sm:h-auto sm:min-h-full shrink-0">
             <Image

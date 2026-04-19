@@ -57,7 +57,7 @@ function SectorCard({ sector, index }: { sector: typeof sector1; index: number }
 export default function Sectores() {
   return (
     <section className="bg-sectors-bg">
-      <div className="section-container flex flex-col gap-10">
+      <div className="section-container flex flex-col gap-2">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 md:mb-10 lg:px-4">
           <div className="flex flex-col gap-2 sm:gap-4">

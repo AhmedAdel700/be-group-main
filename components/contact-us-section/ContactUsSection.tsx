@@ -139,7 +139,7 @@ export default function ContactUsSection() {
   return (
     <section className="container mx-auto px-4 sm:px-6 xl:px-12 bg-main-white pt-10 mb-6 lg:mb-10">
       <div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-14">
-        <aside className="flex items-start flex-col gap-8 border-b lg:border-b-0 lg:border-e border-[#D1D1D1] w-full lg:w-[30%] xl:w-[25%] pb-10 lg:pb-0 lg:pe-10">
+        <aside className="flex items-start flex-col gap-8 border-b lg:border-b-0 lg:border-e border-[#d1d1d16c] w-full lg:w-[30%] xl:w-[25%] pb-10 lg:pb-0 lg:pe-10">
           <h4 className="text-xl text-primary font-semibold tracking-[-2%]">
             يمكنك تتبع اخبارنا من هنا...{" "}
           </h4>

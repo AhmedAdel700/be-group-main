@@ -70,7 +70,7 @@ export default function Stories() {
     <section className="bg-main-white" dir={locale === "ar" ? "rtl" : "ltr"}>
       <div className="container mx-auto px-4 sm:px-6 xl:px-12">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-2 lg:mb-8 px-4">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-2 px-4">
           {/* Titles */}
           <div className="w-full lg:max-w-120">
             <h4 className="text-primary text-lg font-bold leading-[160%] mb-3">

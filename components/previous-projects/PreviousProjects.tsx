@@ -247,7 +247,7 @@ export default function PreviousProjects() {
       </div>
 
       {/* ── Filter Tabs ── */}
-      <div className="relative mb-11 md:mb-14">
+      <div className="relative mb-10">
         <div
           className="flex flex-nowrap md:flex-wrap items-center justify-start gap-3 md:gap-4 p-2 bg-bg-filter rounded-[40px] overflow-x-auto no-scrollbar scroll-smooth"
           style={{
@@ -348,7 +348,7 @@ export default function PreviousProjects() {
                         layout: SMOOTH,
                       }}
                       className={cn(
-                        "relative h-full rounded-3xl overflow-hidden cursor-pointer group min-w-30 xl:min-w-50 2xl:min-w-55",
+                        "relative h-full rounded-3xl overflow-hidden cursor-pointer group min-w-30 xl:min-w-50 2xl:min-w-65",
                         isExpanded ? "z-10" : "z-0",
                       )}
                     >

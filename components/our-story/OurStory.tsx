@@ -49,8 +49,8 @@ export default function OurStory() {
               className="bg-main-white border border-[#ECECEC] shadow-[0px_2px_16px_2px_rgba(0,0,0,0.06)] rounded-lg py-10 px-6 flex flex-col text-start"
             >
               <div className="w-full flex justify-start mb-4">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-main-white shrink-0">
-                  <BookOpenText size={18} strokeWidth={2} />
+                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-main-white shrink-0">
+                  <BookOpenText size={24} strokeWidth={2} />
                 </div>
               </div>
               <h3 className="text-base font-bold text-main-black mb-2 leading-6">

@@ -11,7 +11,7 @@ export default function AboutSection() {
     <section className="bg-main-white">
       <div className="section-container flex flex-col gap-10">
         {/* TEXT */}
-        <div className="flex flex-col gap-2 w-full lg:max-w-287.5">
+        <div className="flex flex-col gap-2 w-full">
           <h2 className="text-primary font-bold text-lg leading-[160%] text-start">
             من نحن
           </h2>

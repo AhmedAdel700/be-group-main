@@ -14,6 +14,7 @@ const timelineData = [
   {
     id: 1,
     number: "1",
+    numberOpacity: 1,
     title: "التأسيس",
     text: "البداية مصنع كاسفول كمصنع متخصص في تصنيع البلك البركاني باستخدام خامات محلية.",
     left: "83.33%",
@@ -22,6 +23,7 @@ const timelineData = [
   {
     id: 2,
     number: "2",
+    numberOpacity: 0.4,
     title: "النمو الإقليمي",
     text: "افتتاح فروع وقطاعات جديدة والتوسع في 4 دول عربية والوصول لـ 1000 مشروع",
     left: "50%",
@@ -30,6 +32,7 @@ const timelineData = [
   {
     id: 3,
     number: "3",
+    numberOpacity: 0.2,
     title: "القيادة",
     text: "أصبحنا شريك موثوق لأكثر من 500 مؤسسة رائدة في جميع القطاعات ومشاركين نجاحات مختلفة معهم من البداية حتى الانطلاق",
     left: "16.66%",
@@ -71,7 +74,7 @@ export default function OurJourney() {
           {timelineData.map((node, index) => (
             <div 
               key={`text-${node.id}`} 
-              className="absolute z-0 flex flex-col items-center"
+              className="absolute z-0 flex flex-col items-center group"
               style={{ left: node.left, top: node.top, transform: 'translate(-50%, -50%)' }}
             >
               <div className="absolute top-[85px] w-max max-w-[320px] pt-8 flex flex-col items-center text-center" dir="rtl">
@@ -79,10 +82,10 @@ export default function OurJourney() {
                     {/* Big Background Number */}
                     <motion.span 
                       initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      whileInView={{ opacity: node.numberOpacity, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: index * 0.3 + 0.5 }}
-                      className="absolute top-[-190px] lg:left-[-45px] xl:left-[-80px] xl:text-[240px] lg:text-[180px] text-[160px] font-black leading-none text-[#E8E8E8] -z-10 select-none tracking-tighter mix-blend-multiply transition-all duration-500 hover:text-[#E0E0E0]"
+                      className="absolute top-[-190px] lg:left-[-45px] xl:left-[-80px] xl:text-[240px] lg:text-[180px] text-[160px] font-black leading-none text-[#E8E8E8] -z-10 select-none tracking-tighter mix-blend-multiply transition-opacity duration-500 group-hover:!opacity-100"
                       style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
                     >
                       {node.number}
@@ -162,7 +165,7 @@ export default function OurJourney() {
 
           <div className="flex flex-col gap-20 relative z-10">
             {timelineData.map((node, index) => (
-              <div key={node.id} className={`relative flex items-start w-full ps-4 ${locale === 'ar' ? 'gap-10' : 'gap-0'}`}>
+              <div key={node.id} className={`relative flex items-start w-full ps-4 group ${locale === 'ar' ? 'gap-10' : 'gap-0'}`}>
                  {/* Vertical Line Segment */}
                  {index < timelineData.length - 1 && (
                     <motion.div 
@@ -186,10 +189,10 @@ export default function OurJourney() {
                     {/* Background Number */}
                     <motion.span 
                       initial={{ opacity: 0, scale: 0.5 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
+                      whileInView={{ opacity: node.numberOpacity, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.2 }}
-                      className="absolute -top-6 right-16 text-[150px] font-black leading-none text-[#EAEAEA] -z-10 select-none mix-blend-multiply"
+                      className="absolute -top-6 right-16 text-[150px] font-black leading-none text-[#EAEAEA] -z-10 select-none mix-blend-multiply transition-opacity duration-500 group-hover:!opacity-100"
                       style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
                     >
                       {node.number}

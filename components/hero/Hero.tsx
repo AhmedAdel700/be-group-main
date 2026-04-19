@@ -16,7 +16,7 @@ export default function Hero() {
     locale === "ar" ? <MoveLeft size={24} /> : <MoveRight size={24} />;
 
   return (
-    <section className="relative min-h-screen flex items-center pt-12 lg:pt-24 pb-10 overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-24 2xl:pt-40 pb-10 overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
           src={heroImage}
@@ -76,9 +76,7 @@ export default function Hero() {
               قطاعات نخدمها
             </MainButton>
 
-            <div
-              className="sm:h-36 sm:w-0 lg:hidden"
-            ></div>
+            <div className="sm:h-36 sm:w-0 lg:hidden"></div>
 
             <div
               className="
@@ -139,7 +137,7 @@ export default function Hero() {
           </div>
 
           <div className="w-full flex flex-col gap-6 sm:flex-row sm:justify-between sm:items-end">
-            <p className="leading-[1.6] font-bold text-base sm:text-lg xl:text-xl text-main-white whitespace-nowrap">
+            <p className="leading-[1.6] hidden lg:block font-bold text-base sm:text-lg xl:text-xl text-main-white whitespace-nowrap">
               أكثر من 2000 عميل راضٍ
             </p>
 
@@ -165,7 +163,7 @@ export default function Hero() {
                 iconEnd={ArrowIcon}
                 className="text-base"
               >
-                قطاعات نخدمها
+                تعرف علينا أكثر
               </MainButton>
             </div>
           </div>
