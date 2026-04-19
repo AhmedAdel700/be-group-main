@@ -92,10 +92,19 @@ export default function Sectores() {
           </Swiper>
         </div>
 
-        {/* Desktop: Flex-wrap Grid (hidden below md) */}
-        <div className="hidden md:flex flex-wrap justify-center items-center gap-x-4 gap-y-6">
+        {/* Desktop: Grid for lg (4 then 3 centered), Flex for md (hidden below md) */}
+        <div className="hidden md:flex lg:grid lg:grid-cols-8 flex-wrap justify-center items-center gap-x-4 gap-y-6">
           {SECTORS.map((sector, index) => (
-            <SectorCard key={index} sector={sector} index={index} />
+            <div
+              key={index}
+              className={`
+                w-full md:w-[calc(50%-1rem)] lg:w-full
+                lg:col-span-2
+                ${index === 4 ? "lg:col-start-2" : ""}
+              `}
+            >
+              <SectorCard sector={sector} index={index} />
+            </div>
           ))}
         </div>
       </div>
