@@ -26,10 +26,10 @@ export default function CaseStudy() {
               />
             </div>
 
-            <h3 className="text-lg lg:text-[45px] mb-1 w-full lg:w-[90%] font-medium tracking-[-4%]">
+            <h3 className="text-lg lg:text-[45px] mb-2 lg:mb-3 w-full lg:w-[90%] font-medium tracking-[-4%]">
               نبني الأعمال على رؤية استراتيجية مدروسة تقود إلى تأثير حقيقي .
             </h3>
-            <p className="w-full lg:w-[70%] text-sm lg:text-base" >
+            <p className="w-full lg:w-[85%] text-base lg:text-xl text-font-body leading-[26px]" >
               لقد عززنا المبيعات من خلال متجر إلكتروني أسرع، وزدنا معدل استخدام
               التطبيق بنسبة 60٪، وبنينا علامة تجارية جريئة ساعدت شركة ناشئة على
               التميز — كل ذلك بفضل التصميم الذكي.
