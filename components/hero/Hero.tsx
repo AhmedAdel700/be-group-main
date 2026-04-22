@@ -71,7 +71,7 @@ export default function Hero() {
             <MainButton
               buttontype="primary"
               iconEnd={ArrowIcon}
-              className="w-full lg:w-fit text-base"
+              className="w-full sm:w-[55%] lg:w-fit text-base"
             >
               قطاعات نخدمها
             </MainButton>

@@ -3,12 +3,21 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { animate, useInView } from "framer-motion";
+import aboutShape from "@/assets/about-shape.svg";
 
 export default function AboutSection() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <section className="bg-main-white">
+    <section className="bg-main-white relative z-50">
+      <Image
+        src={aboutShape}
+        alt="about shape background"
+        className="z-[-1] w-145 h-145 absolute hidden lg:block"
+        width={4000}
+        height={4000}
+        priority
+      />
       <div className="section-container flex flex-col gap-10">
         {/* TEXT */}
         <div className="flex flex-col gap-2 w-full">
@@ -68,7 +77,15 @@ export default function AboutSection() {
 }
 
 /* STAT COMPONENT */
-function Stat({ number, label, suffix = "" }: { number: number; label: string; suffix?: string }) {
+function Stat({
+  number,
+  label,
+  suffix = "",
+}: {
+  number: number;
+  label: string;
+  suffix?: string;
+}) {
   const ref = useRef<HTMLHeadingElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -88,10 +105,15 @@ function Stat({ number, label, suffix = "" }: { number: number; label: string; s
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <h3 ref={ref} className="text-4xl md:text-[60px] font-medium leading-[125%] text-main-black">
+      <h3
+        ref={ref}
+        className="text-4xl md:text-[60px] font-medium leading-[125%] text-main-black"
+      >
         0{suffix}
       </h3>
-      <p className="text-base md:text-lg text-font-body leading-[155%] font-normal">{label}</p>
+      <p className="text-base md:text-lg text-font-body leading-[155%] font-normal">
+        {label}
+      </p>
     </div>
   );
 }
