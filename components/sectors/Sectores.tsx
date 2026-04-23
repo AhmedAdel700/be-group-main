@@ -34,7 +34,7 @@ const cardVariants = {
 
 function SectorCard({ sector, index }: { sector: typeof sector1; index: number }) {
   return (
-    <Link href={"/"}>
+    <Link href={`/sectors/${index}`}>
       <motion.div
         className="rounded-[22px] overflow-hidden cursor-pointer"
         variants={cardVariants}
@@ -45,8 +45,8 @@ function SectorCard({ sector, index }: { sector: typeof sector1; index: number }
         <Image
           src={sector}
           alt={`Sector ${index + 1}`}
-          width={2000}
-          height={370}
+          width={4000}
+          height={3000}
           className="w-full h-full object-cover"
         />
       </motion.div>
@@ -93,7 +93,7 @@ export default function Sectores() {
         </div>
 
         {/* Desktop: Grid for lg (4 then 3 centered), Flex for md (hidden below md) */}
-        <div className="hidden md:flex lg:grid lg:grid-cols-8 flex-wrap justify-center items-center gap-x-4 gap-y-6">
+        <div className="hidden md:flex lg:grid lg:grid-cols-8 flex-wrap justify-center items-center gap-4 xl:gap-6 lg:px-10 xl:px-20 2xl:px-25">
           {SECTORS.map((sector, index) => (
             <div
               key={index}

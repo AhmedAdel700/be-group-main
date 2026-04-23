@@ -29,11 +29,11 @@ export default function Footer() {
   ];
 
   const quickLinks = [
-    { name: "من نحن", href: "#" },
-    { name: "قطاعاتنا", href: "#" },
-    { name: "المشاريع", href: "#" },
+    { name: "من نحن", href: "/about" },
+    { name: "قطاعاتنا", href: "/sectors" },
+    { name: "المشاريع", href: "/our-work" },
     { name: "الوظائف", href: "#" },
-    { name: "المدونة", href: "#" },
+    { name: "المدونة", href: "/blogs" },
   ];
 
   const sectors = [

@@ -9,7 +9,7 @@ export default function AboutSection() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <section className="bg-main-white relative z-50">
+    <section className="bg-main-white relative z-20">
       <Image
         src={aboutShape}
         alt="about shape background"

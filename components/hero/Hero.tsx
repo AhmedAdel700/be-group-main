@@ -8,6 +8,7 @@ import { MoveLeft, MoveRight } from "lucide-react";
 import herocard1 from "@/assets/herocard1.png";
 import herocard2 from "@/assets/herocard2.png";
 import herocard3 from "@/assets/herocard3.png";
+import { Link } from "@/i18n/navigation";
 
 export default function Hero() {
   const locale = useLocale();
@@ -68,13 +69,15 @@ export default function Hero() {
           "
         >
           <div className="w-full flex justify-between items-end">
-            <MainButton
-              buttontype="primary"
-              iconEnd={ArrowIcon}
-              className="w-full sm:w-[55%] lg:w-fit text-base"
-            >
-              قطاعات نخدمها
-            </MainButton>
+            <Link href={"/sectors"} prefetch className="w-full">
+              <MainButton
+                buttontype="primary"
+                iconEnd={ArrowIcon}
+                className="w-full sm:w-[55%] lg:w-fit text-base"
+              >
+                قطاعات نخدمها
+              </MainButton>
+            </Link>
 
             <div className="sm:h-36 sm:w-0 lg:hidden"></div>
 
@@ -158,13 +161,15 @@ export default function Hero() {
                 الاستشارات الإدارية، والحلول الرقمية تحت مظلة واحدة.
               </p>
 
-              <MainButton
-                buttontype="secondary"
-                iconEnd={ArrowIcon}
-                className="text-base"
-              >
-                تعرف علينا أكثر
-              </MainButton>
+              <Link href={"/about"} className="w-full">
+                <MainButton
+                  buttontype="secondary"
+                  iconEnd={ArrowIcon}
+                  className="text-base w-full"
+                >
+                  تعرف علينا أكثر
+                </MainButton>
+              </Link>
             </div>
           </div>
         </div>

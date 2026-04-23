@@ -58,6 +58,7 @@ export default function Reviews() {
           <button
             className="flex items-center justify-center swiper-btn-prev w-10 h-10 md:w-12 md:h-12 rounded-full text-[#4b5563] hover:text-black hover:bg-gray-100 transition-all cursor-pointer z-10 shrink-0"
             aria-label="Previous Review"
+            suppressHydrationWarning
           >
             {locale === "ar" ? (
               <ChevronRight
@@ -81,6 +82,7 @@ export default function Reviews() {
           <button
             className="flex items-center justify-center swiper-btn-next w-10 h-10 md:w-12 md:h-12 rounded-full text-[#4b5563] hover:text-black hover:bg-gray-100 transition-all cursor-pointer z-10 shrink-0"
             aria-label="Next Review"
+            suppressHydrationWarning
           >
             {locale === "ar" ? (
               <ChevronLeft
@@ -99,7 +101,7 @@ export default function Reviews() {
         </div>
 
         {/* Swiper Carousel */}
-        <div className="relative w-full min-h-87.5">
+        <div className="relative w-full min-h-85">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={50}
@@ -139,9 +141,10 @@ export default function Reviews() {
                 {({ isActive }) => (
                   <div
                     className={`rounded-lg px-8 transition-all duration-500 w-full flex flex-col justify-center
-                      ${isActive 
-                        ? "bg-main-white h-57.5 scale-105 z-10 border border-black/5" 
-                        : "bg-bg-filter h-52.5 scale-100 opacity-50 border border-black/5"
+                      ${
+                        isActive
+                          ? "bg-main-white h-57.5 scale-105 z-10 border border-black/5"
+                          : "bg-bg-filter h-52.5 scale-100 opacity-50 border border-black/5"
                       }`}
                   >
                     <div className="flex items-start gap-4">

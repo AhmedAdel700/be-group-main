@@ -149,7 +149,7 @@ useEffect(() => {
             {/* Mobile Burger Button */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              className={`lg:hidden relative z-80 p-2 hover:text-primary transition-all duration-300 focus:outline-none ${!isOpen && isAboutPage ? "text-main-black" : "text-white"}`}
+              className={`lg:hidden relative z-50 p-2 hover:text-primary transition-all duration-300 focus:outline-none ${!isOpen && isAboutPage ? "text-main-black" : "text-white"}`}
               aria-label="Toggle Menu"
             >
               {isOpen ? <X size={32} /> : <Menu size={32} />}
