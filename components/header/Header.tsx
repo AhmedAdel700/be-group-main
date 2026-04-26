@@ -66,24 +66,31 @@ useEffect(() => {
   return (
     <header className="fixed top-0 z-50 w-full">
       {/* Header Bar */}
-      <div className={`relative z-70 transition-all duration-500 ${
-        isOpen 
-          ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4"
-          : isAboutPage
-            ? (isScrolled ? "bg-[#FAFAFA] py-4 shadow-sm" : "bg-[#FAFAFA] py-6")
-            : isScrolled
-              ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4" 
-              : "bg-transparent py-6"
-      }`}>
+      <div
+        className={`relative z-70 transition-all duration-500 ${
+          isOpen
+            ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4"
+            : isAboutPage
+              ? isScrolled
+                ? "bg-[#FAFAFA] py-4 shadow-sm"
+                : "bg-[#FAFAFA] py-6"
+              : isScrolled
+                ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4"
+                : "bg-transparent py-6"
+        }`}
+      >
         <div className="container mx-auto px-4 sm:px-8 flex items-center justify-between relative">
-          
           <div className="flex items-center gap-12 lg:gap-22">
-            <Link href="/" className="relative z-10 block shrink-0" onClick={() => setIsOpen(false)}>
+            <Link
+              href="/"
+              className="relative z-10 block shrink-0"
+              onClick={() => setIsOpen(false)}
+            >
               <div className="relative w-31 h-13">
-                <Image 
-                  src="/assets/logo.svg" 
-                  alt="Logo" 
-                  fill 
+                <Image
+                  src={isAboutPage ? "/assets/darkLogo.png" : "/assets/logo.svg"}
+                  alt="Logo"
+                  fill
                   sizes="124px"
                   className="object-contain object-right"
                   priority
@@ -91,27 +98,30 @@ useEffect(() => {
               </div>
             </Link>
 
-
             <nav className="hidden lg:block">
               <ul className="flex items-center gap-8">
                 {navLinks.map((link) => {
                   const isActive = pathname === link.href;
                   return (
                     <li key={link.href} className="group relative">
-                      <Link 
+                      <Link
                         prefetch
                         href={link.href}
                         className={`text-base leading-[1.6] transition-all duration-300 flex items-center gap-1.5 
-                          ${isActive 
-                            ? 'text-primary font-bold' 
-                            : (isAboutPage ? 'text-main-black font-medium hover:text-primary' : 'text-main-white font-medium hover:text-primary')}
+                          ${
+                            isActive
+                              ? "text-primary font-bold"
+                              : isAboutPage
+                                ? "text-main-black font-medium hover:text-primary"
+                                : "text-main-white font-medium hover:text-primary"
+                          }
                         `}
                       >
                         {link.name}
                         {link.dropdown && (
-                          <ChevronDown 
-                            size={18} 
-                            className="transition-transform duration-300 group-hover:rotate-180" 
+                          <ChevronDown
+                            size={18}
+                            className="transition-transform duration-300 group-hover:rotate-180"
                           />
                         )}
                       </Link>
@@ -120,15 +130,33 @@ useEffect(() => {
                         <div className="absolute top-full -left-6 pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                           <div className="bg-main-black/90 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl p-4 min-w-55">
                             <ul className="space-y-2">
-                               <li>
-                                 <Link prefetch href="/sectors/tech" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("tech")}</Link>
-                               </li>
-                               <li>
-                                <Link prefetch href="/sectors/real-estate" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("realEstate")}</Link>
-                               </li>
-                               <li>
-                                <Link prefetch href="/sectors/marketing" className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium">{t("marketing")}</Link>
-                               </li>
+                              <li>
+                                <Link
+                                  prefetch
+                                  href="/sectors/tech"
+                                  className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium"
+                                >
+                                  {t("tech")}
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  prefetch
+                                  href="/sectors/real-estate"
+                                  className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium"
+                                >
+                                  {t("realEstate")}
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  prefetch
+                                  href="/sectors/marketing"
+                                  className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium"
+                                >
+                                  {t("marketing")}
+                                </Link>
+                              </li>
                             </ul>
                           </div>
                         </div>
@@ -147,7 +175,7 @@ useEffect(() => {
             </div>
 
             {/* Mobile Burger Button */}
-            <button 
+            <button
               onClick={() => setIsOpen(!isOpen)}
               className={`lg:hidden relative z-50 p-2 hover:text-primary transition-all duration-300 focus:outline-none ${!isOpen && isAboutPage ? "text-main-black" : "text-white"}`}
               aria-label="Toggle Menu"
@@ -171,59 +199,86 @@ useEffect(() => {
             <nav className="w-full max-w-sm text-center">
               <ul className="space-y-6">
                 {navLinks.map((link) => {
-                  const isActive = link.href === "/" 
-                    ? pathname === "/" 
-                    : pathname?.startsWith(link.href);
+                  const isActive =
+                    link.href === "/"
+                      ? pathname === "/"
+                      : pathname?.startsWith(link.href);
 
                   return (
                     <motion.li key={link.href} variants={itemVariants}>
                       {link.dropdown ? (
                         <div>
-                          <button 
-                            onClick={() => setShowMobileDropdown(!showMobileDropdown)}
+                          <button
+                            onClick={() =>
+                              setShowMobileDropdown(!showMobileDropdown)
+                            }
                             className={`text-2xl font-bold leading-relaxed w-full flex items-center justify-center gap-2
-                              ${isActive ? 'text-primary' : 'text-main-white'}
+                              ${isActive ? "text-primary" : "text-main-white"}
                             `}
                           >
-                          {link.name}
-                          <ChevronDown 
-                            size={24} 
-                            className={`transition-transform duration-300 ${showMobileDropdown ? 'rotate-180 text-primary' : ''}`} 
-                          />
-                        </button>
-                        <AnimatePresence>
-                          {showMobileDropdown && (
-                            <motion.ul 
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="mt-4 space-y-4 overflow-hidden"
-                            >
-                              <li><Link onClick={() => setIsOpen(false)} href="/sectors/tech" className="text-xl text-main-white hover:text-primary transition-colors">{t("tech")}</Link></li>
-                              <li><Link onClick={() => setIsOpen(false)} href="/sectors/real-estate" className="text-xl text-main-white hover:text-primary transition-colors">{t("realEstate")}</Link></li>
-                              <li><Link onClick={() => setIsOpen(false)} href="/sectors/marketing" className="text-xl text-main-white hover:text-primary transition-colors">{t("marketing")}</Link></li>
-                            </motion.ul>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    ) : (
-                      <Link
-                        prefetch
-                        onClick={() => setIsOpen(false)}
-                        href={link.href}
-                        className={`text-2xl font-bold leading-relaxed block
-                          ${pathname === link.href ? 'text-primary' : 'text-main-white hover:text-primary'}
+                            {link.name}
+                            <ChevronDown
+                              size={24}
+                              className={`transition-transform duration-300 ${showMobileDropdown ? "rotate-180 text-primary" : ""}`}
+                            />
+                          </button>
+                          <AnimatePresence>
+                            {showMobileDropdown && (
+                              <motion.ul
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                className="mt-4 space-y-4 overflow-hidden"
+                              >
+                                <li>
+                                  <Link
+                                    onClick={() => setIsOpen(false)}
+                                    href="/sectors/tech"
+                                    className="text-xl text-main-white hover:text-primary transition-colors"
+                                  >
+                                    {t("tech")}
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link
+                                    onClick={() => setIsOpen(false)}
+                                    href="/sectors/real-estate"
+                                    className="text-xl text-main-white hover:text-primary transition-colors"
+                                  >
+                                    {t("realEstate")}
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link
+                                    onClick={() => setIsOpen(false)}
+                                    href="/sectors/marketing"
+                                    className="text-xl text-main-white hover:text-primary transition-colors"
+                                  >
+                                    {t("marketing")}
+                                  </Link>
+                                </li>
+                              </motion.ul>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
+                        <Link
+                          prefetch
+                          onClick={() => setIsOpen(false)}
+                          href={link.href}
+                          className={`text-2xl font-bold leading-relaxed block
+                          ${pathname === link.href ? "text-primary" : "text-main-white hover:text-primary"}
                         `}
-                      >
-                        {link.name}
-                      </Link>
-                    )}
-                  </motion.li>
-                );
+                        >
+                          {link.name}
+                        </Link>
+                      )}
+                    </motion.li>
+                  );
                 })}
               </ul>
 
-              <motion.div 
+              <motion.div
                 variants={itemVariants}
                 className="mt-12 flex justify-center"
               >
