@@ -2,9 +2,10 @@ import Image from "next/image";
 import heroImg from "@/assets/hero.jpg";
 import { Link } from "@/i18n/navigation";
 import beBG from "@/assets/beBG.svg";
+import AllSectors from "@/app/[locale]/sectors/AllSectors";
 
 interface PagesHeroProps {
-  page?: "sector" | "contact" | "work" | "blogs";
+  page?: "sector" | "contact" | "work" | "blogs" | "allsectors";
 }
 
 const heroContent = {
@@ -12,19 +13,33 @@ const heroContent = {
     title: "قطاع التدريب والتطوير",
     description:
       "نحن نؤمن بأن رأس المال البشري هو المحرك الحقيقي للنمو. نقدم حلولاً تعليمية مبتكرة تواكب التطورات العالمية وتلبي تطلعات رؤية المملكة 2030.",
+          footerText: " نحن هنا لنصنع تأثيرًا حقيقيًا في عالم الأعمال، بفكرة جريئة تلو الأخرى."
+
   },
   contact: {
     title: "Be GROUP",
     description:
       'يسعدنا تواصلك معنا ، فريقنا متواجد عبر <span class="highlight">مواقعنا المختلفة</span> للإجابة عن استفساراتك ودعم أعمالك.',
+    footerText: " نحن هنا لنصنع تأثيرًا حقيقيًا في عالم الأعمال، بفكرة جريئة تلو الأخرى."
+
   },
   work: {
     title: "أحدث الاعمال",
     description: "مشاريع حقيقية نفذناها في مجالات متعددة ، من التخطيط وحتى التنفيذ باحترافية عالية.",
+    footerText: " نحن هنا لنصنع تأثيرًا حقيقيًا في عالم الأعمال، بفكرة جريئة تلو الأخرى."
+
   },
   blogs: {
     title: "مدونة",
     description: "اكتشف أحدث المقالات والرؤى من Be Group.",
+    footerText: " نحن هنا لنصنع تأثيرًا حقيقيًا في عالم الأعمال، بفكرة جريئة تلو الأخرى."
+  },
+  allsectors: {
+    title: "قطاعات ",
+    description:
+      "سبع قطاعات متكاملة نقدم من خلالها حلولاً شاملة ومبتكرة تلبي احتياجات مؤسستكم وتحقق أهدافكم الاستراتيجية",
+    footerText:
+      "",
   },
 };
 
@@ -37,6 +52,7 @@ const breadcrumbs = {
   contact: "تواصل معنا",
   work: "أعمالنا",
   blogs: "مدونة",
+  allsectors: "قطاعات نخدمها  ",
 };
 
 export default function PagesHero({ page = "sector" }: PagesHeroProps) {
@@ -112,8 +128,7 @@ export default function PagesHero({ page = "sector" }: PagesHeroProps) {
         {/* Footer text */}
         <div className="xl:text-end w-full mt-10 xl:mt-auto">
           <p className="text-sm lg:text-base leading-[160%] font-medium text-main-white">
-            نحن هنا لنصنع تأثيرًا حقيقيًا في عالم الأعمال، بفكرة جريئة تلو
-            الأخرى.
+           {content.footerText}
           </p>
         </div>
       </div>
