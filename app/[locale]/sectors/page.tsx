@@ -1,7 +1,9 @@
+import AllSectors from "./AllSectors";
+
 export default function page() {
     return (
         <main>
-            <h1>Sectors Page</h1>
+            <AllSectors />
         </main>
     )
 }
