@@ -251,3 +251,12 @@
 .highlight {
   color: var(--color-primary)
 }
+
+@utility nav-link-reserve {
+  @apply inline-flex flex-col items-center justify-center;
+
+  &::after {
+    content: attr(data-text);
+    @apply h-0 overflow-hidden font-bold invisible select-none pointer-events-none;
+  }
+}

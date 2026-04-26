@@ -107,17 +107,22 @@ useEffect(() => {
                       <Link
                         prefetch
                         href={link.href}
-                        className={`text-base leading-[1.6] transition-all duration-300 flex items-center gap-1.5 
+                        className={`text-base leading-[1.6] transition-all duration-300 flex items-center gap-1.5
                           ${
                             isActive
-                              ? "text-primary font-bold"
+                              ? "text-primary"
                               : isAboutPage
-                                ? "text-main-black font-medium hover:text-primary"
-                                : "text-main-white font-medium hover:text-primary"
+                                ? "text-main-black hover:text-primary"
+                                : "text-main-white hover:text-primary"
                           }
                         `}
                       >
-                        {link.name}
+                        <span
+                          data-text={link.name}
+                          className={`nav-link-reserve ${isActive ? "font-bold" : "font-medium"}`}
+                        >
+                          {link.name}
+                        </span>
                         {link.dropdown && (
                           <ChevronDown
                             size={18}
