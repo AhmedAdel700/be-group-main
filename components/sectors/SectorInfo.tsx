@@ -14,13 +14,45 @@ import Image from "next/image";
 import arrowupIcon from "@/assets/arrowupIcon.svg";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { Navigation } from "swiper/modules";
+import listImg from "@/assets/Subtract.svg";
+import {
+  GraduationCap,
+  ChevronRight,
+  ChevronLeft,
+  ArrowRight,
+  ArrowLeft,
+  LayoutGrid,
+  Lightbulb,
+  Settings,
+  type LucideIcon,
+} from "lucide-react";
+import type { StaticImageData } from "next/image";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const projectsData: Record<string, any[]> = {
+interface Project {
+  id: number;
+  title: string;
+  summary: string;
+  image: StaticImageData;
+}
+
+interface CategoryDetail {
+  titleAr: string;
+  titleEn: string;
+  subtitleAr: string;
+  subtitleEn: string;
+  descriptionAr: string;
+  descriptionEn: string;
+  servicesAr: string[];
+  servicesEn: string[];
+  icon: LucideIcon;
+}
+
+const projectsData: Record<string, Project[]> = {
   "Be Digital": [
     {
       id: 1,
-      title: "مشروع رقمي 1",
+      title: " استشارات تدريبية في التطوير المهني والتعليمي للمؤسسات",
       summary: "تفاصيل المشروع الرقمي الأول هنا بوصف مختصر وجذاب.",
       image: slide1,
     },
@@ -128,7 +160,7 @@ const projectsData: Record<string, any[]> = {
   "Be Training": [
     {
       id: 13,
-      title: "تدريب 1",
+      title: " استشارات تدريبية في التطوير المهني والتعليمي للمؤسسات",
       summary: "برامج تدريبية متخصصة لتطوير مهارات فريق عملك.",
       image: slide2,
     },
@@ -160,18 +192,119 @@ const categories = [
   "Be Training",
 ];
 
-const SMOOTH = {
-  type: "tween",
-  ease: [0.25, 0.46, 0.45, 0.94],
-  duration: 0.6,
-} as const;
-
-const ITEMS_PER_PAGE = 4; // cards per desktop accordion slide
+const categoryDetails: Record<string, CategoryDetail> = {
+  "Be Digital": {
+    titleAr: "قطاع التحول الرقمي",
+    titleEn: "Digital Transformation",
+    subtitleAr: "حلول تقنية متطورة",
+    subtitleEn: "Advanced Technical Solutions",
+    descriptionAr:
+      "نقدم حلولاً رقمية متكاملة تساعد المنشآت على التحول الرقمي الكامل، من خلال تطبيقات الذكاء الاصطناعي، وتحليل البيانات، وتطوير الأنظمة البرمجية المخصصة التي تضمن كفاءة الأداء وتحقيق الأهداف الاستراتيجية.",
+    descriptionEn:
+      "We provide integrated digital solutions that help organizations achieve full digital transformation through AI applications, data analysis, and custom software development.",
+    servicesAr: [
+      "حلول الذكاء الاصطناعي",
+      "تطوير الأنظمة والمنصات",
+      "تحليل البيانات الضخمة",
+      "الأمن السيبراني",
+      "البنية التحتية السحابية",
+      "التحول الرقمي الشامل",
+    ],
+    servicesEn: [
+      "AI Solutions",
+      "Systems & Platforms Development",
+      "Big Data Analysis",
+      "Cybersecurity",
+      "Cloud Infrastructure",
+      "Comprehensive Digital Transformation",
+    ],
+    icon: LayoutGrid,
+  },
+  "Be consultation": {
+    titleAr: "قطاع الاستشارات",
+    titleEn: "Consultation Sector",
+    subtitleAr: "استشارات استراتيجية متخصصة",
+    subtitleEn: "Specialized Strategic Consulting",
+    descriptionAr:
+      "نعمل كشركاء نجاح لعملائنا عبر تقديم استشارات استراتيجية وإدارية مبنية على منهجيات عالمية وخبرات محلية عميقة، لتمكين الجهات من مواجهة التحديات واقتناص الفرص وتحقيق نمو مستدام.",
+    descriptionEn:
+      "We work as success partners for our clients by providing strategic and management consulting based on global methodologies and deep local expertise.",
+    servicesAr: [
+      "الاستشارات الاستراتيجية",
+      "إعادة الهيكلة التنظيمية",
+      "تطوير السياسات والإجراءات",
+      "دراسات الجدوى الاقتصادية",
+      "إدارة التغيير المؤسسي",
+      "تطوير مؤشرات الأداء",
+    ],
+    servicesEn: [
+      "Strategic Consulting",
+      "Organizational Restructuring",
+      "Policy & Procedure Development",
+      "Feasibility Studies",
+      "Change Management",
+      "KPI Development",
+    ],
+    icon: Lightbulb,
+  },
+  "Be management": {
+    titleAr: "قطاع الإدارة",
+    titleEn: "Management Sector",
+    subtitleAr: "إدارة تشغيلية باحترافية",
+    subtitleEn: "Professional Operational Management",
+    descriptionAr:
+      "نقدم خدمات إدارة المشاريع والعمليات التشغيلية بأعلى معايير الجودة والكفاءة، نضمن تنفيذ المشاريع وفق الخطط الزمنية والميزانيات المعتمدة مع التركيز على تحسين تجربة العميل وتحقيق التميز المؤسسي.",
+    descriptionEn:
+      "We provide project management and operational services with the highest standards of quality and efficiency, ensuring project execution according to plans.",
+    servicesAr: [
+      "مكاتب إدارة المشاريع PMO",
+      "إدارة العمليات التشغيلية",
+      "حوكمة الشركات والمنشآت",
+      "إدارة المخاطر والالتزام",
+      "تحسين سلاسل الإمداد",
+      "إدارة المرافق والخدمات",
+    ],
+    servicesEn: [
+      "PMO Setup & Management",
+      "Operational Management",
+      "Corporate Governance",
+      "Risk & Compliance",
+      "Supply Chain Optimization",
+      "Facility Management",
+    ],
+    icon: Settings,
+  },
+  "Be Training": {
+    titleAr: "قطاع التدريب",
+    titleEn: "Training Sector",
+    subtitleAr: "برامج تدريبية احترافية",
+    subtitleEn: "Professional Training Programs",
+    descriptionAr:
+      "نقدم برامج تدريبية متكاملة ومعتمدة تهدف إلى تطوير الكفاءات وبناء المهارات اللازمة لسوق العمل. نعمل مع أفضل المدربين والخبراء لتقديم تجربة تدريبية متميزة تجمع بين النظرية والتطبيق العملي.",
+    descriptionEn:
+      "We provide integrated and certified training programs aimed at developing competencies and building the skills necessary for the labor market. We work with the best trainers.",
+    servicesAr: [
+      "البرامج التنفيذية",
+      "الدورات التدريبية",
+      "برامج اللغات",
+      "استشارات التدريب",
+      "الشهادات الاحترافية",
+      "التمكين الشخصي والكوتشنج",
+    ],
+    servicesEn: [
+      "Executive Programs",
+      "Training Courses",
+      "Language Programs",
+      "Training Consulting",
+      "Professional Certifications",
+      "Personal Empowerment & Coaching",
+    ],
+    icon: GraduationCap,
+  },
+};
 
 export default function SectorInfo() {
   // page-local state: which Swiper page is active, and which card within it
-  const [activePage, setActivePage] = useState(0);
-  const [activeCardInPage, setActiveCardInPage] = useState(0);
   const [activeCategory, setActiveCategory] = useState("Be Digital");
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const desktopSwiperRef = useRef<SwiperType | null>(null);
@@ -180,53 +313,35 @@ export default function SectorInfo() {
 
   const projects = projectsData[activeCategory] ?? projectsData["Be Digital"];
   const total = projects.length;
-
-  // Build pages of ITEMS_PER_PAGE for the desktop accordion Swiper
-  const pages: (typeof projects)[] = [];
-  for (let i = 0; i < total; i += ITEMS_PER_PAGE) {
-    pages.push(projects.slice(i, i + ITEMS_PER_PAGE));
-  }
-
-  // ── Hover helpers ────────────────────────────────────────────────────────
-  // Only expand within the currently-visible page
-  const handleHoverStart = (cardIdx: number) => {
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-    hoverTimeoutRef.current = setTimeout(
-      () => setActiveCardInPage(cardIdx),
-      200,
-    );
-  };
-  const handleHoverEnd = () => {
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-  };
-
+  const details =
+    categoryDetails[activeCategory] || categoryDetails["Be Digital"];
+  const services = locale === "ar" ? details.servicesAr : details.servicesEn;
 
   const handleCategoryChange = (cat: string) => {
     setActiveCategory(cat);
-    setActivePage(0);
-    setActiveCardInPage(0);
     desktopSwiperRef.current?.slideTo(0);
     mobileSwiperRef.current?.slideTo(0);
   };
 
   return (
-    <section className="bg-main-white py-20 section-container" dir={locale === "ar" ? "rtl" : "ltr"}>
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-2 px-4">
-          {/* Titles */}
-          <div className="w-full lg:max-w-2/3">
-            <h4 className="text-primary text-lg font-bold leading-[160%] mb-3">
-              {locale === "ar" ? " قطاعتنا" : "Our sectors"}
-            </h4>
-            <h2 className="text-main-black font-bold text-base sm:text-xl leading-[160%]">
-              {locale === "ar"
-                ? "مجموعة متكاملة مدرجة تقود تطوير الأداء المؤسسي عبر حلول متكاملة في الاستشارات وبناء القدرات والتقنيات المدعومة بالذكاء الاصطناعي، لتمكين الجهات والأفراد من تحقيق أثر مستدام."
-                : "An integrated, listed group leading the development of institutional performance through comprehensive solutions in consulting, capacity building, and AI-powered technologies—empowering organizations and individuals to achieve sustainable impact."}
-            </h2>
-          </div>
-
-    
+    <section
+      className="bg-main-white py-20 section-container"
+      dir={locale === "ar" ? "rtl" : "ltr"}
+    >
+      {/* Header */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-2 px-4">
+        {/* Titles */}
+        <div className="w-full lg:max-w-2/3">
+          <h4 className="text-primary text-lg font-bold leading-[160%] mb-3">
+            {locale === "ar" ? " قطاعتنا" : "Our sectors"}
+          </h4>
+          <h2 className="text-main-black font-bold text-base sm:text-xl leading-[160%]">
+            {locale === "ar"
+              ? "مجموعة متكاملة مدرجة تقود تطوير الأداء المؤسسي عبر حلول متكاملة في الاستشارات وبناء القدرات والتقنيات المدعومة بالذكاء الاصطناعي، لتمكين الجهات والأفراد من تحقيق أثر مستدام."
+              : "An integrated, listed group leading the development of institutional performance through comprehensive solutions in consulting, capacity building, and AI-powered technologies—empowering organizations and individuals to achieve sustainable impact."}
+          </h2>
         </div>
+      </div>
 
       {/* ── Filter Tabs ── */}
       <div className="relative mb-10">
@@ -277,170 +392,161 @@ export default function SectorInfo() {
           Each SwiperSlide = a flex row of up to 4 accordion cards.
           Touch / drag is built-in; buttons navigate via swiperRef.
          ══════════════════════════════════════════════════════════════════════ */}
-      <div className="hidden md:block">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`desktop-${activeCategory}`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="w-full"
-          >
-            <Swiper
-              modules={[A11y]}
-              slidesPerView={1}
-              spaceBetween={0}
-              grabCursor={true}
-          loop={true}
-          a11y={{ enabled: true }}
-          onSwiper={(swiper) => {
-            desktopSwiperRef.current = swiper;
-          }}
-          onSlideChange={(swiper) => {
-            // On every slide change, reset active card to the first card of incoming page
-            setActivePage(swiper.realIndex);
-            setActiveCardInPage(0);
-          }}
-          className="w-full"
-        >
-          {pages.map((page, pageIndex) => (
-            <SwiperSlide key={`page-${pageIndex}`}>
-              {/* overflow-hidden prevents accordion cards from spilling outside the slide */}
-              <div className="flex h-128.5 gap-2.5 w-full items-stretch overflow-hidden">
-                {page.map((project, index) => {
-                  // A card is expanded only if THIS page is the active page AND this card is selected
-                  const isExpanded =
-                    pageIndex === activePage && index === activeCardInPage;
-
-                  return (
-                    <motion.div
-                      key={`${project.id}-${activeCategory}`}
-                      layout
-                      initial={{ opacity: 0 }}
-                      animate={{
-                        opacity: 1,
-                        flex: isExpanded ? 4 : 1,
-                      }}
-                      onHoverStart={() => handleHoverStart(index)}
-                      onHoverEnd={handleHoverEnd}
-                      transition={{
-                        flex: SMOOTH,
-                        opacity: { duration: 0.4, ease: "easeOut" },
-                        layout: SMOOTH,
-                      }}
-                      className={cn(
-                        "relative h-full rounded-3xl overflow-hidden cursor-pointer group min-w-30 xl:min-w-50 2xl:min-w-65",
-                        isExpanded ? "z-10" : "z-0",
+      <div className="hidden md:flex gap-16 items-start min-h-[580px]">
+        {/* Right Column: Detailed Sector Information */}
+        <div className="w-1/2">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategory}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col"
+            >
+              {/* Sector Header */}
+              <div className="flex items-start justify-between mb-6">
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center text-white shrink-0">
+                      {details.icon && (
+                        <details.icon size={32} strokeWidth={1.5} />
                       )}
-                    >
-                      {/* Background Image */}
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        width={2000}
-                        height={2000}
-                        className={cn(
-                          "absolute inset-0 w-full h-full object-cover transition-transform duration-700",
-                          isExpanded
-                            ? "scale-110"
-                            : "scale-100 group-hover:scale-105",
-                        )}
-                      />
+                    </div>
+                    <div className="">
+                      <h3 className="text-3xl font-bold text-main-black mb-1">
+                        {locale === "ar" ? details.titleAr : details.titleEn}
+                      </h3>
+                      <span className="text-primary font-bold text-lg">
+                        {locale === "ar"
+                          ? details.subtitleAr
+                          : details.subtitleEn}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                      {/* Overlay */}
+              {/* Description */}
+              <p className="text-main-black/70 text-lg leading-relaxed mb-10 max-w-xl">
+                {locale === "ar"
+                  ? details.descriptionAr
+                  : details.descriptionEn}
+              </p>
+
+              {/* Services List */}
+              <div className="mb-12">
+                <h4 className="text-main-black font-bold text-xl mb-6 flex items-center gap-2">
+                  {locale === "ar"
+                    ? `خدماتنا في ${details.titleAr.split(" ").slice(-1)}:`
+                    : `Our ${details.titleEn} Services:`}
+                </h4>
+                <div className="flex flex-col gap-y-4 gap-x-8">
+                  {services.map((service: string, idx: number) => (
+                    <div key={idx} className="flex items-center gap-3">
+                      <Image src={listImg} alt="logo" width={14} height={16} />
+                      <span className="text-main-black/80 font-medium">
+                        {service}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Button */}
+              <Link
+                href="/"
+                className="w-fit bg-secondary-black text-white px-8 py-4 rounded-xl flex items-center gap-4 hover:bg-primary transition-all group"
+              >
+                <span className="font-bold text-lg">
+                  {locale === "ar" ? "أعرف المزيد" : "Learn More"}
+                </span>
+                <div className="transition-transform group-hover:translate-x-1">
+                  {locale === "ar" ? (
+                    <ArrowLeft size={20} />
+                  ) : (
+                    <ArrowRight size={20} />
+                  )}
+                </div>
+              </Link>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+        {/* Left Column: Swiper with Navigation */}
+        <div className="w-1/2 flex flex-col gap-8 overflow-hidden">
+          <div className="relative w-full h-[500px]">
+            <Swiper
+              modules={[Navigation, A11y]}
+              spaceBetween={24}
+              slidesPerView={2}
+              onSwiper={(swiper) => {
+                desktopSwiperRef.current = swiper;
+              }}
+              className="w-full h-full rounded-3xl !overflow-visible"
+            >
+              {projects.map((project) => (
+                <SwiperSlide
+                  key={`${project.id}-desktop-swiper`}
+                  className="flex items-center "
+                >
+                  {({ isActive }) => (
+                    <div className="flex flex-col h-full w-full">
                       <div
                         className={cn(
-                          "absolute inset-0 transition-opacity duration-700",
-                          isExpanded
-                            ? "bg-linear-to-t from-black/95 via-black/40 to-transparent opacity-100"
-                            : "bg-black/30 group-hover:bg-black/40 opacity-100",
+                          "relative w-full rounded-3xl overflow-hidden group transition-all duration-500 ease-in-out",
+                          isActive ? "h-[100%] shadow-lg" : "h-[50%] opacity-70",
                         )}
-                      />
-
-                      {/* Content */}
-                      <div className="absolute inset-0 p-6 xl:p-10 flex flex-col justify-end">
-                        <div className="flex items-end justify-between w-full gap-4">
-                          {/* Expanded: title + summary */}
-                          <motion.div
-                            initial={false}
-                            animate={{
-                              opacity: isExpanded ? 1 : 0,
-                              y: isExpanded ? 0 : 12,
-                            }}
-                            transition={{
-                              duration: 0.5,
-                              ease: [0.25, 0.46, 0.45, 0.94],
-                              delay: isExpanded ? 0.35 : 0,
-                            }}
-                            className={cn(
-                              "max-w-[85%] min-w-0",
-                              !isExpanded && "pointer-events-none",
-                            )}
-                          >
-                            <h3 className="text-main-white text-lg font-bold leading-[160%]">
-                              {project.title}
-                            </h3>
-                            <p className="text-main-white text-base leading-6 line-clamp-2">
-                              {project.summary}
-                            </p>
-                          </motion.div>
-
-                          {/* Expanded: arrow icon */}
-                          <motion.div
-                            animate={{
-                              scale: isExpanded ? 1 : 0,
-                              rotate: isExpanded ? 0 : -45,
-                              opacity: isExpanded ? 1 : 0,
-                            }}
-                            transition={{
-                              duration: 0.45,
-                              ease: [0.34, 1.56, 0.64, 1],
-                              delay: isExpanded ? 0.15 : 0,
-                            }}
-                            className="w-12.5 h-12.5 bg-primary rounded-full flex items-center justify-center shrink-0"
-                          >
-                            <Link href={'/'} target="_blank">
-                              <Image
-                                src={arrowupIcon}
-                                alt="Open Link"
-                                width={20}
-                                height={20}
-                                className={`${locale === "en" ? "scale-x-[-1]" : ""}`}
-                              />
-                            </Link>
-                          </motion.div>
-
-                          {/* Collapsed: centred title */}
-                          <motion.div
-                            animate={{
-                              opacity: isExpanded ? 0 : 1,
-                              y: isExpanded ? 8 : 0,
-                            }}
-                            transition={{
-                              duration: 0.4,
-                              ease: [0.25, 0.46, 0.45, 0.94],
-                            }}
-                            className="absolute bottom-6 xl:bottom-10 inset-x-0 px-3 text-center pointer-events-none"
-                          >
-                            <h3 className="text-main-white text-lg font-bold line-clamp-1">
-                              {project.title}
-                            </h3>
-                            <p className="text-main-white text-base leading-6 line-clamp-2">
-                              {project.summary}
-                            </p>
-                          </motion.div>
-                        </div>
+                      >
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
                       </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </SwiperSlide>
-          ))}
+                      <div
+                        className={cn(
+                          "mt-4 transition-all duration-500 text-start",
+                          isActive
+                            ? "opacity-100 translate-y-0"
+                            : "opacity-0 pointer-events-none -translate-y-[40px]",
+                        )}
+                      >
+                        <p className="font-bold text-lg text-main-black leading-tight">
+                          {project.title}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </SwiperSlide>
+              ))}
             </Swiper>
-          </motion.div>
-        </AnimatePresence>
+          </div>
+
+          {/* Custom Navigation Arrows */}
+          <div className="flex items-center justify-end gap-4 px-2">
+            <button
+              onClick={() => desktopSwiperRef.current?.slidePrev()}
+              className="w-12 h-12 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-white transition-all group"
+            >
+              {locale === "ar" ? (
+                <ChevronRight size={20} />
+              ) : (
+                <ChevronLeft size={20} />
+              )}
+            </button>
+            <button
+              onClick={() => desktopSwiperRef.current?.slideNext()}
+              className="w-12 h-12 rounded-lg bg-secondary-black text-white flex items-center justify-center hover:bg-primary transition-all group"
+            >
+              {locale === "ar" ? (
+                <ChevronLeft size={20} />
+              ) : (
+                <ChevronRight size={20} />
+              )}
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* ══════════════════════════════════════════════════════════════════════
@@ -462,55 +568,55 @@ export default function SectorInfo() {
               slidesPerView={1.15}
               centeredSlides={true}
               grabCursor={true}
-          loop={true}
-          a11y={{ enabled: true }}
-          onSwiper={(swiper) => {
-            mobileSwiperRef.current = swiper;
-          }}
-          style={{ padding: "0 8px" }}
-        >
-          {projects.map((project) => (
-            <SwiperSlide key={`${project.id}-mobile`}>
-              <div className="relative h-128.5 rounded-3xl overflow-hidden">
-                {/* Background */}
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  width={2000}
-                  height={2000}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-transparent" />
-                {/* Content */}
-                <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                  <div className="flex items-end justify-between gap-4">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-main-white text-lg leading-[160%] font-bold">
-                        {project.title}
-                      </h3>
-                      <p className="text-main-white text-base leading-6 line-clamp-2">
-                        {project.summary}
-                      </p>
+              loop={true}
+              a11y={{ enabled: true }}
+              onSwiper={(swiper) => {
+                mobileSwiperRef.current = swiper;
+              }}
+              style={{ padding: "0 8px" }}
+            >
+              {projects.map((project) => (
+                <SwiperSlide key={`${project.id}-mobile`}>
+                  <div className="relative h-128.5 rounded-3xl overflow-hidden">
+                    {/* Background */}
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={2000}
+                      height={2000}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-transparent" />
+                    {/* Content */}
+                    <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                      <div className="flex items-end justify-between gap-4">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-main-white text-lg leading-[160%] font-bold">
+                            {project.title}
+                          </h3>
+                          <p className="text-main-white text-base leading-6 line-clamp-2">
+                            {project.summary}
+                          </p>
+                        </div>
+                        <Link
+                          href={"/"}
+                          target="_blank"
+                          className="w-12.5 h-12.5 bg-primary rounded-full flex items-center justify-center shrink-0"
+                        >
+                          <Image
+                            src={arrowupIcon}
+                            alt="Open Link"
+                            width={20}
+                            height={20}
+                            className={`${locale === "en" ? "scale-x-[-1]" : ""}`}
+                          />
+                        </Link>
+                      </div>
                     </div>
-                    <Link
-                      href={"/"}
-                      target="_blank"
-                      className="w-12.5 h-12.5 bg-primary rounded-full flex items-center justify-center shrink-0"
-                    >
-                      <Image
-                        src={arrowupIcon}
-                        alt="Open Link"
-                        width={20}
-                        height={20}
-                        className={`${locale === "en" ? "scale-x-[-1]" : ""}`}
-                      />
-                    </Link>
                   </div>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
+                </SwiperSlide>
+              ))}
             </Swiper>
           </motion.div>
         </AnimatePresence>
