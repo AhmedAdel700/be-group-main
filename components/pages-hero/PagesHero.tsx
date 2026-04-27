@@ -2,10 +2,11 @@ import Image from "next/image";
 import heroImg from "@/assets/hero.jpg";
 import { Link } from "@/i18n/navigation";
 import beBG from "@/assets/beBG.svg";
-import AllSectors from "@/app/[locale]/sectors/AllSectors";
+
 
 interface PagesHeroProps {
   page?: "sector" | "contact" | "work" | "blogs" | "allsectors";
+  className?: string;
 }
 
 const heroContent = {
@@ -55,11 +56,11 @@ const breadcrumbs = {
   allsectors: "قطاعات نخدمها  ",
 };
 
-export default function PagesHero({ page = "sector" }: PagesHeroProps) {
+export default function PagesHero({ page = "sector", className }: PagesHeroProps) {
   const content = heroContent[page] || heroContent.sector;
 
   return (
-    <section className="relative w-full md:min-h-100 xl:h-[65vh] overflow-hidden">
+    <section className={`relative w-full md:min-h-100 xl:h-[65vh] overflow-hidden ${className || ""}`}>
       {/* Background Image */}
       <Image
         src={heroImg}
