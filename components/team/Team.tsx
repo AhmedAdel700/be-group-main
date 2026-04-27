@@ -115,7 +115,7 @@ export default function Team() {
             }}
           >
             {TEAM.map((member, index) => (
-              <SwiperSlide key={index} className="!h-auto">
+              <SwiperSlide key={index} className="h-auto!">
                 <TeamCard member={member} />
               </SwiperSlide>
             ))}

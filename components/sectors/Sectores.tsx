@@ -45,8 +45,8 @@ function SectorCard({ sector, index }: { sector: typeof sector1; index: number }
         <Image
           src={sector}
           alt={`Sector ${index + 1}`}
-          width={4000}
-          height={3000}
+          width={600}
+          height={600}
           className="w-full h-full object-cover"
         />
       </motion.div>

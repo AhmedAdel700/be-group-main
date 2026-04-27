@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import begoupBG from "@/assets/begoupBG.svg";
 import { useLocale } from "next-intl";
@@ -25,7 +26,7 @@ export default function Solutions() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 lg:gap-8 w-full sm:w-auto">
-          <div className="w-full sm:w-auto [&>*]:w-full">
+          <div className="w-full sm:w-auto *:w-full">
             <MainButton
               buttontype="primary"
               iconEnd={locale === "ar" ? <MoveLeft /> : <MoveRight />}
@@ -33,7 +34,7 @@ export default function Solutions() {
               أرسل استفسارك
             </MainButton>
           </div>
-          <div className="w-full sm:w-auto [&>*]:w-full">
+          <div className="w-full sm:w-auto *:w-full">
             <MainButton
               buttontype="secondary"
               iconEnd={locale === "ar" ? <MoveLeft /> : <MoveRight />}

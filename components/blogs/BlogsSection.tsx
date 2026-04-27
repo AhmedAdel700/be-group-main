@@ -89,7 +89,7 @@ function BlogCard({ image, title, description, href, locale }: BlogCardProps) {
   const isRtl = locale === "ar";
 
   return (
-    <article className="flex flex-col rounded-xl overflow-hidden bg-main-white border border-black/15 shadow-sm">
+    <article className="flex flex-col rounded-xl overflow-hidden bg-main-white border border-black/15 shadow-sm hover:border-primary transition-colors duration-300">
       {/* Card Image */}
       <div className="relative w-full aspect-16/10 overflow-hidden">
         <Image
@@ -117,9 +117,11 @@ function BlogCard({ image, title, description, href, locale }: BlogCardProps) {
         {/* Read More Link */}
         <Link
           href={href}
-          className="inline-flex items-center gap-2 text-primary font-semibold text-sm group w-fit"
+          className="inline-flex items-center gap-2 text-primary font-semibold text-sm group w-fit hover:text-primary-hover transition-colors duration-300"
         >
-          <h3 className="text-base">{locale === "ar" ? "اقرأ المزيد" : "Read More"}</h3>
+          <h3 className="text-base">
+            {locale === "ar" ? "اقرأ المزيد" : "Read More"}
+          </h3>
           {locale === "ar" ? <ArrowLeft size={22} /> : <ArrowRight size={22} />}
         </Link>
       </div>

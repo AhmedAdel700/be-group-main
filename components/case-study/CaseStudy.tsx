@@ -1,3 +1,4 @@
+"use client";
 import mainImage from "@/assets/main-casestudy.png";
 import Image2 from "@/assets/Casestudy.png";
 import Image from "next/image";
@@ -19,8 +20,8 @@ export default function CaseStudy() {
             <div className="relative lg:h-77.5 my-2.5 lg:my-0">
               <Image
                 src={Image2}
-                width={4000}
-                height={4000}
+                width={400}
+                height={400}
                 alt="casestudy"
                 className="lg:h-77.5 w-full lg:w-60 relative lg:absolute lg:-top-[28.8px] lg:inset-e-0 rounded-xl"
               />
@@ -29,7 +30,7 @@ export default function CaseStudy() {
             <h3 className="text-lg lg:text-[45px] mb-2 lg:mb-3 w-full lg:w-[90%] font-medium tracking-[-4%]">
               نبني الأعمال على رؤية استراتيجية مدروسة تقود إلى تأثير حقيقي .
             </h3>
-            <p className="w-full lg:w-[85%] text-base lg:text-xl text-font-body leading-[26px]" >
+            <p className="w-full lg:w-[85%] text-base lg:text-xl text-font-body leading-6.5" >
               لقد عززنا المبيعات من خلال متجر إلكتروني أسرع، وزدنا معدل استخدام
               التطبيق بنسبة 60٪، وبنينا علامة تجارية جريئة ساعدت شركة ناشئة على
               التميز — كل ذلك بفضل التصميم الذكي.
@@ -47,8 +48,8 @@ export default function CaseStudy() {
           <div className="w-full lg:w-1/3">
             <Image
               src={mainImage}
-              width={4000}
-              height={4000}
+              width={800}
+              height={800}
               alt="Main Case Study"
               className="w-full lg:h-150 object-cover rounded-xl"
             />
