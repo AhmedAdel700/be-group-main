@@ -158,7 +158,7 @@ export default function RelatedBlogs() {
 
   return (
     <section
-      className="section-container bg-main-white"
+      className="bg-main-white mt-8 lg:mt-16"
       dir={isRtl ? "rtl" : "ltr"}
     >
       <div className="mb-8">

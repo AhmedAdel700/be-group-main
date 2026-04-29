@@ -8,15 +8,14 @@ export default function BlogDetails() {
     <main>
       <section className="section-container">
         <BlogDetailsHero />
-        <div className="flex flex-col lg:flex-row gap-[60px]">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-15">
           <div className="flex-1 min-w-0">
             <BlogDetailsContent />
           </div>
           <ContactSidebar />
         </div>
+        <RelatedBlogs />
       </section>
-
-      <RelatedBlogs />
     </main>
   );
 }
