@@ -61,7 +61,7 @@ useEffect(() => {
     open: { opacity: 1, y: 0 },
   };
 
-  const isAboutPage = pathname === "/about";
+  const isAboutPage = pathname === "/about" || pathname?.startsWith("/blogs/");;
 
   return (
     <header className="fixed top-0 z-50 w-full">

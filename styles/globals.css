@@ -252,6 +252,25 @@
   color: var(--color-primary)
 }
 
+.related-blogs-swiper .swiper-button-next,
+.related-blogs-swiper .swiper-button-prev {
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  color: white;
+  top: 35%;
+}
+
+.related-blogs-swiper .swiper-button-next::after,
+.related-blogs-swiper .swiper-button-prev::after {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.related-blogs-swiper .swiper-button-disabled {
+  opacity: 0.4;
+}
 @utility nav-link-reserve {
   @apply inline-flex flex-col items-center justify-center;
 

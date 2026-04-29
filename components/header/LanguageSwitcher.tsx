@@ -14,7 +14,7 @@ export default function LanguageSwitcher() {
     router.replace(pathname, { locale: nextLocale });
   };
 
-  const isAboutPage = pathname === "/about";
+  const isAboutPage = pathname === "/about" || pathname?.startsWith("/blogs/");
 
   return (
     <div
