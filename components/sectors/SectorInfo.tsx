@@ -11,15 +11,12 @@ import slide2 from "@/assets/slide2.png";
 import slide3 from "@/assets/slide3.png";
 import slide4 from "@/assets/slide4.png";
 import Image from "next/image";
-import arrowupIcon from "@/assets/arrowupIcon.svg";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Navigation } from "swiper/modules";
 import listImg from "@/assets/Subtract.svg";
 import {
   GraduationCap,
-  ChevronRight,
-  ChevronLeft,
   ArrowRight,
   ArrowLeft,
   LayoutGrid,
@@ -28,6 +25,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { StaticImageData } from "next/image";
+import MainButton from "@/components/common/MainButton";
 
 interface Project {
   id: number;
@@ -392,9 +390,9 @@ export default function SectorInfo() {
           Each SwiperSlide = a flex row of up to 4 accordion cards.
           Touch / drag is built-in; buttons navigate via swiperRef.
          ══════════════════════════════════════════════════════════════════════ */}
-      <div className="hidden md:flex gap-16 items-start min-h-[580px]">
+      <div className="block md:flex gap-16 items-start min-h-[580px]">
         {/* Right Column: Detailed Sector Information */}
-        <div className="w-1/2">
+        <div className="w-full md:w-1/2">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory}
@@ -405,9 +403,9 @@ export default function SectorInfo() {
               className="flex flex-col"
             >
               {/* Sector Header */}
-              <div className="flex items-start justify-between mb-6">
+              <div className="flex items-start justify-between">
                 <div className="flex flex-col gap-1">
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-center gap-3 mb-5">
                     <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center text-white shrink-0">
                       {details.icon && (
                         <details.icon size={32} strokeWidth={1.5} />
@@ -428,24 +426,24 @@ export default function SectorInfo() {
               </div>
 
               {/* Description */}
-              <p className="text-main-black/70 text-lg leading-relaxed mb-10 max-w-xl">
+              <p className="text-main-black text-lg leading-relaxed mb-5 w-full md:max-w-xl font-bold">
                 {locale === "ar"
                   ? details.descriptionAr
                   : details.descriptionEn}
               </p>
 
               {/* Services List */}
-              <div className="mb-12">
+              <div className="mb-2 md:mb-5">
                 <h4 className="text-main-black font-bold text-xl mb-6 flex items-center gap-2">
                   {locale === "ar"
                     ? `خدماتنا في ${details.titleAr.split(" ").slice(-1)}:`
                     : `Our ${details.titleEn} Services:`}
                 </h4>
-                <div className="flex flex-col gap-y-4 gap-x-8">
+                <div className="grid grid-cols-2 md:grid-cols-1 gap-y-4 gap-x-3 md:gap-x-8">
                   {services.map((service: string, idx: number) => (
-                    <div key={idx} className="flex items-center gap-3">
+                    <div key={idx} className="flex  items-center gap-3">
                       <Image src={listImg} alt="logo" width={14} height={16} />
-                      <span className="text-main-black/80 font-medium">
+                      <span className="text-main-black/80 font-medium text-sm md:text-base">
                         {service}
                       </span>
                     </div>
@@ -455,10 +453,10 @@ export default function SectorInfo() {
 
               {/* Action Button */}
               <Link
-                href="/"
-                className="w-fit bg-secondary-black text-white px-8 py-4 rounded-xl flex items-center gap-4 hover:bg-primary transition-all group"
+                href={`/sectors/${projects?.[0]?.id || ''}`}
+                className="w-full justify-center lg:justify-start lg:w-fit bg-secondary-black text-white my-4  px-8 py-4 rounded-xl flex items-center gap-4 hover:bg-primary transition-all group"
               >
-                <span className="font-bold text-lg">
+                <span className="font-bold text-md md:text-lg">
                   {locale === "ar" ? "أعرف المزيد" : "Learn More"}
                 </span>
                 <div className="transition-transform group-hover:translate-x-1">
@@ -469,158 +467,86 @@ export default function SectorInfo() {
                   )}
                 </div>
               </Link>
+              
             </motion.div>
           </AnimatePresence>
         </div>
         {/* Left Column: Swiper with Navigation */}
-        <div className="w-1/2 flex flex-col gap-8 overflow-hidden">
+        <div className="w-full md:w-1/2 flex flex-col gap-8 overflow-hidden">
           <div className="relative w-full h-[500px]">
             <Swiper
               modules={[Navigation, A11y]}
               spaceBetween={24}
-              slidesPerView={2}
+              slidesPerView={1}
+              breakpoints={{
+                768: {
+                  slidesPerView: 2,
+                },
+              }}
               onSwiper={(swiper) => {
                 desktopSwiperRef.current = swiper;
               }}
               className="w-full h-full rounded-3xl !overflow-visible"
             >
               {projects.map((project) => (
-                <SwiperSlide
-                  key={`${project.id}-desktop-swiper`}
-                  className="flex items-center "
-                >
-                  {({ isActive }) => (
-                    <div className="flex flex-col h-full w-full">
-                      <div
-                        className={cn(
-                          "relative w-full rounded-3xl overflow-hidden group transition-all duration-500 ease-in-out",
-                          isActive ? "h-[100%] shadow-lg" : "h-[50%] opacity-70",
-                        )}
-                      >
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
+                
+                  <SwiperSlide
+                    key={`${project.id}-desktop-swiper`}
+                    className="flex items-center "
+                  >
+                    {({ isActive }) => (
+                      <Link href={`/sectors/${project.id}`}>
+                      <div className="flex flex-col h-full w-full">
+                        <div
+                          className={cn(
+                            "relative w-full rounded-3xl overflow-hidden group transition-all duration-500 ease-in-out",
+                            isActive ? "h-[100%] shadow-lg" : "h-[50%] opacity-70",
+                          )}
+                        >
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                        </div>
+                        <div
+                          className={cn(
+                            "mt-4 transition-all duration-500 text-start",
+                            isActive
+                              ? "opacity-100 translate-y-0"
+                              : "opacity-0 pointer-events-none -translate-y-[40px]",
+                          )}
+                        >
+                          <p className="font-bold text-lg text-main-black leading-tight">
+                            {project.title}
+                          </p>
+                        </div>
                       </div>
-                      <div
-                        className={cn(
-                          "mt-4 transition-all duration-500 text-start",
-                          isActive
-                            ? "opacity-100 translate-y-0"
-                            : "opacity-0 pointer-events-none -translate-y-[40px]",
-                        )}
-                      >
-                        <p className="font-bold text-lg text-main-black leading-tight">
-                          {project.title}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </SwiperSlide>
+                      </Link>
+                    )}
+                  </SwiperSlide>
+                
               ))}
             </Swiper>
           </div>
 
           {/* Custom Navigation Arrows */}
-          <div className="flex items-center justify-end gap-4 px-2">
-            <button
+          <div className="hidden md:flex items-center justify-end gap-2.5 w-full">
+            <MainButton
+              buttontype="prev"
               onClick={() => desktopSwiperRef.current?.slidePrev()}
-              className="w-12 h-12 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-white transition-all group"
-            >
-              {locale === "ar" ? (
-                <ChevronRight size={20} />
-              ) : (
-                <ChevronLeft size={20} />
-              )}
-            </button>
-            <button
+              className="w-12.5 h-12.5"
+            />
+            <MainButton
+              buttontype="next"
               onClick={() => desktopSwiperRef.current?.slideNext()}
-              className="w-12 h-12 rounded-lg bg-secondary-black text-white flex items-center justify-center hover:bg-primary transition-all group"
-            >
-              {locale === "ar" ? (
-                <ChevronLeft size={20} />
-              ) : (
-                <ChevronRight size={20} />
-              )}
-            </button>
+              className="w-12.5 h-12.5"
+            />
           </div>
         </div>
       </div>
 
-      {/* ══════════════════════════════════════════════════════════════════════
-          MOBILE — Single-card Swiper (1.15 cards visible for peek effect)
-          Touch / drag built-in; buttons navigate via mobileSwiperRef.
-         ══════════════════════════════════════════════════════════════════════ */}
-      <div className="md:hidden overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`mobile-${activeCategory}`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-          >
-            <Swiper
-              modules={[A11y]}
-              spaceBetween={16}
-              slidesPerView={1.15}
-              centeredSlides={true}
-              grabCursor={true}
-              loop={true}
-              a11y={{ enabled: true }}
-              onSwiper={(swiper) => {
-                mobileSwiperRef.current = swiper;
-              }}
-              style={{ padding: "0 8px" }}
-            >
-              {projects.map((project) => (
-                <SwiperSlide key={`${project.id}-mobile`}>
-                  <div className="relative h-128.5 rounded-3xl overflow-hidden">
-                    {/* Background */}
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      width={2000}
-                      height={2000}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-transparent" />
-                    {/* Content */}
-                    <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                      <div className="flex items-end justify-between gap-4">
-                        <div className="flex-1 min-w-0">
-                          <h3 className="text-main-white text-lg leading-[160%] font-bold">
-                            {project.title}
-                          </h3>
-                          <p className="text-main-white text-base leading-6 line-clamp-2">
-                            {project.summary}
-                          </p>
-                        </div>
-                        <Link
-                          href={"/"}
-                          target="_blank"
-                          className="w-12.5 h-12.5 bg-primary rounded-full flex items-center justify-center shrink-0"
-                        >
-                          <Image
-                            src={arrowupIcon}
-                            alt="Open Link"
-                            width={20}
-                            height={20}
-                            className={`${locale === "en" ? "scale-x-[-1]" : ""}`}
-                          />
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </motion.div>
-        </AnimatePresence>
-      </div>
     </section>
   );
 }

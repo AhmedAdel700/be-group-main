@@ -2,6 +2,7 @@ import Image from "next/image";
 import heroImg from "@/assets/hero.jpg";
 import { Link } from "@/i18n/navigation";
 import beBG from "@/assets/beBG.svg";
+import Numbers from "@/components/sectors/Numbers";
 
 
 interface PagesHeroProps {
@@ -131,8 +132,11 @@ export default function PagesHero({ page = "sector", className }: PagesHeroProps
           <p className="text-sm lg:text-base leading-[160%] font-medium text-main-white">
            {content.footerText}
           </p>
+          {page === "allsectors" && <Numbers />}
         </div>
       </div>
+      
     </section>
+
   );
 }

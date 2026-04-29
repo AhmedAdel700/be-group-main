@@ -7,7 +7,7 @@ export default function Numbers() {
     <>
     {/* STATS */}
     <div className="relative ">
-      <div className="grid w-3/4 grid-cols-2 md:grid-cols-4 gap-6 text-center absolute -top-[180px]">
+      <div className="grid w-3/4 grid-cols-2 md:grid-cols-4 gap-6 text-start">
           <Stat  number={16} label="سنة من الخبرة" suffix="+" />
           <Stat number={250} label="فريق متخصص" suffix="+" />
           <Stat number={400} label="مشروع ناجح" suffix="+" />
@@ -47,7 +47,7 @@ function Stat({
   }, [isInView, number, suffix]);
 
   return (
-    <div className="flex flex-col text-white items-center gap-2">
+    <div className="flex flex-col text-white items-start gap-2">
       <h3
         ref={ref}
         className="text-4xl md:text-[60px] font-medium leading-[125%]"
