@@ -7,7 +7,7 @@ const namespaces = ["home", "about", "header"] as const;
 
 export default getRequestConfig(async () => {
   const h = await headers();
-  const raw = h.get("x-next-intl-locale") ?? "en";
+  const raw = h.get("x-next-intl-locale") ?? "ar";
   const locale = raw.toLowerCase() as (typeof locales)[number];
 
   if (!locales.includes(locale as "en" | "ar")) notFound();
