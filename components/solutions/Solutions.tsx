@@ -39,6 +39,7 @@ export default function Solutions({ className }: { className?: string }) {
           <div className="w-full sm:w-auto *:w-full">
             <MainButton
               buttontype="secondary"
+              className="border border-[#ECECEC]"
               iconEnd={locale === "ar" ? <MoveLeft /> : <MoveRight />}
             >
               استكشف منتجاتنا

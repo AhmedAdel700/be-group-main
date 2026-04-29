@@ -42,7 +42,7 @@ export default function MainButton({
   return (
     <button
       suppressHydrationWarning
-      className={`${selectedVariant} ${className} flex items-center gap-2.5`}
+      className={`${selectedVariant} ${className} flex items-center gap-2.5` }
       {...props}
     >
       {(iconStart || buttontype === "prev") && (
