@@ -304,13 +304,11 @@ const categoryDetails: Record<string, CategoryDetail> = {
 export default function SectorInfo() {
   // page-local state: which Swiper page is active, and which card within it
   const [activeCategory, setActiveCategory] = useState("Be Digital");
-  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const desktopSwiperRef = useRef<SwiperType | null>(null);
   const mobileSwiperRef = useRef<SwiperType | null>(null);
   const locale = useLocale();
 
   const projects = projectsData[activeCategory] ?? projectsData["Be Digital"];
-  const total = projects.length;
   const details =
     categoryDetails[activeCategory] || categoryDetails["Be Digital"];
   const services = locale === "ar" ? details.servicesAr : details.servicesEn;
@@ -342,7 +340,7 @@ export default function SectorInfo() {
       </div>
 
       {/* ── Filter Tabs ── */}
-      <div className="relative mb-10">
+      <div className="relative mt-6 mb-10">
         <div
           className="flex flex-nowrap md:flex-wrap items-center justify-start gap-3 md:gap-4 p-2 bg-bg-filter rounded-[40px] overflow-x-auto no-scrollbar scroll-smooth"
           style={{
@@ -390,7 +388,7 @@ export default function SectorInfo() {
           Each SwiperSlide = a flex row of up to 4 accordion cards.
           Touch / drag is built-in; buttons navigate via swiperRef.
          ══════════════════════════════════════════════════════════════════════ */}
-      <div className="block md:flex gap-16 items-start min-h-[580px]">
+      <div className="block md:flex gap-16 items-start min-h-145">
         {/* Right Column: Detailed Sector Information */}
         <div className="w-full md:w-1/2">
           <AnimatePresence mode="wait">
@@ -412,7 +410,7 @@ export default function SectorInfo() {
                       )}
                     </div>
                     <div className="">
-                      <h3 className="text-3xl font-bold text-main-black mb-1">
+                      <h3 className="text-2xl md:text-3xl font-bold text-main-black mb-1">
                         {locale === "ar" ? details.titleAr : details.titleEn}
                       </h3>
                       <span className="text-primary font-bold text-lg">
@@ -426,7 +424,7 @@ export default function SectorInfo() {
               </div>
 
               {/* Description */}
-              <p className="text-main-black text-lg leading-relaxed mb-5 w-full md:max-w-xl font-bold">
+              <p className="text-main-black text-sm lg:text-lg leading-relaxed mb-5 w-full md:max-w-xl font-bold">
                 {locale === "ar"
                   ? details.descriptionAr
                   : details.descriptionEn}
@@ -441,7 +439,7 @@ export default function SectorInfo() {
                 </h4>
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-y-4 gap-x-3 md:gap-x-8">
                   {services.map((service: string, idx: number) => (
-                    <div key={idx} className="flex  items-center gap-3">
+                    <div key={idx} className="flex  items-center gap-1 md:gap-3">
                       <Image src={listImg} alt="logo" width={14} height={16} />
                       <span className="text-main-black/80 font-medium text-sm md:text-base">
                         {service}
@@ -453,27 +451,23 @@ export default function SectorInfo() {
 
               {/* Action Button */}
               <Link
-                href={`/sectors/${projects?.[0]?.id || ''}`}
-                className="w-full justify-center lg:justify-start lg:w-fit bg-secondary-black text-white my-4  px-8 py-4 rounded-xl flex items-center gap-4 hover:bg-primary transition-all group"
+                href={`/sectors/${projects?.[0]?.id || ""}`}
+                className="w-full justify-center lg:justify-start lg:w-fit my-5 lg:my-0"
               >
-                <span className="font-bold text-md md:text-lg">
+                <MainButton
+                  buttontype="black"
+                  iconEnd={locale === "ar" ? <ArrowLeft /> : <ArrowRight />}
+                  className="bg-main-black w-full lg:w-auto"
+                >
                   {locale === "ar" ? "أعرف المزيد" : "Learn More"}
-                </span>
-                <div className="transition-transform group-hover:translate-x-1">
-                  {locale === "ar" ? (
-                    <ArrowLeft size={20} />
-                  ) : (
-                    <ArrowRight size={20} />
-                  )}
-                </div>
+                </MainButton>
               </Link>
-              
             </motion.div>
           </AnimatePresence>
         </div>
         {/* Left Column: Swiper with Navigation */}
         <div className="w-full md:w-1/2 flex flex-col gap-8 overflow-hidden">
-          <div className="relative w-full h-[500px]">
+          <div className="relative w-full h-125">
             <Swiper
               modules={[Navigation, A11y]}
               spaceBetween={24}
@@ -486,21 +480,22 @@ export default function SectorInfo() {
               onSwiper={(swiper) => {
                 desktopSwiperRef.current = swiper;
               }}
-              className="w-full h-full rounded-3xl !overflow-visible"
+              className="w-full h-full rounded-3xl overflow-visible!"
             >
               {projects.map((project) => (
-                
-                  <SwiperSlide
-                    key={`${project.id}-desktop-swiper`}
-                    className="flex items-center "
-                  >
-                    {({ isActive }) => (
-                      <Link href={`/sectors/${project.id}`}>
+                <SwiperSlide
+                  key={`${project.id}-desktop-swiper`}
+                  className="flex items-center "
+                >
+                  {({ isActive }) => (
+                    <Link href={`/sectors/${project.id}`}>
                       <div className="flex flex-col h-full w-full">
                         <div
                           className={cn(
                             "relative w-full rounded-3xl overflow-hidden group transition-all duration-500 ease-in-out",
-                            isActive ? "h-[100%] shadow-lg" : "h-[50%] opacity-70",
+                            isActive
+                              ? "h-full shadow-lg"
+                              : "h-[50%] opacity-70",
                           )}
                         >
                           <Image
@@ -515,7 +510,7 @@ export default function SectorInfo() {
                             "mt-4 transition-all duration-500 text-start",
                             isActive
                               ? "opacity-100 translate-y-0"
-                              : "opacity-0 pointer-events-none -translate-y-[40px]",
+                              : "opacity-0 pointer-events-none -translate-y-10",
                           )}
                         >
                           <p className="font-bold text-lg text-main-black leading-tight">
@@ -523,10 +518,9 @@ export default function SectorInfo() {
                           </p>
                         </div>
                       </div>
-                      </Link>
-                    )}
-                  </SwiperSlide>
-                
+                    </Link>
+                  )}
+                </SwiperSlide>
               ))}
             </Swiper>
           </div>
@@ -546,7 +540,6 @@ export default function SectorInfo() {
           </div>
         </div>
       </div>
-
     </section>
   );
 }
