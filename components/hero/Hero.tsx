@@ -8,10 +8,21 @@ import { MoveLeft, MoveRight } from "lucide-react";
 import herocard1 from "@/assets/herocard1.png";
 import herocard2 from "@/assets/herocard2.png";
 import herocard3 from "@/assets/herocard3.png";
+import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 
 export default function Hero() {
   const locale = useLocale();
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkIsDesktop();
+    window.addEventListener("resize", checkIsDesktop);
+    return () => window.removeEventListener("resize", checkIsDesktop);
+  }, []);
 
   const ArrowIcon =
     locale === "ar" ? <MoveLeft size={24} /> : <MoveRight size={24} />;
@@ -81,62 +92,64 @@ export default function Hero() {
 
             <div className="sm:h-36 sm:w-0 lg:hidden"></div>
 
-            <div
-              className="
-                relative
-                hidden lg:block
-                w-28 h-48
-                md:w-32 md:h-52 
-                lg:w-36 lg:h-56
-                xl:w-38 xl:h-58
-                2xl:w-40 2xl:h-60
-              "
-            >
-              <Image
-                src={herocard1}
-                alt="Hero Card 1"
-                width={160}
-                height={160}
+            {isDesktop && (
+              <div
                 className="
-                  absolute top-0 inset-e-0 object-cover rounded-xl border-4 border-secondary-black
-                  w-24 h-24
-                  md:w-28 md:h-28
-                  lg:w-32 lg:h-32
-                  xl:w-36 xl:h-36
-                  2xl:w-40 2xl:h-40
+                  relative
+                  hidden lg:block
+                  w-28 h-48
+                  md:w-32 md:h-52 
+                  lg:w-36 lg:h-56
+                  xl:w-38 xl:h-58
+                  2xl:w-40 2xl:h-60
                 "
-              />
-              <Image
-                src={herocard2}
-                alt="Hero Card 2"
-                width={160}
-                height={160}
-                className="
-                  absolute object-cover rounded-xl border-4 border-secondary-black
-                  top-8 inset-e-8
-                  w-24 h-24
-                  md:w-28 md:h-28
-                  lg:w-32 lg:h-32
-                  xl:w-36 xl:h-36
-                  2xl:w-40 2xl:h-40
-                "
-              />
-              <Image
-                src={herocard3}
-                alt="Hero Card 3"
-                width={160}
-                height={160}
-                className="
-                  absolute object-cover rounded-xl border-4 border-secondary-black
-                  top-16 inset-e-16
-                  w-24 h-24
-                  md:w-28 md:h-28
-                  lg:w-32 lg:h-32
-                  xl:w-36 xl:h-36
-                  2xl:w-40 2xl:h-40
-                "
-              />
-            </div>
+              >
+                <Image
+                  src={herocard1}
+                  alt="Hero Card 1"
+                  width={160}
+                  height={160}
+                  className="
+                    absolute top-0 inset-e-0 object-cover rounded-xl border-4 border-secondary-black
+                    w-24 h-24
+                    md:w-28 md:h-28
+                    lg:w-32 lg:h-32
+                    xl:w-36 xl:h-36
+                    2xl:w-40 2xl:h-40
+                  "
+                />
+                <Image
+                  src={herocard2}
+                  alt="Hero Card 2"
+                  width={160}
+                  height={160}
+                  className="
+                    absolute object-cover rounded-xl border-4 border-secondary-black
+                    top-8 inset-e-8
+                    w-24 h-24
+                    md:w-28 md:h-28
+                    lg:w-32 lg:h-32
+                    xl:w-36 xl:h-36
+                    2xl:w-40 2xl:h-40
+                  "
+                />
+                <Image
+                  src={herocard3}
+                  alt="Hero Card 3"
+                  width={160}
+                  height={160}
+                  className="
+                    absolute object-cover rounded-xl border-4 border-secondary-black
+                    top-16 inset-e-16
+                    w-24 h-24
+                    md:w-28 md:h-28
+                    lg:w-32 lg:h-32
+                    xl:w-36 xl:h-36
+                    2xl:w-40 2xl:h-40
+                  "
+                />
+              </div>
+            )}
           </div>
 
           <div className="w-full flex flex-col gap-6 sm:flex-row sm:justify-between sm:items-end">

@@ -16,6 +16,17 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProps) {
   useGSAP(() => {
     if (ScrollSmoother.get()) return;
 
+    // Disable ScrollSmoother on mobile/tablet viewports or touch devices for better performance
+    if (
+      typeof window !== "undefined" &&
+      (window.innerWidth < 1024 ||
+        ScrollTrigger.isTouch === 1 ||
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0)
+    ) {
+      return;
+    }
+
     const smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper", // can be removed if using the default wrapper
       content: "#smooth-content", // can be removed if using the default content

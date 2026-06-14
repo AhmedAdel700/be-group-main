@@ -352,12 +352,12 @@ export default function PreviousProjects() {
                         isExpanded ? "z-10" : "z-0",
                       )}
                     >
-                      {/* Background Image */}
                       <Image
                         src={project.image}
                         alt={project.title}
-                        width={2000}
-                        height={2000}
+                        width={800}
+                        height={600}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className={cn(
                           "absolute inset-0 w-full h-full object-cover transition-transform duration-700",
                           isExpanded
@@ -490,12 +490,12 @@ export default function PreviousProjects() {
           {projects.map((project) => (
             <SwiperSlide key={`${project.id}-mobile`}>
               <div className="relative h-128.5 rounded-3xl overflow-hidden">
-                {/* Background */}
                 <Image
                   src={project.image}
                   alt={project.title}
-                  width={2000}
-                  height={2000}
+                  width={600}
+                  height={500}
+                  sizes="(max-width: 768px) 100vw, 400px"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 {/* Overlay */}

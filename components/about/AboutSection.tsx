@@ -7,17 +7,28 @@ import aboutShape from "@/assets/about-shape.svg";
 
 export default function AboutSection() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkIsDesktop();
+    window.addEventListener("resize", checkIsDesktop);
+    return () => window.removeEventListener("resize", checkIsDesktop);
+  }, []);
 
   return (
     <section className="bg-main-white relative z-20">
-      <Image
-        src={aboutShape}
-        alt="about shape background"
-        className="z-[-1] w-145 h-145 absolute hidden lg:block"
-        width={4000}
-        height={4000}
-        priority
-      />
+      {isDesktop && (
+        <Image
+          src={aboutShape}
+          alt="about shape background"
+          className="z-[-1] w-145 h-145 absolute hidden lg:block"
+          width={4000}
+          height={4000}
+        />
+      )}
       <div className="section-container flex flex-col gap-10">
         {/* TEXT */}
         <div className="flex flex-col gap-2 w-full">

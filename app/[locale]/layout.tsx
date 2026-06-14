@@ -11,7 +11,7 @@ import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
-  weight: ["200", "300", "400", "500", "700", "800", "900"],
+  weight: ["400", "500", "700", "800", "900"],
 });
 
 const montserrat = Montserrat({
