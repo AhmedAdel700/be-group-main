@@ -4,7 +4,7 @@ import PagesHero from "@/components/pages-hero/PagesHero";
 
 export default function ContactUs() {
   return (
-    <main className="bg-[#FAFAFA] h-full pb-6 lg:pb-10">
+    <main className="bg-[#FAFAFA] h-full">
       <PagesHero page="contact"/>
       <OurLocations />
       <ContactUsSection />

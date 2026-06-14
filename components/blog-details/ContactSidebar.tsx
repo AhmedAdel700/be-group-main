@@ -9,6 +9,11 @@ import { ArrowLeft, ArrowRight, ChevronDown, Mail } from "lucide-react";
 import Image from "next/image";
 import beGroupAvatar from "@/assets/blog-details-banner.jpg";
 import MainButton from "../common/MainButton";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const sidebarContactSchema = z.object({
   firstName: z.string().min(3, "الاسم الأول مطلوب"),
@@ -32,6 +37,34 @@ export default function ContactSidebar() {
   const [selectedService, setSelectedService] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const containerRef = useRef<HTMLElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      if (!stickyRef.current || !containerRef.current) return;
+
+      const trigger = ScrollTrigger.create({
+        trigger: stickyRef.current,
+        pin: true,
+        start: "top 96px",
+        end: () => {
+          const stickyHeight = stickyRef.current?.offsetHeight || 0;
+          return `bottom ${96 + stickyHeight}px`;
+        },
+        endTrigger: containerRef.current,
+        pinSpacing: false,
+        invalidateOnRefresh: true,
+      });
+
+      return () => trigger.kill();
+    }, containerRef);
+
+    return () => mm.revert();
+  }, []);
 
   const {
     register,
@@ -63,8 +96,8 @@ export default function ContactSidebar() {
   };
 
   return (
-    <aside className="w-full lg:w-103 shrink-0">
-      <div className="sticky top-24 flex flex-col gap-4">
+    <aside ref={containerRef} className="w-full lg:w-103 shrink-0">
+      <div ref={stickyRef} className="flex flex-col gap-4">
         <div>
           <h3 className="text-primary font-bold text-lg leading-[160%] tracking-normal mb-1">
             {isAr ? "تواصل معنا" : "Contact Us"}

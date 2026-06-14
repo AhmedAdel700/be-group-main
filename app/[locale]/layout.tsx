@@ -7,6 +7,7 @@ import "@/styles/globals.css";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import { Tajawal, Montserrat } from "next/font/google";
+import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
@@ -21,7 +22,8 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "Be Group",
-  description: "Be Group is a leading provider of innovative solutions in the MENA region"
+  description:
+    "Be Group is a leading provider of innovative solutions in the MENA region",
 };
 
 export default async function Layout({
@@ -39,11 +41,15 @@ export default async function Layout({
 
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      <body className={`${tajawal.className} ${montserrat.variable} antialiased`}>
+      <body
+        className={`${tajawal.className} ${montserrat.variable} antialiased`}
+      >
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Header />
-          {children}
-          <Footer />
+          <SmoothScrollProvider>
+            {children}
+            <Footer />
+          </SmoothScrollProvider>
         </NextIntlClientProvider>
       </body>
     </html>
