@@ -152,7 +152,7 @@ export default function Stories() {
                     </p>
 
                     <Link
-                      href={"/"}
+                      href={`blogs/${story.id}`}
                       className="flex items-center gap-2 text-main-black font-medium text-base group w-fit"
                     >
                       <span>
