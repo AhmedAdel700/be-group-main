@@ -171,6 +171,7 @@ export default function RelatedBlogs() {
       <ScrollReveal delay={0.1}>
       <Swiper
         modules={[Autoplay]}
+        grabCursor
         loop={true}
         autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
         dir={isRtl ? "rtl" : "ltr"}

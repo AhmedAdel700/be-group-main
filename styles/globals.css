@@ -248,6 +248,23 @@
   padding: 10px 0 !important;
 }
 
+.swiper,
+.swiper .swiper-slide {
+  cursor: grab;
+}
+
+.swiper:active,
+.swiper.swiper-grabbing,
+.swiper .swiper-slide:active {
+  cursor: grabbing;
+}
+
+.swiper-button-next,
+.swiper-button-prev,
+.swiper-pagination-bullet {
+  cursor: pointer;
+}
+
 .highlight {
   color: var(--color-primary)
 }

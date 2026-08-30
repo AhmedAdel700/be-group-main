@@ -37,6 +37,7 @@ export default function Partners() {
         <ScrollReveal delay={0.1} className="w-full relative container mx-auto px-6 lg:px-10">
           <Swiper
             modules={[Autoplay]}
+            grabCursor
             spaceBetween={0}
             slidesPerView="auto"
             loop={true}

@@ -105,6 +105,7 @@ export default function Reviews() {
         <ScrollReveal delay={0.1} className="relative w-full min-h-85">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
+            grabCursor
             spaceBetween={50}
             slidesPerView={1}
             centeredSlides={true}

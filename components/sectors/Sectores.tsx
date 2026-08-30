@@ -75,6 +75,7 @@ export default function Sectores() {
         <ScrollReveal delay={0.1} className="block md:hidden">
           <Swiper
             modules={[Autoplay]}
+            grabCursor
             spaceBetween={16}
             slidesPerView={1.3}
             centeredSlides={true}

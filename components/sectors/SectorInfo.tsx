@@ -462,6 +462,7 @@ export default function SectorInfo() {
           <div className="relative w-full h-125">
             <Swiper
               modules={[Navigation, A11y]}
+              grabCursor
               spaceBetween={24}
               slidesPerView={1}
               breakpoints={{

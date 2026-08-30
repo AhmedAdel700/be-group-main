@@ -157,6 +157,7 @@ export default function OurLocations() {
                 <ScrollReveal delay={0.1} className="block lg:hidden">
                     <Swiper
                         modules={[Autoplay]}
+                        grabCursor
                         spaceBetween={16}
                         slidesPerView={1}
                         centeredSlides={true}

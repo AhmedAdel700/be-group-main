@@ -92,6 +92,7 @@ export default function Team() {
         <div dir={locale === "ar" ? "rtl" : "ltr"}>
           <Swiper
             modules={[Autoplay]}
+            grabCursor
             loop={true}
             autoplay={{ delay: 3500, disableOnInteraction: false }}
             slidesPerView={1.3}

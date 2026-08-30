@@ -101,6 +101,7 @@ export default function Stories() {
         <ScrollReveal delay={0.1} className="relative w-full">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
+            grabCursor
             spaceBetween={0}
             slidesPerView={1}
             loop={true}
