@@ -12,6 +12,7 @@ import { Link } from "@/i18n/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const SECTORS = [
   sector1,
@@ -59,7 +60,7 @@ export default function Sectores() {
     <section className="bg-sectors-bg">
       <div className="section-container flex flex-col gap-2">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 md:mb-10 lg:px-4">
+        <ScrollReveal className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 md:mb-10 lg:px-4">
           <div className="flex flex-col gap-2 sm:gap-4">
             <h2 className="text-primary font-bold text-base sm:text-lg">
               قطاعات نخدمها
@@ -69,10 +70,9 @@ export default function Sectores() {
               باحترافية عالية.
             </p>
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* Mobile: Swiper Carousel (hidden on md+) */}
-        <div className="block md:hidden">
+        <ScrollReveal delay={0.1} className="block md:hidden">
           <Swiper
             modules={[Autoplay]}
             spaceBetween={16}
@@ -90,10 +90,9 @@ export default function Sectores() {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </ScrollReveal>
 
-        {/* Desktop: Grid for lg (4 then 3 centered), Flex for md (hidden below md) */}
-        <div className="hidden md:flex lg:grid lg:grid-cols-8 flex-wrap justify-center items-center gap-4 xl:gap-6 lg:px-10 xl:px-20 2xl:px-25">
+        <ScrollReveal stagger={0.08} delay={0.1} className="hidden md:flex lg:grid lg:grid-cols-8 flex-wrap justify-center items-center gap-4 xl:gap-6 lg:px-10 xl:px-20 2xl:px-25">
           {SECTORS.map((sector, index) => (
             <div
               key={index}
@@ -106,7 +105,7 @@ export default function Sectores() {
               <SectorCard sector={sector} index={index} />
             </div>
           ))}
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@ import Image from "next/image";
 import badge from "@/assets/badge.png";
 import teamImg from "@/assets/hero.jpg";
 import { Link } from "@/i18n/navigation";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function AboutHero() {
   const stats = [
@@ -14,15 +15,15 @@ export default function AboutHero() {
     <div className="w-full overflow-hidden">
       <section className="bg-main-white mt-18 lg:mt-10 mb-3 relative">
         <div className="section-container">
-          <div className="flex justify-start text-base font-normal mb-2 lg:mb-10 text-[#999999] gap-2">
+          <ScrollReveal className="flex justify-start text-base font-normal mb-2 lg:mb-10 text-[#999999] gap-2">
             <Link href="/" className="hover:text-primary transition-colors cursor-pointer">
               الرئيسية
             </Link>
             <span className="font-bold">/</span>
             <span className="text-primary font-bold">من نحن</span>
-          </div>
+          </ScrollReveal>
 
-          <div className="flex flex-col lg:flex-row lg:items-start gap-10 lg:gap-20 h-auto lg:h-85 xl:h-125">
+          <ScrollReveal stagger={0.1} className="flex flex-col lg:flex-row lg:items-start gap-10 lg:gap-20 h-auto lg:h-85 xl:h-125">
             <div className="w-full flex-1 order-1 lg:order-1 lg:pt-4">
               <div className="flex items-center gap-6 lg:gap-0 lg:justify-between lg:block mb-4">
                 <h2 className="text-primary font-semibold text-[40px] lg:mb-4">Be GROUP</h2>
@@ -52,13 +53,13 @@ export default function AboutHero() {
               />
               <div className="black-circle w-40 h-40 lg:w-34 lg:h-34 bg-main-black rounded-full absolute inset-e-[-50%] hidden lg:block"></div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       <section className="bg-secondary-black w-full relative">
         <div className="container mx-auto px-4 sm:px-6 xl:px-12 relative z-20 mt-10 lg:-mt-32 xl:-mt-56">
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch h-auto relative -top-16 lg:-top-20">
+          <ScrollReveal stagger={0.1} className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch h-auto relative -top-16 lg:-top-20">
 
             <div className="w-full lg:w-[65%] flex">
               <div className="relative w-full rounded-[16px] overflow-hidden h-64 md:h-80 lg:h-90">
@@ -83,7 +84,7 @@ export default function AboutHero() {
                 </div>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>

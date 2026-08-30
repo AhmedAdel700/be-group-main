@@ -5,6 +5,7 @@ import begoupBGBgWhite from "@/assets/begroup2.png";
 import { useLocale } from "next-intl";
 import MainButton from "../common/MainButton";
 import { MoveLeft, MoveRight } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 export default function Solutions({ className }: { className?: string }) {
   const locale = useLocale();
   const isWhiteBg = className?.includes("bg-white");
@@ -17,7 +18,7 @@ export default function Solutions({ className }: { className?: string }) {
         className={`object-cover absolute bottom-0 max-w-[95%] lg:max-w-[85%] max-h-[95%] lg:max-h-[85%] ${locale === "ar" ? "inset-e-0" : "inset-s-0"}`}
       />
       <div className="section-container w-full h-full relative flex flex-col gap-8 lg:gap-8 items-center justify-center">
-        <div className="flex items-center justify-center flex-col gap-6 lg:gap-10">
+        <ScrollReveal className="flex items-center justify-center flex-col gap-6 lg:gap-10">
           <h2 className={`${isWhiteBg ? "text-main-black" : "text-main-white"} text-3xl md:text-4xl lg:text-[48px] lg:leading-12 font-bold text-center`}>
             هل تحتاج إلى حلول في أحد قطاعاتنا؟
           </h2>
@@ -25,9 +26,9 @@ export default function Solutions({ className }: { className?: string }) {
             فريقنا المتخصص جاهز لمساعدتك في اختيار الحلول المناسبة وتقديم
             استشارة مجانية لفهم احتياجاتك وتقديم أفضل الخيارات
           </p>
-        </div>
+        </ScrollReveal>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 lg:gap-8 w-full sm:w-auto">
+        <ScrollReveal delay={0.1} className="flex flex-col sm:flex-row items-center justify-center gap-4 lg:gap-8 w-full sm:w-auto">
           <div className="w-full sm:w-auto *:w-full">
             <MainButton
               buttontype="primary"
@@ -45,7 +46,7 @@ export default function Solutions({ className }: { className?: string }) {
               استكشف منتجاتنا
             </MainButton>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

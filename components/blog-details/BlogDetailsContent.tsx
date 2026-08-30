@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useLocale } from "next-intl";
 import { Clock, Calendar } from "lucide-react";
 import blogImage from "@/assets/blog-details-banner.jpg";
+import ScrollReveal from "@/components/ScrollReveal";
 
 type Locale = "ar" | "en";
 
@@ -75,39 +76,37 @@ export default function BlogDetailsContent() {
 
   return (
     <div className="flex flex-col gap-6 w-full">
-      {/* Hero Image */}
-<div className="relative w-full h-[317px] rounded-[8px] border border-gray-200 overflow-hidden">
-  <Image
-    src={image}
-    alt={title[locale]}
-    fill
-    priority
-    className="object-cover object-bottom"
-    sizes="100vw"
-  />
-</div>
-
-      {/* Meta Info */}
-      <div
-        className="flex items-center gap-6 text-sm text-[#666666]"
-        
-      >
-        <div className="flex items-center gap-1.5">
-          <Calendar size={22} className="text-[#D26A30] font-extrabold text-base" />
-          <span className="text-[#D26A30] font-bold text-base" dir="ltr">
-            {date}
-          </span>
+      <ScrollReveal>
+        <div className="relative w-full h-[317px] rounded-[8px] border border-gray-200 overflow-hidden">
+          <Image
+            src={image}
+            alt={title[locale]}
+            fill
+            priority
+            className="object-cover object-bottom"
+            sizes="100vw"
+          />
         </div>
-        <div className="flex items-center gap-1.5">
-          <Clock size={22} className="text-[#D26A30] font-extrabold text-base" />
-          <span className="text-[#D26A30] font-bold text-base" dir="ltr">
-            {readTime}
-          </span>
-        </div>
-        
-      </div>
+      </ScrollReveal>
 
-      {/* Article Content */}
+      <ScrollReveal delay={0.1}>
+        <div className="flex items-center gap-6 text-sm text-[#666666]">
+          <div className="flex items-center gap-1.5">
+            <Calendar size={22} className="text-[#D26A30] font-extrabold text-base" />
+            <span className="text-[#D26A30] font-bold text-base" dir="ltr">
+              {date}
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <Clock size={22} className="text-[#D26A30] font-extrabold text-base" />
+            <span className="text-[#D26A30] font-bold text-base" dir="ltr">
+              {readTime}
+            </span>
+          </div>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={0.1}>
       <article
         className="flex flex-col gap-8 w-full"
         dir={locale === "ar" ? "rtl" : "ltr"}
@@ -141,6 +140,7 @@ export default function BlogDetailsContent() {
           </div>
         ))}
       </article>
+      </ScrollReveal>
     </div>
   );
 }

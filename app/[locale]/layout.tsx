@@ -8,6 +8,7 @@ import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import { Tajawal, Montserrat } from "next/font/google";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
+import NavigationAnimationProvider from "@/providers/NavigationAnimationProvider";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
@@ -40,15 +41,18 @@ export default async function Layout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
+    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>
       <body
         className={`${tajawal.className} ${montserrat.variable} antialiased`}
+        suppressHydrationWarning
       >
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Header />
           <SmoothScrollProvider>
-            {children}
-            <Footer />
+            <NavigationAnimationProvider>
+              {children}
+              <Footer />
+            </NavigationAnimationProvider>
           </SmoothScrollProvider>
         </NextIntlClientProvider>
       </body>

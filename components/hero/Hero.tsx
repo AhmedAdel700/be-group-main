@@ -10,6 +10,7 @@ import herocard2 from "@/assets/herocard2.png";
 import herocard3 from "@/assets/herocard3.png";
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Hero() {
   const locale = useLocale();
@@ -43,7 +44,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-linear-to-r from-main-black/60 via-transparent to-transparent" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-8 xl:px-15 flex flex-col z-10 w-full">
+      <ScrollReveal stagger={0.12} className="container mx-auto px-4 sm:px-8 xl:px-15 flex flex-col z-10 w-full">
         <div className="text-start flex flex-col gap-4">
           <p className="text-primary leading-[1.6] text-sm sm:text-base font-bold">
             بى جروب كيان واحد متكامل نبني، نطوّر، وننمو بأعمالك
@@ -65,34 +66,20 @@ export default function Hero() {
           </h1>
         </div>
 
-        <div
-          className="
-            flex flex-col gap-8
-            sm:gap-12
-            md:gap-14
-            xl:gap-16
-            2xl:gap-20
-            mt-8
-            sm:-mt-8
-            md:-mt-12
-            xl:-mt-16
-            2xl:-mt-20
-          "
-        >
-          <div className="w-full flex justify-between items-end">
-            <Link href={"/sectors"} prefetch className="w-full">
-              <MainButton
-                buttontype="primary"
-                iconEnd={ArrowIcon}
-                className="w-full sm:w-[55%] lg:w-fit text-base"
-              >
-                قطاعات نخدمها
-              </MainButton>
-            </Link>
+        <div className="w-full flex justify-between items-end mt-8 sm:-mt-8 md:-mt-12 xl:-mt-16 2xl:-mt-20">
+          <Link href={"/sectors"} prefetch className="w-full">
+            <MainButton
+              buttontype="primary"
+              iconEnd={ArrowIcon}
+              className="w-full sm:w-[55%] lg:w-fit text-base"
+            >
+              قطاعات نخدمها
+            </MainButton>
+          </Link>
 
-            <div className="sm:h-36 sm:w-0 lg:hidden"></div>
+          <div className="sm:h-36 sm:w-0 lg:hidden"></div>
 
-            {isDesktop && (
+          {isDesktop && (
               <div
                 className="
                   relative
@@ -149,44 +136,43 @@ export default function Hero() {
                   "
                 />
               </div>
-            )}
-          </div>
+          )}
+        </div>
 
-          <div className="w-full flex flex-col gap-6 sm:flex-row sm:justify-between sm:items-end">
-            <p className="leading-[1.6] hidden lg:block font-bold text-base sm:text-lg xl:text-xl text-main-white whitespace-nowrap">
-              أكثر من 2000 عميل راضٍ
+        <div className="w-full flex flex-col gap-6 sm:flex-row sm:justify-between sm:items-end mt-8 sm:mt-12 md:mt-14 xl:mt-16 2xl:mt-20">
+          <p className="leading-[1.6] hidden lg:block font-bold text-base sm:text-lg xl:text-xl text-main-white whitespace-nowrap">
+            أكثر من 2000 عميل راضٍ
+          </p>
+
+          <div
+            className="
+              flex flex-col gap-4
+              sm:gap-6
+              xl:gap-8
+              w-full
+              sm:max-w-xs
+              md:max-w-sm
+              lg:max-w-md
+              max-w-full
+            "
+          >
+            <p className="leading-[1.6] font-bold text-base xl:text-lg 2xl:text-xl text-main-white">
+              نقدّم حلولًا شاملة في التدريب، المقاولات، تنظيم الفعاليات،
+              الاستشارات الإدارية، والحلول الرقمية تحت مظلة واحدة.
             </p>
 
-            <div
-              className="
-                flex flex-col gap-4
-                sm:gap-6
-                xl:gap-8
-                w-full
-                sm:max-w-xs
-                md:max-w-sm
-                lg:max-w-md
-                max-w-full
-              "
-            >
-              <p className="leading-[1.6] font-bold text-base xl:text-lg 2xl:text-xl text-main-white">
-                نقدّم حلولًا شاملة في التدريب، المقاولات، تنظيم الفعاليات،
-                الاستشارات الإدارية، والحلول الرقمية تحت مظلة واحدة.
-              </p>
-
-              <Link href={"/about"} className="w-full">
-                <MainButton
-                  buttontype="secondary"
-                  iconEnd={ArrowIcon}
-                  className="text-base w-full"
-                >
-                  تعرف علينا أكثر
-                </MainButton>
-              </Link>
-            </div>
+            <Link href={"/about"} className="w-full">
+              <MainButton
+                buttontype="secondary"
+                iconEnd={ArrowIcon}
+                className="text-base w-full"
+              >
+                تعرف علينا أكثر
+              </MainButton>
+            </Link>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* <div className="absolute -bottom-24 -right-24 w-64 h-64 sm:w-96 sm:h-96 xl:w-125 xl:h-125 bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-1/4 -left-24 w-48 h-48 sm:w-64 sm:h-64 xl:w-75 xl:h-75 bg-primary/10 rounded-full blur-[100px] pointer-events-none" /> */}

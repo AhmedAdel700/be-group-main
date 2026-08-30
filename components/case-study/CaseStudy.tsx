@@ -5,12 +5,13 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import arrowIcon from "@/assets/arrowupIcon.svg";
 import { useLocale } from "next-intl";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function CaseStudy() {
     const locale = useLocale();
   return (
     <section className="container mx-auto pt-10 lg:pt-25 px-4 sm:px-6 xl:px-12 bg-main-white overflow-hidden">
-      <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 order-2 w-full lg:w-auto pt-1.5">
+      <ScrollReveal stagger={0.1} className="flex flex-col lg:flex-row gap-4 sm:gap-8 order-2 w-full lg:w-auto pt-1.5">
           <div className="w-full lg:w-2/3 ">
             <div className="flex flex-col gap-4 text-start max-w-lg order-1">
               <h2 className="text-primary font-bold text-lg leading-[160%]">
@@ -54,7 +55,7 @@ export default function CaseStudy() {
               className="w-full lg:h-150 object-cover rounded-xl"
             />
           </div>
-        </div>
+        </ScrollReveal>
     </section>
   );
 }

@@ -9,6 +9,7 @@ import { ArrowLeft, ArrowRight, ChevronDown, Mail } from "lucide-react";
 import Image from "next/image";
 import beGroupAvatar from "@/assets/blog-details-banner.jpg";
 import MainButton from "../common/MainButton";
+import ScrollReveal from "@/components/ScrollReveal";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -96,7 +97,8 @@ export default function ContactSidebar() {
   };
 
   return (
-    <aside ref={containerRef} className="w-full lg:w-103 shrink-0">
+    <ScrollReveal direction="left" delay={0.15} className="w-full lg:w-103 shrink-0">
+    <aside ref={containerRef} className="w-full">
       <div ref={stickyRef} className="flex flex-col gap-4">
         <div>
           <h3 className="text-primary font-bold text-lg leading-[160%] tracking-normal mb-1">
@@ -342,5 +344,6 @@ export default function ContactSidebar() {
         </div>
       </div>
     </aside>
+    </ScrollReveal>
   );
 }

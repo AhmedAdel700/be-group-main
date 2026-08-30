@@ -10,6 +10,7 @@ import slide1 from "@/assets/slide1.png";
 import slide2 from "@/assets/slide2.png";
 import slide3 from "@/assets/slide3.png";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const BLOGS_DATA = [
   {
@@ -89,7 +90,7 @@ function BlogCard({ image, title, description, href, locale }: BlogCardProps) {
   const isRtl = locale === "ar";
 
   return (
-    <article className="flex flex-col rounded-xl overflow-hidden bg-main-white border border-black/15 shadow-sm hover:border-primary transition-colors duration-300">
+    <article className="flex flex-col h-full rounded-xl overflow-hidden bg-main-white border border-black/15 shadow-sm hover:border-primary transition-colors duration-300">
       {/* Card Image */}
       <div className="relative w-full aspect-16/10 overflow-hidden">
         <Image
@@ -117,7 +118,7 @@ function BlogCard({ image, title, description, href, locale }: BlogCardProps) {
         {/* Read More Link */}
         <Link
           href={href}
-          className="inline-flex items-center gap-2 text-primary font-semibold text-sm group w-fit hover:text-primary-hover transition-colors duration-300"
+          className="inline-flex items-center gap-2 text-primary font-semibold text-sm group w-fit mt-auto hover:text-primary-hover transition-colors duration-300"
         >
           <h3 className="text-base">
             {locale === "ar" ? "اقرأ المزيد" : "Read More"}
@@ -135,10 +136,10 @@ export default function BlogsSection() {
   return (
     <section className="section-container bg-main-white">
       {/* Section Header */}
-      <div
+      <ScrollReveal
         className={`flex flex-col gap-2 mb-10 ${locale === "ar" ? "text-right" : "text-left"}`}
-        dir={locale === "ar" ? "rtl" : "ltr"}
       >
+        <div dir={locale === "ar" ? "rtl" : "ltr"}>
         <h2 className="text-primary font-bold text-base sm:text-lg">
           {locale === "ar" ? "مدونة Be Group" : "Be Group Blog"}
         </h2>
@@ -147,10 +148,10 @@ export default function BlogsSection() {
             ? "أحدث المقالات والرؤى والأفكار من فريق خبرائنا"
             : "Latest articles, insights, and ideas from our expert team"}
         </p>
-      </div>
+        </div>
+      </ScrollReveal>
 
-      {/* Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+      <ScrollReveal stagger={0.1} delay={0.1} className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 items-stretch">
         {BLOGS_DATA.map((blog) => (
           <BlogCard
             key={blog.id}
@@ -162,7 +163,7 @@ export default function BlogsSection() {
             locale={locale}
           />
         ))}
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

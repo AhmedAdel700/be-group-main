@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocale } from "next-intl";
 import MainButton from "../common/MainButton";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const finalContactSchema = z.object({
   name: z.string().min(2, "الاسم مطلوب ويجب أن يكون حرفين على الأقل"),
@@ -139,7 +140,7 @@ export default function ContactUsSection() {
   return (
     <section className="w-full bg-main-white">
       <div className="container mx-auto px-4 sm:px-6 xl:px-12 bg-main-white">
-        <div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-14">
+        <ScrollReveal stagger={0.1} className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-14">
           <aside className="flex items-start flex-col gap-8 border-b lg:border-b-0 lg:border-e border-[#d1d1d16c] w-full lg:w-[30%] xl:w-[25%] py-12 lg:pe-10">
             <h4 className="text-xl text-primary font-semibold tracking-[-2%]">
               يمكنك تتبع اخبارنا من هنا...{" "}
@@ -156,7 +157,7 @@ export default function ContactUsSection() {
               ))}
             </div>
           </aside>
-          <aside className="flex flex-col gap-6 md:gap-10 xl:gap-16 w-full lg:w-[70%] xl:w-[75%] py-10">
+          <div className="flex flex-col gap-6 md:gap-10 xl:gap-16 w-full lg:w-[70%] xl:w-[75%] py-10">
             <div>
               <h4 className="text-primary font-semibold text-xl tracking-[-2%] mb-4 md:mb-6">
                 تواصل معنا
@@ -353,8 +354,8 @@ export default function ContactUsSection() {
                 </MainButton>
               </div>
             </form>
-          </aside>
-        </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

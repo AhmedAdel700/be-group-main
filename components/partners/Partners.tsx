@@ -12,6 +12,7 @@ import partner5 from '@/assets/partner5.svg';
 import partner6 from '@/assets/partner6.svg';
 import { Link } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
+import ScrollReveal from '@/components/ScrollReveal';
 
 const partners = [
   { id: 1, src: partner1 },
@@ -27,11 +28,13 @@ export default function Partners() {
   return (
     <section className="bg-main-black/95 py-10 h-47 overflow-hidden" dir={locale === 'en' ? 'rtl' : 'ltr'}>
       <div className="flex flex-col items-center justify-center gap-5">
+        <ScrollReveal>
         <p className="text-[#FEFEFE] lg:text-lg leading-[150%] text-center font-normal mb-3.5">
           تحظى Be GROUP بثقة أكثر من 55,000 شركة حول العالم
         </p>
+        </ScrollReveal>
 
-        <div className="w-full relative container mx-auto px-6 lg:px-10">
+        <ScrollReveal delay={0.1} className="w-full relative container mx-auto px-6 lg:px-10">
           <Swiper
             modules={[Autoplay]}
             spaceBetween={0}
@@ -67,7 +70,7 @@ export default function Partners() {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

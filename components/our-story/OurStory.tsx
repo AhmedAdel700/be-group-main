@@ -1,6 +1,7 @@
 "use client";
 
 import { BookOpenText } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function OurStory() {
   const cards = [
@@ -24,25 +25,25 @@ export default function OurStory() {
       <div className="section-container flex flex-col gap-8">
         {/* Top section */}
         <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
-          <div className="w-full lg:w-[45%] flex flex-col gap-4 text-start">
+          <ScrollReveal className="w-full lg:w-[45%] flex flex-col gap-4 text-start">
             <span className="text-primary font-bold text-2xl leading-[180%]">
               قصتنا
             </span>
             <h2 className="text-main-black text-3xl lg:text-[32px] font-bold leading-[180%] w-full lg:max-w-85">
               رحلة من الطموح إلى الإنجاز، نبنيها معاً بالثقة والاحترافية
             </h2>
-          </div>
-          <div className="w-full lg:w-[50%] flex lg:justify-end text-start">
+          </ScrollReveal>
+          <ScrollReveal direction="left" className="w-full lg:w-[50%] flex lg:justify-end text-start">
             <p className="text-main-black text-base md:text-lg lg:text-xl leading-8 font-noraml">
               Be Group مجموعة أعمال تقدّم خدمات متكاملة في مجالات متعددة تشمل
               التدريب، الاستشارات الإدارية، المقاولات، تنظيم الفعاليات، والحلول
               الرقمية، بخبرة عملية وجودة تنفيذ تصنع قيمة حقيقية لعملائنا.
             </p>
-          </div>
+          </ScrollReveal>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ScrollReveal stagger={0.1} delay={0.1} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cards.map((card, index) => (
             <div
               key={index}
@@ -61,7 +62,7 @@ export default function OurStory() {
               </p>
             </div>
           ))}
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -6,6 +6,7 @@ import { useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import ScrollReveal from "@/components/ScrollReveal";
 
 import arrowIcon from "@/assets/arrowupIcon.svg";
 import slide1 from "@/assets/slide1.png";
@@ -346,8 +347,7 @@ export default function Gallary() {
     >
       <div className="container mx-auto pt-14 px-4 sm:px-6 xl:px-12">
         
-        {/* ── Filter Tabs (from PreviousProjects) ── */}
-        <div className="relative mb-14">
+        <ScrollReveal className="relative mb-14">
           <div
             className="flex flex-nowrap md:flex-wrap items-center justify-start gap-3 md:gap-4 p-2 bg-bg-filter rounded-[40px] overflow-x-auto no-scrollbar scroll-smooth"
             style={{
@@ -386,8 +386,9 @@ export default function Gallary() {
               </button>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
 
+        <ScrollReveal delay={0.1}>
         {/* ── Staggered Grid (from News) ── */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -431,6 +432,7 @@ export default function Gallary() {
             </div>
           ))}
         </div>
+        </ScrollReveal>
 
       </div>
     </section>

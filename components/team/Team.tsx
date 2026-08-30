@@ -5,6 +5,7 @@ import teamImg from "@/assets/team.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { useLocale } from "next-intl";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const TEAM = [
   {
@@ -76,18 +77,18 @@ export default function Team() {
     <section className="bg-main-white">
       <div className="section-container flex flex-col gap-6">
         {/* Header */}
-        <div
-          className="flex flex-col gap-2 w-full items-start text-start"
-          dir={locale === "ar" ? "rtl" : "ltr"}
-        >
+        <ScrollReveal className="flex flex-col gap-2 w-full items-start text-start">
+          <div dir={locale === "ar" ? "rtl" : "ltr"} className="flex flex-col gap-2 w-full items-start text-start">
           <h2 className="text-primary font-bold text-lg md:text-xl leading-[160%]">
             فريق القيادة
           </h2>
           <p className="text-font-body font-bold text-lg md:text-xl leading-[160%]">
             نخبة من القيادات السعودية المتميزة تقود مسيرة النجاح
           </p>
-        </div>
+          </div>
+        </ScrollReveal>
 
+        <ScrollReveal delay={0.1}>
         <div dir={locale === "ar" ? "rtl" : "ltr"}>
           <Swiper
             modules={[Autoplay]}
@@ -121,6 +122,7 @@ export default function Team() {
             ))}
           </Swiper>
         </div>
+        </ScrollReveal>
       </div>
     </section>
   );

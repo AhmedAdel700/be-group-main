@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import image1 from "@/assets/image1.png";
 import image2 from "@/assets/image2.png";
 import arrowIcon from "@/assets/arrowupIcon.svg";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const TRAINING_DATA = [
   {
@@ -160,11 +161,8 @@ export default function News() {
       className="bg-main-white section-container overflow-hidden"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* Desktop Staggered Grid */}
-      <div className="hidden md:grid grid-cols-2 gap-x-20 lg:gap-x-32">
-        {/* Right Column (Start Column in RTL) */}
+      <ScrollReveal stagger={0.1} className="hidden md:grid grid-cols-2 gap-x-20 lg:gap-x-32">
         <div className="flex flex-col gap-20">
-          {/* Header */}
           <div className="flex flex-col items-start text-start">
             <h2 className="text-primary text-[24px] font-bold leading-[160%] mb-2">
               {locale === "ar"
@@ -178,38 +176,27 @@ export default function News() {
             </p>
           </div>
 
-          {/* Item 1 Image (Right Side) */}
           <ItemImage item={TRAINING_DATA[0]} locale={locale} />
 
-          {/* Item 2 Content (Right Side) */}
           <ItemContent item={TRAINING_DATA[1]} locale={locale} />
 
-          {/* Item 3 Image */}
           <ItemImage item={TRAINING_DATA[2]} locale={locale} />
 
-          {/* Item 4 Content */}
           <ItemContent item={TRAINING_DATA[3]} locale={locale} />
         </div>
 
-        {/* Left Column (End Column in RTL) */}
         <div className="flex flex-col gap-16 md:mt-48">
-          {/* Item 1 Content (Left Side) */}
           <ItemContent item={TRAINING_DATA[0]} locale={locale} />
 
-          {/* Item 2 Image (Left Side) */}
           <ItemImage item={TRAINING_DATA[1]} locale={locale} />
 
-          {/* Item 3 Content */}
           <ItemContent item={TRAINING_DATA[2]} locale={locale} />
 
-          {/* Item 4 Image */}
           <ItemImage item={TRAINING_DATA[3]} locale={locale} />
         </div>
-      </div>
+      </ScrollReveal>
 
-      {/* Mobile Stack Layout */}
-      <div className="md:hidden flex flex-col gap-12">
-        {/* Header */}
+      <ScrollReveal className="md:hidden flex flex-col gap-12">
         <div className="flex flex-col items-start text-start mb-4">
           <h2 className="text-primary text-xl font-bold mb-3">
             {locale === "ar"
@@ -223,14 +210,13 @@ export default function News() {
           </p>
         </div>
 
-        {/* Mobile Items */}
         {TRAINING_DATA.map((item) => (
           <div key={item.id} className="flex flex-col gap-8">
             <ItemImage item={item} locale={locale} />
             <ItemContent item={item} locale={locale} />
           </div>
         ))}
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

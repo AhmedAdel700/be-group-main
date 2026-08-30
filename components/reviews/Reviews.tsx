@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import userImage from "@/assets/reviewImage.svg";
 import { useLocale } from "next-intl";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const REVIEWS = [
   {
@@ -54,7 +55,7 @@ export default function Reviews() {
     >
       <div className="py-12.5 lg:py-25 px-4 md:px-0">
         {/* Header and Navigation */}
-        <div className="flex flex-row items-center justify-around gap-2 mb-12 w-full xl:w-[65%] 2xl:w-[60%] mx-auto">
+        <ScrollReveal className="flex flex-row items-center justify-around gap-2 mb-12 w-full xl:w-[65%] 2xl:w-[60%] mx-auto">
           <button
             className="flex items-center justify-center swiper-btn-prev w-10 h-10 md:w-12 md:h-12 rounded-full text-[#4b5563] hover:text-black hover:bg-gray-100 transition-all cursor-pointer z-10 shrink-0"
             aria-label="Previous Review"
@@ -98,10 +99,10 @@ export default function Reviews() {
               />
             )}
           </button>
-        </div>
+        </ScrollReveal>
 
         {/* Swiper Carousel */}
-        <div className="relative w-full min-h-85">
+        <ScrollReveal delay={0.1} className="relative w-full min-h-85">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={50}
@@ -172,7 +173,7 @@ export default function Reviews() {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </ScrollReveal>
 
         {/* External Pagination */}
         <div className="reviews-pagination flex justify-center -my-2" />

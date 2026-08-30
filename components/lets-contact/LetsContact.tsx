@@ -5,11 +5,13 @@ import Logo from "@/assets/logo.svg";
 import { Link } from "@/i18n/navigation";
 import arrowIcon from "@/assets/arrowupIcon.svg";
 import { useLocale } from "next-intl";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function LetsContact() {
   const locale = useLocale();
   return (
     <section className="section-container">
+      <ScrollReveal>
       <div className="relative w-full h-full md:h-125 xl:h-150 rounded-xl overflow-hidden p-4 md:p-6 xl:p-15">
         <Image src={contactImage} alt="Contact" fill className="object-cover" />
         <div className="absolute inset-0 bg-black/40 z-10" />
@@ -57,6 +59,7 @@ export default function LetsContact() {
           </div>
         </div>
       </div>
+      </ScrollReveal>
     </section>
   );
 }

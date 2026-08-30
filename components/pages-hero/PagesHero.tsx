@@ -3,6 +3,7 @@ import heroImg from "@/assets/hero.jpg";
 import { Link } from "@/i18n/navigation";
 import beBG from "@/assets/beBG.svg";
 import Numbers from "@/components/sectors/Numbers";
+import ScrollReveal from "@/components/ScrollReveal";
 
 
 interface PagesHeroProps {
@@ -83,7 +84,7 @@ export default function PagesHero({ page = "sector", className }: PagesHeroProps
 
       <div className="section-container xl:px-8! mt-12 relative z-10 h-full flex flex-col items-start justify-start">
         {/* Breadcrumb */}
-        <div className="flex justify-start text-sm lg:text-base font-normal mb-10 text-main-white gap-1.5 sm:gap-2">
+        <ScrollReveal playOnMount className="flex justify-start text-sm lg:text-base font-normal mb-10 text-main-white gap-1.5 sm:gap-2">
           <Link
             href="/"
             className="hover:text-primary transition-colors cursor-pointer"
@@ -111,10 +112,10 @@ export default function PagesHero({ page = "sector", className }: PagesHeroProps
               </span>
             </>
           )}
-        </div>
+        </ScrollReveal>
 
         {/* Dynamic Content */}
-        <div className="flex flex-col gap-2 text-start">
+        <ScrollReveal playOnMount stagger={0.1} className="flex flex-col gap-2 text-start">
           <h3
             className={`text-[24px] leading-[160%] font-semibold text-primary `}
           >
@@ -125,15 +126,15 @@ export default function PagesHero({ page = "sector", className }: PagesHeroProps
             className={`text-base md:text-[24px] xl:text-[40px] leading-[160%] font-bold text-main-white ${page === "contact" || page === "work" ? "max-w-5xl" : "w-full"}`}
             dangerouslySetInnerHTML={{ __html: content.description }}
           />
-        </div>
+        </ScrollReveal>
 
         {/* Footer text */}
-        <div className="xl:text-end w-full mt-10 xl:mt-auto">
+        <ScrollReveal playOnMount delay={0.1} className="xl:text-end w-full mt-10 xl:mt-auto">
           <p className="text-sm lg:text-base leading-[160%] font-medium text-main-white">
            {content.footerText}
           </p>
           {page === "allsectors" && <Numbers />}
-        </div>
+        </ScrollReveal>
       </div>
       
     </section>

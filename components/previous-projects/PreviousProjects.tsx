@@ -15,6 +15,7 @@ import Image from "next/image";
 import arrowupIcon from "@/assets/arrowupIcon.svg";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import ScrollReveal from "@/components/ScrollReveal";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const projectsData: Record<string, any[]> = {
@@ -221,7 +222,7 @@ export default function PreviousProjects() {
   return (
     <section className="section-container bg-main-white">
       {/* ── Header ── */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 md:mb-10 lg:px-4">
+      <ScrollReveal className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 md:mb-10 lg:px-4">
         <div className="flex flex-col gap-2 sm:gap-4">
           <h2 className="text-primary font-bold text-base sm:text-lg">
             أعمال سابقة
@@ -244,10 +245,10 @@ export default function PreviousProjects() {
             className="flex-1 md:w-12.5 h-12 md:h-12.5"
           />
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* ── Filter Tabs ── */}
-      <div className="relative mb-10">
+      <ScrollReveal delay={0.1} className="relative mb-10">
         <div
           className="flex flex-nowrap md:flex-wrap items-center justify-start gap-3 md:gap-4 p-2 bg-bg-filter rounded-[40px] overflow-x-auto no-scrollbar scroll-smooth"
           style={{
@@ -288,14 +289,14 @@ export default function PreviousProjects() {
             </button>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* ══════════════════════════════════════════════════════════════════════
           DESKTOP — Accordion Swiper
           Each SwiperSlide = a flex row of up to 4 accordion cards.
           Touch / drag is built-in; buttons navigate via swiperRef.
          ══════════════════════════════════════════════════════════════════════ */}
-      <div className="hidden md:block">
+      <ScrollReveal delay={0.15} className="hidden md:block">
         <AnimatePresence mode="wait">
           <motion.div
             key={`desktop-${activeCategory}`}
@@ -459,13 +460,13 @@ export default function PreviousProjects() {
             </Swiper>
           </motion.div>
         </AnimatePresence>
-      </div>
+      </ScrollReveal>
 
       {/* ══════════════════════════════════════════════════════════════════════
           MOBILE — Single-card Swiper (1.15 cards visible for peek effect)
           Touch / drag built-in; buttons navigate via mobileSwiperRef.
          ══════════════════════════════════════════════════════════════════════ */}
-      <div className="md:hidden overflow-hidden">
+      <ScrollReveal delay={0.15} className="md:hidden overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={`mobile-${activeCategory}`}
@@ -532,7 +533,7 @@ export default function PreviousProjects() {
             </Swiper>
           </motion.div>
         </AnimatePresence>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

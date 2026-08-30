@@ -8,6 +8,7 @@ import { useLocale } from "next-intl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { Link } from "@/i18n/navigation";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const LOCATIONS = [
     {
@@ -143,7 +144,7 @@ export default function OurLocations() {
     return (
         <section>
             <div className="container mx-auto py-12 lg:py-18 px-4 sm:px-6 xl:px-12 flex flex-col gap-10 lg:gap-13.5">
-                <div className="flex flex-col gap-2 w-full text-start items-start">
+                <ScrollReveal className="flex flex-col gap-2 w-full text-start items-start">
                     <h2 className="text-primary font-bold text-xl lg:text-2xl leading-[160%]">
                         تواجدنا العالمي
                     </h2>
@@ -151,9 +152,9 @@ export default function OurLocations() {
                         تنتشر مكاتبنا في أهم المراكز الاقتصادية حول العالم، لنربط الخبرات
                         السعودية بالفرص العالمية ونقدم حلولاً تتجاوز الحدود الجغرافية.
                     </p>
-                </div>
+                </ScrollReveal>
 
-                <div className="block lg:hidden">
+                <ScrollReveal delay={0.1} className="block lg:hidden">
                     <Swiper
                         modules={[Autoplay]}
                         spaceBetween={16}
@@ -172,14 +173,14 @@ export default function OurLocations() {
                             </SwiperSlide>
                         ))}
                     </Swiper>
-                </div>
+                </ScrollReveal>
 
                 {/* Desktop: Grid (hidden below lg) */}
-                <div className="hidden lg:grid grid-cols-2 gap-12">
+                <ScrollReveal stagger={0.1} delay={0.1} className="hidden lg:grid grid-cols-2 gap-12">
                     {LOCATIONS.map((loc, index) => (
                         <LocationCard key={index} loc={loc} locale={locale} />
                     ))}
-                </div>
+                </ScrollReveal>
             </div>
         </section>
     );

@@ -1,6 +1,7 @@
 'use client';
 
 import { BookOpen, Users, CircleCheckBig } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 interface ServiceCardProps {
   title: string;
@@ -146,21 +147,20 @@ export default function SectorServices() {
     <section className="bg-[#FCFCFC]">
       {/* Header Section */}
         <div className="section-container">
-        <div className="flex flex-col items-start text-start mb-6 lg:mb-14 px-4">
+        <ScrollReveal className="flex flex-col items-start text-start mb-6 lg:mb-14 px-4">
         <span className="text-primary font-bold text-lg block">
           خدماتنا التدريبية
         </span>
         <h2 className="text-base md:text-xl font-bold text-font-body leading-[160%] max-w-225">
           قدم برامج تدريبية متكاملة مصممة خصيصاً لسد الفجوات المهارية ورفع كفاءة الأداء في مختلف المستويات الإدارية والمهنية.
         </h2>
-      </div>
+      </ScrollReveal>
 
-      {/* Grid Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6.5 xl:px-4">
+      <ScrollReveal stagger={0.1} delay={0.1} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6.5 xl:px-4">
         {services.map((service, index) => (
           <ServiceCard key={index} {...service} />
         ))}
-      </div>
+      </ScrollReveal>
         </div>
     </section>
   );

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { animate, useInView } from "framer-motion";
 import aboutShape from "@/assets/about-shape.svg";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function AboutSection() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -31,7 +32,7 @@ export default function AboutSection() {
       )}
       <div className="section-container flex flex-col gap-10">
         {/* TEXT */}
-        <div className="flex flex-col gap-2 w-full">
+        <ScrollReveal className="flex flex-col gap-2 w-full">
           <h2 className="text-primary font-bold text-lg leading-[160%] text-start">
             من نحن
           </h2>
@@ -42,10 +43,10 @@ export default function AboutSection() {
             مبتكرة وخدمات احترافية تساهم في بناء اقتصاد متنوع ومستدام. نفخر
             بفريقنا من الخبراء السعوديين الذين يقودون مشاريعنا بكفاءة عالية.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* VIDEO */}
-        <div className="relative w-full rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
+        <ScrollReveal delay={0.1} className="relative w-full rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
           {isPlaying ? (
             <iframe
               className="w-full h-55 md:h-125.5"
@@ -73,15 +74,15 @@ export default function AboutSection() {
               </button>
             </>
           )}
-        </div>
+        </ScrollReveal>
 
         {/* STATS */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <ScrollReveal stagger={0.1} delay={0.1} className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <Stat number={16} label="سنة من الخبرة" suffix="+" />
           <Stat number={250} label="فريق متخصص" suffix="+" />
           <Stat number={400} label="مشروع ناجح" suffix="+" />
           <Stat number={3000} label="عملاء راضون" suffix="+" />
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

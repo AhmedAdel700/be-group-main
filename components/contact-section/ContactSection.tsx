@@ -7,6 +7,7 @@ import { useLocale } from "next-intl";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const finalContactSchema = z.object({
   name: z.string().min(2, "الاسم مطلوب ويجب أن يكون حرفين على الأقل"),
@@ -75,7 +76,7 @@ export default function ContactSection() {
     <section className="section-container bg-main-white overflow-hidden">
       <div className="container mx-auto">
         {/* Header and Contact Info Row */}
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-4 mb-10">
+        <ScrollReveal className="flex flex-col lg:flex-row justify-between items-start gap-4 mb-10">
           {/* Section Title (Right side in RTL) */}
           <div className="flex flex-col gap-4 text-start max-w-lg order-1">
             <h2 className="text-primary font-bold text-lg leading-[160%]">
@@ -119,9 +120,10 @@ export default function ContactSection() {
               </div>
             </a>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Contact Form */}
+        <ScrollReveal delay={0.1}>
         <form
           className="flex flex-col gap-8 w-full"
           onSubmit={handleSubmit(onSubmit)}
@@ -279,6 +281,7 @@ export default function ContactSection() {
             </MainButton>
           </div>
         </form>
+        </ScrollReveal>
       </div>
     </section>
   );

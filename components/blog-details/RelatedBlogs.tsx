@@ -13,6 +13,7 @@ import image2 from "@/assets/image2.png";
 import slide1 from "@/assets/slide1.png";
 import slide2 from "@/assets/slide2.png";
 import slide3 from "@/assets/slide3.png";
+import ScrollReveal from "@/components/ScrollReveal";
 
 type Locale = "ar" | "en";
 
@@ -140,7 +141,7 @@ function BlogCard({
 
         <Link
           href={href}
-          className="inline-flex items-center gap-2 text-primary font-semibold text-sm group w-fit hover:text-primary-hover transition-colors duration-300"
+          className="inline-flex items-center gap-2 text-primary font-semibold text-sm group w-fit mt-auto hover:text-primary-hover transition-colors duration-300"
         >
           <h3 className="text-base">
             {locale === "ar" ? "اقرأ المزيد" : "Read More"}
@@ -161,12 +162,13 @@ export default function RelatedBlogs() {
       className="bg-main-white mt-8 lg:mt-16"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      <div className="mb-8">
+      <ScrollReveal className="mb-8">
         <h2 className="text-main-black font-bold text-xl md:text-2xl leading-[160%]">
           {locale === "ar" ? "مقالات ذات صلة" : "Related Articles"}
         </h2>
-      </div>
+      </ScrollReveal>
 
+      <ScrollReveal delay={0.1}>
       <Swiper
         modules={[Autoplay]}
         loop={true}
@@ -186,6 +188,7 @@ export default function RelatedBlogs() {
           </SwiperSlide>
         ))}
       </Swiper>
+      </ScrollReveal>
     </section>
   );
 }

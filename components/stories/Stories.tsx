@@ -10,6 +10,7 @@ import { useLocale } from "next-intl";
 import storyImage from "@/assets/blogImage.jpg";
 import { Link } from "@/i18n/navigation";
 import MainButton from "@/components/common/MainButton";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const STORIES = [
   {
@@ -70,8 +71,7 @@ export default function Stories() {
     <section className="bg-main-white" dir={locale === "ar" ? "rtl" : "ltr"}>
       <div className="container mx-auto px-4 sm:px-6 xl:px-12">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-2 px-4">
-          {/* Titles */}
+        <ScrollReveal className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-2 px-4">
           <div className="w-full lg:max-w-120">
             <h4 className="text-primary text-lg font-bold leading-[160%] mb-3">
               {locale === "ar" ? "قصص نجاحنا" : "Our Success Stories"}
@@ -83,7 +83,6 @@ export default function Stories() {
             </h2>
           </div>
 
-          {/* Navigation Buttons */}
           <div className="hidden md:flex items-center gap-2.5 shrink-0">
             <MainButton
               buttontype="prev"
@@ -96,10 +95,10 @@ export default function Stories() {
               className="w-12 h-12 md:w-12.5 md:h-12.5"
             />
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Carousel */}
-        <div className="relative w-full">
+        <ScrollReveal delay={0.1} className="relative w-full">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={0}
@@ -177,7 +176,7 @@ export default function Stories() {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import type { StaticImageData } from "next/image";
 import MainButton from "@/components/common/MainButton";
+import ScrollReveal from "@/components/ScrollReveal";
 
 interface Project {
   id: number;
@@ -324,9 +325,7 @@ export default function SectorInfo() {
       className="bg-main-white py-20 section-container"
       dir={locale === "ar" ? "rtl" : "ltr"}
     >
-      {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-2 px-4">
-        {/* Titles */}
+      <ScrollReveal className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-2 px-4">
         <div className="w-full lg:max-w-2/3">
           <h4 className="text-primary text-lg font-bold leading-[160%] mb-3">
             {locale === "ar" ? " قطاعتنا" : "Our sectors"}
@@ -337,10 +336,9 @@ export default function SectorInfo() {
               : "An integrated, listed group leading the development of institutional performance through comprehensive solutions in consulting, capacity building, and AI-powered technologies—empowering organizations and individuals to achieve sustainable impact."}
           </h2>
         </div>
-      </div>
+      </ScrollReveal>
 
-      {/* ── Filter Tabs ── */}
-      <div className="relative mt-6 mb-10">
+      <ScrollReveal delay={0.1} className="relative mt-6 mb-10">
         <div
           className="flex flex-nowrap md:flex-wrap items-center justify-start gap-3 md:gap-4 p-2 bg-bg-filter rounded-[40px] overflow-x-auto no-scrollbar scroll-smooth"
           style={{
@@ -381,15 +379,9 @@ export default function SectorInfo() {
             </button>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
 
-      {/* ══════════════════════════════════════════════════════════════════════
-          DESKTOP — Accordion Swiper
-          Each SwiperSlide = a flex row of up to 4 accordion cards.
-          Touch / drag is built-in; buttons navigate via swiperRef.
-         ══════════════════════════════════════════════════════════════════════ */}
-      <div className="block md:flex gap-16 items-start min-h-145">
-        {/* Right Column: Detailed Sector Information */}
+      <ScrollReveal stagger={0.1} delay={0.1} className="block md:flex gap-16 items-start min-h-145">
         <div className="w-full md:w-1/2">
           <AnimatePresence mode="wait">
             <motion.div
@@ -539,7 +531,7 @@ export default function SectorInfo() {
             />
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

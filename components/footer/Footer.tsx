@@ -2,6 +2,7 @@ import { MapPin, Phone, Mail } from "lucide-react";
 import Image from "next/image";
 import logo from "@/assets/logo.svg";
 import { Link } from "@/i18n/navigation";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const TwitterIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-4.5 h-4.5 text-primary">
@@ -72,10 +73,12 @@ export default function Footer() {
 
   return (
     <footer className="bg-main-black text-main-white px-6 sm:px-8 xl:px-20 pb-2 pt-10 lg:pt-20 flex flex-col gap-14">
-      {/* Footer Wrapper */}
-      <div className="container mx-auto flex flex-col sm:flex-row flex-wrap lg:flex-nowrap justify-between gap-10">
+      <ScrollReveal
+        stagger={0.1}
+        className="container mx-auto grid grid-cols-2 gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,26%)_auto_auto_minmax(0,25%)] lg:justify-between"
+      >
         {/* Brand Column */}
-        <div className="flex flex-col gap-9 w-full lg:w-[26%]">
+        <div className="col-span-2 flex flex-col gap-9 lg:col-span-1">
           <Image src={logo} alt="Brand Logo" width={124} height={52} />
           <p className="text-base leading-6.5 font-normal text-main-white -mt-3">
             مجموعة سعودية متكاملة تقدم حلولاً احترافية في 5 قطاعات حيوية تخدم
@@ -95,45 +98,42 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Group Quick Links and Sectors for mobile row */}
-        <div className="flex flex-row gap-12 justify-between lg:contents">
-          {/* Quick Links */}
-          <div className="flex flex-col gap-6 ">
-            <h3 className="text-xl font-bold text-main-white">روابط سريعة</h3>
-            <ul className="flex flex-col gap-3 list-none">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-main-white text-base leading-6 transition-colors hover:text-primary font-normal"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Quick Links */}
+        <div className="flex flex-col gap-6">
+          <h3 className="text-xl font-bold text-main-white">روابط سريعة</h3>
+          <ul className="flex flex-col gap-3 list-none">
+            {quickLinks.map((link) => (
+              <li key={link.name}>
+                <Link
+                  href={link.href}
+                  className="text-main-white text-base leading-6 transition-colors hover:text-primary font-normal"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          {/* Sectors */}
-          <div className="flex flex-col gap-6">
-            <h3 className="text-xl font-bold text-main-white">القطاعات</h3>
-            <ul className="flex flex-col gap-3 list-none">
-              {sectors.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-main-white text-base leading-6 transition-colors hover:text-primary font-normal"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Sectors */}
+        <div className="flex flex-col gap-6">
+          <h3 className="text-xl font-bold text-main-white">القطاعات</h3>
+          <ul className="flex flex-col gap-3 list-none">
+            {sectors.map((link) => (
+              <li key={link.name}>
+                <Link
+                  href={link.href}
+                  className="text-main-white text-base leading-6 transition-colors hover:text-primary font-normal"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Contact */}
-        <div className="flex flex-col gap-6 lg:w-[25%]">
+        <div className="col-span-2 flex flex-col gap-6 lg:col-span-1">
           <h3 className="text-xl font-bold text-primary">أتصل بنا</h3>
           <div className="flex flex-col gap-6">
             {contactInfo.map((info, idx) => (
@@ -156,10 +156,10 @@ export default function Footer() {
             ))}
           </div>
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* Bottom Bar */}
-      <div className="border-t border-[#1E2939] sm:h-17.5 flex w-full py-6 sm:py-2">
+      <ScrollReveal delay={0.1} className="border-t border-[#1E2939] sm:h-17.5 flex w-full py-6 sm:py-2">
         <div className="w-full container mx-auto flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-4 sm:gap-2.5 text-center sm:text-start">
           <span className="text-sm text-[#99A1AF] font-normal leading-5">
             © 2026 بي جروب. جميع الحقوق محفوظة
@@ -176,7 +176,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </footer>
   );
 }
