@@ -50,11 +50,11 @@ function Stat({
     <div className="flex flex-col text-white items-start gap-2">
       <h3
         ref={ref}
-        className="text-4xl md:text-[60px] font-medium leading-[125%]"
+        className="text-2xl md:text-4xl lg:text-5xl xl:text-[60px] font-medium leading-[125%]"
       >
         0{suffix}
       </h3>
-      <p className="text-base md:text-lg text-font-white leading-[155%] font-normal">
+      <p className="text-xs md:text-sm lg:text-base xl:text-lg text-font-white leading-[155%] font-normal">
         {label}
       </p>
     </div>

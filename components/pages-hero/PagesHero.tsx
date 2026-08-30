@@ -123,7 +123,11 @@ export default function PagesHero({ page = "sector", className }: PagesHeroProps
           </h3>
 
           <h1
-            className={`text-base md:text-[24px] xl:text-[40px] leading-[160%] font-bold text-main-white ${page === "contact" || page === "work" ? "max-w-5xl" : "w-full"}`}
+            className={`${
+              page === "allsectors"
+                ? "text-sm md:text-lg lg:text-xl xl:text-[40px]"
+                : "text-base md:text-[24px] xl:text-[40px]"
+            } leading-[160%] font-bold text-main-white ${page === "contact" || page === "work" ? "max-w-5xl" : "w-full"}`}
             dangerouslySetInnerHTML={{ __html: content.description }}
           />
         </ScrollReveal>

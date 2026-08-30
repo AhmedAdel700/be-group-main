@@ -90,14 +90,14 @@ export default function Header() {
 
   const barClassName = `relative z-70 transition-all duration-500 ${
     isOpen
-      ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4"
+      ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-2.5 lg:py-4"
       : isAboutPage
         ? isScrolled
-          ? "bg-[#FAFAFA] py-4 shadow-sm"
-          : "bg-[#FAFAFA] py-6"
+          ? "bg-[#FAFAFA] py-2.5 lg:py-4 shadow-sm"
+          : "bg-[#FAFAFA] py-3 lg:py-6"
         : isScrolled
-          ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4"
-          : "bg-transparent py-6"
+          ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-2.5 lg:py-4"
+          : "bg-transparent py-3 lg:py-6"
   }`;
 
   return (
@@ -117,12 +117,12 @@ export default function Header() {
                 onClick={() => setIsOpen(false)}
                 aria-label={a11y("homeLogo")}
               >
-                <div className="relative w-31 h-13">
+                <div className="relative w-22 h-9 lg:w-31 lg:h-13">
                   <Image
                     src={isAboutPage ? "/assets/darkLogo.png" : "/assets/logo.svg"}
                     alt=""
                     fill
-                    sizes="124px"
+                    sizes="(max-width: 1023px) 88px, 124px"
                     className="object-contain object-right"
                     priority
                     aria-hidden="true"
@@ -132,7 +132,7 @@ export default function Header() {
             </motion.div>
 
             <nav className="hidden lg:block" aria-label={a11y("mainNavigation")}>
-              <ul className="flex items-center gap-8">
+              <ul className="flex items-center gap-5 xl:gap-8">
                 {navLinks.map((link) => {
                   const isActive = pathname === link.href;
                   return (
@@ -145,7 +145,7 @@ export default function Header() {
                           prefetch
                           href={link.href}
                           aria-current={isActive ? "page" : undefined}
-                          className={`text-base leading-[1.6] transition-all duration-300 flex items-center gap-1.5
+                          className={`text-sm xl:text-base leading-[1.6] transition-all duration-300 flex items-center gap-1.5
                             ${
                               isActive
                                 ? "text-primary"
@@ -231,9 +231,9 @@ export default function Header() {
                 aria-controls="mobile-navigation"
               >
                 {isOpen ? (
-                  <X size={32} aria-hidden="true" />
+                  <X size={24} aria-hidden="true" />
                 ) : (
-                  <Menu size={32} aria-hidden="true" />
+                  <Menu size={24} aria-hidden="true" />
                 )}
               </button>
           </motion.div>
