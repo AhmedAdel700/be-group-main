@@ -9,6 +9,8 @@ import Footer from "@/components/footer/Footer";
 import { Tajawal, Montserrat } from "next/font/google";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 import NavigationAnimationProvider from "@/providers/NavigationAnimationProvider";
+import SkipToContent from "@/components/a11y/SkipToContent";
+import MainContent from "@/components/a11y/MainContent";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
@@ -47,10 +49,11 @@ export default async function Layout({
         suppressHydrationWarning
       >
         <NextIntlClientProvider messages={messages} locale={locale}>
+          <SkipToContent />
           <Header />
           <SmoothScrollProvider>
             <NavigationAnimationProvider>
-              {children}
+              <MainContent>{children}</MainContent>
               <Footer />
             </NavigationAnimationProvider>
           </SmoothScrollProvider>

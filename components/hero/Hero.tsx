@@ -44,7 +44,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-linear-to-r from-main-black/60 via-transparent to-transparent" />
       </div>
 
-      <ScrollReveal stagger={0.12} className="container mx-auto px-4 sm:px-8 xl:px-15 flex flex-col z-10 w-full">
+      <ScrollReveal playOnMount stagger={0.12} className="container mx-auto px-4 sm:px-8 xl:px-15 flex flex-col z-10 w-full">
         <div className="text-start flex flex-col gap-4">
           <p className="text-primary leading-[1.6] text-sm sm:text-base font-bold">
             بى جروب كيان واحد متكامل نبني، نطوّر، وننمو بأعمالك

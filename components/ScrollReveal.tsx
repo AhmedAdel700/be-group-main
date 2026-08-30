@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { usePathname } from "next/navigation";
 import {
   Children,
@@ -9,6 +9,7 @@ import {
   useSyncExternalStore,
   type ReactElement,
   type ReactNode,
+  type CSSProperties,
 } from "react";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
@@ -60,6 +61,23 @@ function getClientSnapshot() {
 
 function getServerSnapshot() {
   return false;
+}
+
+function getHiddenStyle(direction: Direction): CSSProperties {
+  switch (direction) {
+    case "up":
+      return { opacity: 0, transform: `translateY(${OFFSET}px)` };
+    case "down":
+      return { opacity: 0, transform: `translateY(-${OFFSET}px)` };
+    case "left":
+      return { opacity: 0, transform: `translateX(${OFFSET}px)` };
+    case "right":
+      return { opacity: 0, transform: `translateX(-${OFFSET}px)` };
+    case "none":
+      return { opacity: 0 };
+    default:
+      return { opacity: 0, transform: `translateY(${OFFSET}px)` };
+  }
 }
 
 function getHiddenState(direction: Direction) {
@@ -152,9 +170,18 @@ export default function ScrollReveal({
     getClientSnapshot,
     getServerSnapshot,
   );
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   if (!isMotionReady) {
-    return <div className={className}>{children}</div>;
+    return (
+      <div className={className} style={getHiddenStyle(direction)}>
+        {children}
+      </div>
+    );
   }
 
   const hidden = getHiddenState(direction);

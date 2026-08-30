@@ -5,25 +5,50 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion, type Variants } from "framer-motion";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
   const pathname = usePathname();
   const t = useTranslations("header");
+  const a11y = useTranslations("a11y");
   const [isOpen, setIsOpen] = useState(false);
   const [showMobileDropdown, setShowMobileDropdown] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
-useEffect(() => {
-  const handleScroll = () => {
-    setIsScrolled(window.scrollY > 20);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const headerEaseOut = [0.16, 1, 0.3, 1] as [number, number, number, number];
+
+  const headerContentVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.05,
+      },
+    },
   };
 
-  handleScroll();
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+  const headerItemVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: headerEaseOut,
+      },
+    },
+  };
 
   const navLinks = [
     { name: t("home"), href: "/" },
@@ -61,140 +86,168 @@ useEffect(() => {
     open: { opacity: 1, y: 0 },
   };
 
-  const isAboutPage = pathname === "/about" || pathname?.startsWith("/blogs/");;
+  const isAboutPage = pathname === "/about" || pathname?.startsWith("/blogs/");
+
+  const barClassName = `relative z-70 transition-all duration-500 ${
+    isOpen
+      ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4"
+      : isAboutPage
+        ? isScrolled
+          ? "bg-[#FAFAFA] py-4 shadow-sm"
+          : "bg-[#FAFAFA] py-6"
+        : isScrolled
+          ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4"
+          : "bg-transparent py-6"
+  }`;
 
   return (
     <header className="fixed top-0 z-50 w-full">
-      {/* Header Bar */}
-      <div
-        className={`relative z-70 transition-all duration-500 ${
-          isOpen
-            ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4"
-            : isAboutPage
-              ? isScrolled
-                ? "bg-[#FAFAFA] py-4 shadow-sm"
-                : "bg-[#FAFAFA] py-6"
-              : isScrolled
-                ? "bg-black/90 backdrop-blur-lg border-b border-white/5 py-4"
-                : "bg-transparent py-6"
-        }`}
+      <motion.div
+        className={barClassName}
+        initial={prefersReducedMotion ? false : "hidden"}
+        animate="visible"
+        variants={headerContentVariants}
       >
         <div className="container mx-auto px-4 sm:px-8 flex items-center justify-between relative">
           <div className="flex items-center gap-12 lg:gap-22">
-            <Link
-              href="/"
-              className="relative z-10 block shrink-0"
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="relative w-31 h-13">
-                <Image
-                  src={isAboutPage ? "/assets/darkLogo.png" : "/assets/logo.svg"}
-                  alt="Logo"
-                  fill
-                  sizes="124px"
-                  className="object-contain object-right"
-                  priority
-                />
-              </div>
-            </Link>
+            <motion.div variants={headerItemVariants}>
+              <Link
+                href="/"
+                className="relative z-10 block shrink-0"
+                onClick={() => setIsOpen(false)}
+                aria-label={a11y("homeLogo")}
+              >
+                <div className="relative w-31 h-13">
+                  <Image
+                    src={isAboutPage ? "/assets/darkLogo.png" : "/assets/logo.svg"}
+                    alt=""
+                    fill
+                    sizes="124px"
+                    className="object-contain object-right"
+                    priority
+                    aria-hidden="true"
+                  />
+                </div>
+              </Link>
+            </motion.div>
 
-            <nav className="hidden lg:block">
+            <nav className="hidden lg:block" aria-label={a11y("mainNavigation")}>
               <ul className="flex items-center gap-8">
                 {navLinks.map((link) => {
                   const isActive = pathname === link.href;
                   return (
-                    <li key={link.href} className="group relative">
-                      <Link
-                        prefetch
-                        href={link.href}
-                        className={`text-base leading-[1.6] transition-all duration-300 flex items-center gap-1.5
-                          ${
-                            isActive
-                              ? "text-primary"
-                              : isAboutPage
-                                ? "text-main-black hover:text-primary"
-                                : "text-main-white hover:text-primary"
-                          }
-                        `}
-                      >
-                        <span
-                          data-text={link.name}
-                          className={`nav-link-reserve ${isActive ? "font-bold" : "font-medium"}`}
+                    <motion.li
+                      key={link.href}
+                      className="group relative"
+                      variants={headerItemVariants}
+                    >
+                        <Link
+                          prefetch
+                          href={link.href}
+                          aria-current={isActive ? "page" : undefined}
+                          className={`text-base leading-[1.6] transition-all duration-300 flex items-center gap-1.5
+                            ${
+                              isActive
+                                ? "text-primary"
+                                : isAboutPage
+                                  ? "text-main-black hover:text-primary"
+                                  : "text-main-white hover:text-primary"
+                            }
+                          `}
                         >
-                          {link.name}
-                        </span>
-                        {link.dropdown && (
-                          <ChevronDown
-                            size={18}
-                            className="transition-transform duration-300 group-hover:rotate-180"
-                          />
-                        )}
-                      </Link>
+                          <span
+                            data-text={link.name}
+                            className={`nav-link-reserve ${isActive ? "font-bold" : "font-medium"}`}
+                          >
+                            {link.name}
+                          </span>
+                          {link.dropdown && (
+                            <ChevronDown
+                              size={18}
+                              aria-hidden="true"
+                              className="transition-transform duration-300 group-hover:rotate-180"
+                            />
+                          )}
+                        </Link>
 
-                      {link.dropdown && (
-                        <div className="absolute top-full -left-6 pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                          <div className="bg-main-black/90 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl p-4 min-w-55">
-                            <ul className="space-y-2">
-                              <li>
-                                <Link
-                                  prefetch
-                                  href="/sectors/tech"
-                                  className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium"
-                                >
-                                  {t("tech")}
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  prefetch
-                                  href="/sectors/real-estate"
-                                  className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium"
-                                >
-                                  {t("realEstate")}
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  prefetch
-                                  href="/sectors/marketing"
-                                  className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium"
-                                >
-                                  {t("marketing")}
-                                </Link>
-                              </li>
-                            </ul>
+                        {link.dropdown && (
+                          <div
+                            id="sectors-submenu"
+                            role="region"
+                            aria-label={a11y("sectorsSubmenu")}
+                            className="absolute top-full -left-6 pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0"
+                          >
+                            <div className="bg-main-black/90 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl p-4 min-w-55">
+                              <ul className="space-y-2">
+                                <li>
+                                  <Link
+                                    prefetch
+                                    href="/sectors/tech"
+                                    className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium"
+                                  >
+                                    {t("tech")}
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link
+                                    prefetch
+                                    href="/sectors/real-estate"
+                                    className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium"
+                                  >
+                                    {t("realEstate")}
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link
+                                    prefetch
+                                    href="/sectors/marketing"
+                                    className="block px-4 py-2 text-main-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors font-medium"
+                                  >
+                                    {t("marketing")}
+                                  </Link>
+                                </li>
+                              </ul>
+                            </div>
                           </div>
-                        </div>
-                      )}
-                    </li>
-                  );
-                })}
+                        )}
+                      </motion.li>
+                    );
+                  })}
               </ul>
             </nav>
           </div>
 
-          <div className="flex items-center gap-4">
-            {/* Desktop Language Switcher */}
-            <div className="hidden lg:block shrink-0">
-              <LanguageSwitcher />
-            </div>
+          <motion.div className="flex items-center gap-4" variants={headerItemVariants}>
+              <div className="hidden lg:block shrink-0">
+                <LanguageSwitcher />
+              </div>
 
-            {/* Mobile Burger Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className={`lg:hidden relative z-50 p-2 hover:text-primary transition-all duration-300 focus:outline-none ${!isOpen && isAboutPage ? "text-main-black" : "text-white"}`}
-              aria-label="Toggle Menu"
-            >
-              {isOpen ? <X size={32} /> : <Menu size={32} />}
-            </button>
-          </div>
+              <button
+                type="button"
+                onClick={() => setIsOpen(!isOpen)}
+                className={`lg:hidden relative z-50 p-2 hover:text-primary transition-all duration-300 focus:outline-none ${!isOpen && isAboutPage ? "text-main-black" : "text-white"}`}
+                aria-label={isOpen ? a11y("closeMenu") : a11y("openMenu")}
+                aria-expanded={isOpen}
+                aria-controls="mobile-navigation"
+              >
+                {isOpen ? (
+                  <X size={32} aria-hidden="true" />
+                ) : (
+                  <Menu size={32} aria-hidden="true" />
+                )}
+              </button>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-navigation"
+            role="dialog"
+            aria-modal="true"
+            aria-label={a11y("mobileNavigation")}
             initial="closed"
             animate="open"
             exit="closed"
@@ -214,9 +267,12 @@ useEffect(() => {
                       {link.dropdown ? (
                         <div>
                           <button
+                            type="button"
                             onClick={() =>
                               setShowMobileDropdown(!showMobileDropdown)
                             }
+                            aria-expanded={showMobileDropdown}
+                            aria-controls="mobile-sectors-submenu"
                             className={`text-2xl font-bold leading-relaxed w-full flex items-center justify-center gap-2
                               ${isActive ? "text-primary" : "text-main-white"}
                             `}
@@ -224,12 +280,15 @@ useEffect(() => {
                             {link.name}
                             <ChevronDown
                               size={24}
+                              aria-hidden="true"
                               className={`transition-transform duration-300 ${showMobileDropdown ? "rotate-180 text-primary" : ""}`}
                             />
                           </button>
                           <AnimatePresence>
                             {showMobileDropdown && (
                               <motion.ul
+                                id="mobile-sectors-submenu"
+                                role="list"
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: "auto", opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
@@ -271,6 +330,7 @@ useEffect(() => {
                           prefetch
                           onClick={() => setIsOpen(false)}
                           href={link.href}
+                          aria-current={pathname === link.href ? "page" : undefined}
                           className={`text-2xl font-bold leading-relaxed block
                           ${pathname === link.href ? "text-primary" : "text-main-white hover:text-primary"}
                         `}

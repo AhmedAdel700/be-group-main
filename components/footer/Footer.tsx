@@ -3,26 +3,29 @@ import Image from "next/image";
 import logo from "@/assets/logo.svg";
 import { Link } from "@/i18n/navigation";
 import ScrollReveal from "@/components/ScrollReveal";
+import { getTranslations } from "next-intl/server";
 
 const TwitterIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4.5 h-4.5 text-primary">
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4.5 h-4.5 text-primary" aria-hidden="true">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
   </svg>
 );
 
 const FacebookIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" className="text-primary">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" className="text-primary" aria-hidden="true">
     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
   </svg>
 );
 
 const LinkedInIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" className="text-primary">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" className="text-primary" aria-hidden="true">
     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
   </svg>
 );
 
-export default function Footer() {
+export default async function Footer() {
+  const a11y = await getTranslations("a11y");
+
   const socialMediaLinks = [
     { href: "https://twitter.com/bgroup_sa", icon: <TwitterIcon />, label: "Twitter" },
     { href: "https://www.facebook.com/bgroup.sa", icon: <FacebookIcon />, label: "Facebook" },
@@ -72,19 +75,19 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-main-black text-main-white px-6 sm:px-8 xl:px-20 pb-2 pt-10 lg:pt-20 flex flex-col gap-14">
+    <footer className="bg-main-black text-main-white px-6 sm:px-8 xl:px-20 pb-2 pt-10 lg:pt-20 flex flex-col gap-14" role="contentinfo">
       <ScrollReveal
         stagger={0.1}
         className="container mx-auto grid grid-cols-2 gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,26%)_auto_auto_minmax(0,25%)] lg:justify-between"
       >
         {/* Brand Column */}
         <div className="col-span-2 flex flex-col gap-9 lg:col-span-1">
-          <Image src={logo} alt="Brand Logo" width={124} height={52} />
+          <Image src={logo} alt="" width={124} height={52} aria-hidden="true" />
           <p className="text-base leading-6.5 font-normal text-main-white -mt-3">
             مجموعة سعودية متكاملة تقدم حلولاً احترافية في 5 قطاعات حيوية تخدم
             رؤية 2030
           </p>
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5" role="list" aria-label={a11y("socialLinks")}>
             {socialMediaLinks.map(({ href, icon, label }) => (
               <Link
                 key={label}
@@ -99,8 +102,8 @@ export default function Footer() {
         </div>
 
         {/* Quick Links */}
-        <div className="flex flex-col gap-6">
-          <h3 className="text-xl font-bold text-main-white">روابط سريعة</h3>
+        <nav className="flex flex-col gap-6" aria-labelledby="footer-quick-links-heading">
+          <h3 id="footer-quick-links-heading" className="text-xl font-bold text-main-white">روابط سريعة</h3>
           <ul className="flex flex-col gap-3 list-none">
             {quickLinks.map((link) => (
               <li key={link.name}>
@@ -113,11 +116,11 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
         {/* Sectors */}
-        <div className="flex flex-col gap-6">
-          <h3 className="text-xl font-bold text-main-white">القطاعات</h3>
+        <nav className="flex flex-col gap-6" aria-labelledby="footer-sectors-heading">
+          <h3 id="footer-sectors-heading" className="text-xl font-bold text-main-white">القطاعات</h3>
           <ul className="flex flex-col gap-3 list-none">
             {sectors.map((link) => (
               <li key={link.name}>
@@ -130,12 +133,12 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
         {/* Contact */}
-        <div className="col-span-2 flex flex-col gap-6 lg:col-span-1">
-          <h3 className="text-xl font-bold text-primary">أتصل بنا</h3>
-          <div className="flex flex-col gap-6">
+        <address className="col-span-2 flex flex-col gap-6 lg:col-span-1 not-italic">
+          <h3 id="footer-contact-heading" className="text-xl font-bold text-primary">أتصل بنا</h3>
+          <div className="flex flex-col gap-6" aria-labelledby="footer-contact-heading">
             {contactInfo.map((info, idx) => (
               <Link
                 key={idx}
@@ -146,16 +149,21 @@ export default function Footer() {
                     ? "noopener noreferrer"
                     : undefined
                 }
+                aria-label={
+                  info.href.startsWith("http")
+                    ? `${info.text} (${a11y("opensInNewTab")})`
+                    : undefined
+                }
                 className="flex items-start gap-2.5 text-main-white text-base leading-6 font-normal transition-colors hover:text-primary"
               >
-                <span className="text-primary shrink-0 mt-0.5">
+                <span className="text-primary shrink-0 mt-0.5" aria-hidden="true">
                   {info.icon}
                 </span>
                 <span dir={info.dir}>{info.text}</span>
               </Link>
             ))}
           </div>
-        </div>
+        </address>
       </ScrollReveal>
 
       {/* Bottom Bar */}

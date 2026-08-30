@@ -127,9 +127,15 @@ export default function ContactSection() {
         <form
           className="flex flex-col gap-8 w-full"
           onSubmit={handleSubmit(onSubmit)}
+          aria-label="تواصل معنا"
+          noValidate
         >
           {isSuccess && (
-            <div className="bg-green-50 border border-green-200 text-green-700 font-medium px-4 py-4 rounded-xl mb-2 transition-all">
+            <div
+              role="status"
+              aria-live="polite"
+              className="bg-green-50 border border-green-200 text-green-700 font-medium px-4 py-4 rounded-xl mb-2 transition-all"
+            >
               تم إرسال رسالتك بنجاح! شكراً لتواصلك معنا.
             </div>
           )}
@@ -138,65 +144,93 @@ export default function ContactSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
             {/* Name */}
             <div className="flex flex-col gap-3">
-              <label className="text-base font-semibold text-main-black leading-[160%] ps-1">
+              <label htmlFor="contact-name" className="text-base font-semibold text-main-black leading-[160%] ps-1">
                 الاسم
               </label>
               <input
+                id="contact-name"
                 suppressHydrationWarning
                 type="text"
                 placeholder="أكتب الاسم هنا.."
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? "contact-name-error" : undefined}
                 {...register("name")}
                 className={`w-full h-14 bg-transparent border rounded-xl px-4 text-primary text-base leading-6.5 font-normal placeholder:text-labels focus:outline-none transition-all ${
                   errors.name ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500/20" : "border-secondary-black/10 focus:border-primary focus:ring-1 focus:ring-primary/20"
                 }`}
               />
-              {errors.name && <span className="text-red-500 text-sm px-2 text-start">{errors.name.message}</span>}
+              {errors.name && (
+                <span id="contact-name-error" role="alert" className="text-red-500 text-sm px-2 text-start">
+                  {errors.name.message}
+                </span>
+              )}
             </div>
 
             {/* Email */}
             <div className="flex flex-col gap-3">
-              <label className="text-base font-semibold text-main-black leading-[160%] ps-1">
+              <label htmlFor="contact-email" className="text-base font-semibold text-main-black leading-[160%] ps-1">
                 البريد الإلكتروني
               </label>
               <input
+                id="contact-email"
                 suppressHydrationWarning
                 type="email"
                 placeholder="أكتب البريد الإلكتروني"
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "contact-email-error" : undefined}
                 {...register("email")}
                 className={`w-full h-14 bg-transparent border rounded-xl px-4 text-primary text-base leading-6.5 font-normal placeholder:text-labels focus:outline-none transition-all ${
                   errors.email ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500/20" : "border-secondary-black/10 focus:border-primary focus:ring-1 focus:ring-primary/20"
                 }`}
               />
-              {errors.email && <span className="text-red-500 text-sm px-2 text-start">{errors.email.message}</span>}
+              {errors.email && (
+                <span id="contact-email-error" role="alert" className="text-red-500 text-sm px-2 text-start">
+                  {errors.email.message}
+                </span>
+              )}
             </div>
 
             {/* Company Name */}
             <div className="flex flex-col gap-3">
-              <label className="text-base font-semibold text-main-black leading-[160%]">
+              <label htmlFor="contact-company" className="text-base font-semibold text-main-black leading-[160%]">
                 اسم الشركة
               </label>
               <input
+                id="contact-company"
                 suppressHydrationWarning
                 type="text"
                 placeholder="أكتب اسم الشركة"
+                aria-invalid={!!errors.company}
+                aria-describedby={errors.company ? "contact-company-error" : undefined}
                 {...register("company")}
                 className={`w-full h-14 bg-transparent border rounded-xl px-4 text-primary text-base leading-6.5 font-normal placeholder:text-labels focus:outline-none transition-all ${
                   errors.company ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500/20" : "border-secondary-black/10 focus:border-primary focus:ring-1 focus:ring-primary/20"
                 }`}
               />
-              {errors.company && <span className="text-red-500 text-sm px-2 text-start">{errors.company.message}</span>}
+              {errors.company && (
+                <span id="contact-company-error" role="alert" className="text-red-500 text-sm px-2 text-start">
+                  {errors.company.message}
+                </span>
+              )}
             </div>
 
             {/* Sector Dropdown */}
             <div className="flex flex-col gap-3" ref={selectRef}>
-              <label className="text-base font-semibold text-main-black leading-[160%] ps-1">
+              <label id="contact-sector-label" htmlFor="contact-sector" className="text-base font-semibold text-main-black leading-[160%] ps-1">
                 اسم القطاع
               </label>
               <div className="relative group">
-                {/* Trigger */}
-                <div
+                <button
+                  type="button"
+                  id="contact-sector"
+                  aria-labelledby="contact-sector-label"
+                  aria-haspopup="listbox"
+                  aria-expanded={isOpen}
+                  aria-controls="contact-sector-listbox"
+                  aria-invalid={!!errors.sector}
+                  aria-describedby={errors.sector ? "contact-sector-error" : undefined}
                   onClick={() => setIsOpen(!isOpen)}
-                  className={`w-full h-14 bg-transparent border rounded-xl px-4 flex items-center justify-between cursor-pointer transition-all ${
+                  className={`w-full h-14 bg-transparent border rounded-xl px-4 flex items-center justify-between cursor-pointer transition-all text-start ${
                     errors.sector 
                       ? "border-red-500" 
                       : isOpen
@@ -213,22 +247,38 @@ export default function ContactSection() {
                   </span>
                   <div
                     className={`transition-all duration-300 ${isOpen ? "rotate-180 text-primary" : "text-main-black/30 group-hover:text-primary"}`}
+                    aria-hidden="true"
                   >
                     <ChevronDown size={20} />
                   </div>
-                </div>
+                </button>
 
-                {/* Dropdown Menu */}
                 {isOpen && (
-                  <div className="absolute top-[calc(100%+8px)] left-0 right-0 bg-white border border-secondary-black/10 rounded-xl shadow-xl z-50 overflow-hidden flex flex-col py-2">
+                  <ul
+                    id="contact-sector-listbox"
+                    role="listbox"
+                    aria-labelledby="contact-sector-label"
+                    className="absolute top-[calc(100%+8px)] left-0 right-0 bg-white border border-secondary-black/10 rounded-xl shadow-xl z-50 overflow-hidden flex flex-col py-2 list-none m-0 p-0"
+                  >
                     {options.map((option) => (
-                      <div
+                      <li
                         key={option.value}
+                        role="option"
+                        aria-selected={selectedOption === option.value}
                         onClick={() => {
                           setSelectedOption(option.value);
                           setValue("sector", option.value, { shouldValidate: true });
                           setIsOpen(false);
                         }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setSelectedOption(option.value);
+                            setValue("sector", option.value, { shouldValidate: true });
+                            setIsOpen(false);
+                          }
+                        }}
+                        tabIndex={0}
                         className={`px-4 py-3 text-base leading-6.5 font-normal cursor-pointer transition-colors hover:bg-gray-50/80 ${
                           selectedOption === option.value
                             ? "text-primary bg-primary/5 font-medium"
@@ -236,30 +286,41 @@ export default function ContactSection() {
                         }`}
                       >
                         {option.label}
-                      </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 )}
               </div>
-              {errors.sector && <span className="text-red-500 text-sm px-2 text-start">{errors.sector.message}</span>}
+              {errors.sector && (
+                <span id="contact-sector-error" role="alert" className="text-red-500 text-sm px-2 text-start">
+                  {errors.sector.message}
+                </span>
+              )}
             </div>
           </div>
 
           {/* Message Area */}
           <div className="flex flex-col gap-3 w-full">
-            <label className="text-base font-semibold text-main-black leading-[160%] ps-1">
+            <label htmlFor="contact-message" className="text-base font-semibold text-main-black leading-[160%] ps-1">
               اكتب رسالتك
             </label>
             <textarea
+              id="contact-message"
               suppressHydrationWarning
               rows={5}
               placeholder="أكتب استفسار او رسالتك المراد الاستفسار عنها"
+              aria-invalid={!!errors.message}
+              aria-describedby={errors.message ? "contact-message-error" : undefined}
               {...register("message")}
               className={`w-full bg-transparent border rounded-xl px-4 py-4 text-primary text-base leading-6.5 font-normal placeholder:text-labels focus:outline-none transition-all resize-none ${
                 errors.message ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500/20" : "border-secondary-black/10 focus:border-primary focus:ring-1 focus:ring-primary/20"
               }`}
             ></textarea>
-            {errors.message && <span className="text-red-500 text-sm px-2 text-start">{errors.message.message}</span>}
+            {errors.message && (
+              <span id="contact-message-error" role="alert" className="text-red-500 text-sm px-2 text-start">
+                {errors.message.message}
+              </span>
+            )}
           </div>
 
           {/* Submit Button */}
